@@ -1,30 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-export async function POST(req: NextRequest) {
-  const { imageBase64, mimeType, apiKey: clientKey } = await req.json();
+const MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-flash'];
+const MAX_RETRIES = 2;
 
-  const apiKey = clientKey || process.env.GEMINI_API_KEY;
-
-  if (!apiKey) {
-    return NextResponse.json(
-      { success: false, error: '未設定 Gemini API Key' },
-      { status: 400 }
-    );
-  }
-
-  if (!imageBase64 || !mimeType) {
-    return NextResponse.json(
-      { success: false, error: '缺少圖片資料' },
-      { status: 400 }
-    );
-  }
-
-  try {
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
-
-    const prompt = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomica 小汽車。
+const PROMPT = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomica 小汽車。
 
 請回傳以下 JSON 格式（不要加 markdown 標記）：
 {
@@ -47,40 +27,94 @@ export async function POST(req: NextRequest) {
 - 注意車身顏色來判斷是初回特別仕様還是通常版
 - 如果能看到包裝，優先從包裝文字辨識`;
 
-    const result = await model.generateContent([
-      prompt,
-      {
-        inlineData: {
-          mimeType,
-          data: imageBase64,
-        },
-      },
-    ]);
+async function tryGenerate(
+  genAI: GoogleGenerativeAI,
+  modelName: string,
+  mimeType: string,
+  imageBase64: string
+) {
+  const model = genAI.getGenerativeModel({ model: modelName });
+  const result = await model.generateContent([
+    PROMPT,
+    { inlineData: { mimeType, data: imageBase64 } },
+  ]);
+  return result.response.text().trim();
+}
 
-    const text = result.response.text().trim();
-    const jsonStr = text.replace(/```json\n?/g, '').replace(/```\n?/g, '');
-    const parsed = JSON.parse(jsonStr);
+export async function POST(req: NextRequest) {
+  const { imageBase64, mimeType, apiKey: clientKey } = await req.json();
 
-    if (parsed.number === null || parsed.confidence === 'none') {
-      return NextResponse.json({
-        success: false,
-        raw_response: text,
-        error: '無法辨識此 Tomica 車款，請嘗試拍攝包裝盒正面',
-      });
-    }
+  const apiKey = clientKey || process.env.GEMINI_API_KEY;
 
-    return NextResponse.json({
-      success: true,
-      number: parsed.number,
-      name: parsed.name,
-      variant: parsed.variant,
-      confidence: parsed.confidence,
-      raw_response: text,
-    });
-  } catch (e) {
-    return NextResponse.json({
-      success: false,
-      error: e instanceof Error ? e.message : '辨識過程發生錯誤',
-    });
+  if (!apiKey) {
+    return NextResponse.json(
+      { success: false, error: '未設定 Gemini API Key' },
+      { status: 400 }
+    );
   }
+
+  if (!imageBase64 || !mimeType) {
+    return NextResponse.json(
+      { success: false, error: '缺少圖片資料' },
+      { status: 400 }
+    );
+  }
+
+  const genAI = new GoogleGenerativeAI(apiKey);
+  let lastError = '';
+
+  for (const modelName of MODELS) {
+    for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+      try {
+        const text = await tryGenerate(genAI, modelName, mimeType, imageBase64);
+        const jsonStr = text.replace(/```json\n?/g, '').replace(/```\n?/g, '');
+        const parsed = JSON.parse(jsonStr);
+
+        if (parsed.number === null || parsed.confidence === 'none') {
+          return NextResponse.json({
+            success: false,
+            raw_response: text,
+            error: '無法辨識此 Tomica 車款，請嘗試拍攝包裝盒正面',
+          });
+        }
+
+        return NextResponse.json({
+          success: true,
+          number: parsed.number,
+          name: parsed.name,
+          variant: parsed.variant,
+          confidence: parsed.confidence,
+          raw_response: text,
+        });
+      } catch (e) {
+        lastError = e instanceof Error ? e.message : '辨識過程發生錯誤';
+        const isRetryable =
+          lastError.includes('503') ||
+          lastError.includes('429') ||
+          lastError.includes('overloaded') ||
+          lastError.includes('Unavailable');
+
+        if (isRetryable && attempt < MAX_RETRIES) {
+          await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+          continue;
+        }
+
+        const isModelGone =
+          lastError.includes('404') ||
+          lastError.includes('not found') ||
+          lastError.includes('no longer available');
+
+        if (isModelGone || (isRetryable && attempt >= MAX_RETRIES)) {
+          break;
+        }
+
+        return NextResponse.json({ success: false, error: lastError });
+      }
+    }
+  }
+
+  return NextResponse.json({
+    success: false,
+    error: `所有模型都暫時無法使用，請稍後再試。(${lastError})`,
+  });
 }

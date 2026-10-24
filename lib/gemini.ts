@@ -17,7 +17,7 @@ export async function identifyTomica(
 ): Promise<ScanResult> {
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const prompt = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomica 小汽車。
 
