@@ -8,8 +8,9 @@ const PROMPT = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomi
 
 請回傳以下 JSON 格式（不要加 markdown 標記）：
 {
+  "series": "<regular/premium/unlimited/dream/other>",
   "number": <Tomica 編號，數字>,
-  "name": "<車款名稱，日文>",
+  "name": "<車款名稱，日文，照包裝上的完整名稱>",
   "variant": "<版本描述，例如：初回特別仕様（金色）或 通常版（紅色）>",
   "confidence": "<high/medium/low>"
 }
@@ -23,7 +24,9 @@ const PROMPT = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomi
 }
 
 重要提示：
-- 注意包裝盒上的編號（左上角的數字）
+- 先判斷系列：紅白盒、左邊大「トミカ」紅標是 regular（常規）；黑盒「tomica premium」是 premium；「tomica unlimited」（金色∞標誌）是 unlimited；「ドリームトミカ」是 dream；其他系列填 other
+- 各系列編號各自獨立，number 填該系列的編號（例如 unlimited 的 04 就填 4）
+- 注意包裝盒上的編號
 - 注意車身顏色來判斷是初回特別仕様還是通常版
 - 如果能看到包裝，優先從包裝文字辨識`;
 
@@ -80,6 +83,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({
           success: true,
+          series: parsed.series || 'other',
           number: parsed.number,
           name: parsed.name,
           variant: parsed.variant,

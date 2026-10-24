@@ -9,6 +9,7 @@ export interface CollectionItem {
   // Set only for scanned cars that don't match the built-in catalog entry for this number
   name?: string;
   variantName?: string;
+  series?: string;
 }
 
 export interface WishlistItem {

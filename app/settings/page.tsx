@@ -61,6 +61,7 @@ export default function SettingsPage() {
             notes: item.notes,
             name: item.name,
             variantName: item.variantName,
+            series: item.series,
           }))
         );
       }

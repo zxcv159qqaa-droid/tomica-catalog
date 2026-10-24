@@ -53,8 +53,24 @@ export function isSameCar(car: TomicaCar, scannedName: string): boolean {
   });
 }
 
-export function scanVariantId(number: number, name: string): string {
-  return `scan-${number}-${normalizeName(name)}`;
+export function scanVariantId(
+  number: number,
+  name: string,
+  series = 'regular'
+): string {
+  return `scan-${series}-${number}-${normalizeName(name)}`;
+}
+
+const SERIES_LABELS: Record<string, string> = {
+  regular: '常規',
+  premium: 'Premium',
+  unlimited: 'Unlimited',
+  dream: 'Dream',
+  other: '其他',
+};
+
+export function seriesLabel(series?: string): string {
+  return SERIES_LABELS[series || 'regular'] || series || '常規';
 }
 
 export function getCarsByManufacturer(manufacturer: string): TomicaCar[] {

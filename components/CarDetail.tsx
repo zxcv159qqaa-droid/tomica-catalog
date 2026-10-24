@@ -26,7 +26,9 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
       setCollectedVariants(
         new Set(items.filter((i) => !i.name).map((i) => i.variantId))
       );
-      setScanned(items.filter((i) => i.name));
+      setScanned(
+        items.filter((i) => i.name && (!i.series || i.series === 'regular'))
+      );
 
       const wish = await db.wishlist
         .where('tomicaNumber')

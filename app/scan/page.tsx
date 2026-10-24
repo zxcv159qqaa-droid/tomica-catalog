@@ -4,7 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import CameraCapture from '@/components/CameraCapture';
 import type { ScanResult } from '@/lib/gemini';
-import { getCarByNumber, isSameCar, scanVariantId } from '@/lib/tomica-data';
+import {
+  getCarByNumber,
+  isSameCar,
+  scanVariantId,
+  seriesLabel,
+} from '@/lib/tomica-data';
 import { db } from '@/lib/db';
 
 export default function ScanPage() {
@@ -16,8 +21,11 @@ export default function ScanPage() {
   const [added, setAdded] = useState(false);
   const [alreadyOwned, setAlreadyOwned] = useState(false);
 
+  const series = result?.series || 'regular';
   const catalogCar =
-    result?.success && result.number ? getCarByNumber(result.number) : undefined;
+    result?.success && result.number && series === 'regular'
+      ? getCarByNumber(result.number)
+      : undefined;
   const catalogMatch =
     !!catalogCar && !!result?.name && isSameCar(catalogCar, result.name);
 
@@ -25,7 +33,7 @@ export default function ScanPage() {
     setAlreadyOwned(false);
     if (!result?.success || !result.number) return;
     const number = result.number;
-    const scanId = scanVariantId(number, result.name || '');
+    const scanId = scanVariantId(number, result.name || '', series);
     db.collection
       .where('tomicaNumber')
       .equals(number)
@@ -37,7 +45,7 @@ export default function ScanPage() {
             : items.some((i) => i.variantId === scanId)
         );
       });
-  }, [result, catalogMatch]);
+  }, [result, catalogMatch, series]);
 
   useEffect(() => {
     try {
@@ -88,9 +96,10 @@ export default function ScanPage() {
     } else {
       await db.collection.add({
         tomicaNumber: result.number,
-        variantId: scanVariantId(result.number, result.name || ''),
+        variantId: scanVariantId(result.number, result.name || '', series),
         name: result.name || `No.${result.number}`,
         variantName: result.variant,
+        series,
         addedAt: new Date(),
       });
     }
@@ -154,7 +163,9 @@ export default function ScanPage() {
               <div className="space-y-1 text-sm">
                 <p>
                   <span className="text-gray-500">編號：</span>
-                  <strong>No.{result.number}</strong>
+                  <strong>
+                    {seriesLabel(series)} No.{result.number}
+                  </strong>
                 </p>
                 <p>
                   <span className="text-gray-500">車名：</span>
@@ -204,12 +215,14 @@ export default function ScanPage() {
                     已加入收藏 ✓
                   </span>
                 )}
-                <Link
-                  href={`/catalog/${result.number}`}
-                  className="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-center rounded-lg text-sm font-medium"
-                >
-                  查看詳情
-                </Link>
+                {series === 'regular' && (
+                  <Link
+                    href={`/catalog/${result.number}`}
+                    className="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-center rounded-lg text-sm font-medium"
+                  >
+                    查看詳情
+                  </Link>
+                )}
               </div>
             </div>
           ) : (

@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export interface ScanResult {
   success: boolean;
+  series?: string;
   number?: number;
   name?: string;
   variant?: string;

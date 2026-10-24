@@ -7,6 +7,7 @@ import {
   getAllCars,
   searchCars,
   normalizeName,
+  seriesLabel,
   type TomicaCar,
 } from '@/lib/tomica-data';
 import CarCard from '@/components/CarCard';
@@ -145,25 +146,50 @@ export default function HomePage() {
 
       {filter === 'collected' && scannedItems.length > 0 && (
         <div className="flex flex-col gap-3 mb-3">
-          {scannedItems.map((item) => (
-            <Link
-              key={item.id}
-              href={`/catalog/${item.tomicaNumber}`}
-              className="flex items-center gap-3 p-4 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
-            >
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center shrink-0">
-                <span className="font-bold text-blue-600 dark:text-blue-400">
-                  {item.tomicaNumber}
-                </span>
+          {scannedItems.map((item) => {
+            const isRegular = !item.series || item.series === 'regular';
+            const body = (
+              <>
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex flex-col items-center justify-center shrink-0">
+                  {!isRegular && (
+                    <span className="text-[9px] leading-none text-blue-500">
+                      {seriesLabel(item.series)}
+                    </span>
+                  )}
+                  <span className="font-bold text-blue-600 dark:text-blue-400">
+                    {item.tomicaNumber}
+                  </span>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold truncate">{item.name}</p>
+                  <p className="text-xs text-gray-500 truncate">
+                    {item.variantName || '掃描加入'}
+                  </p>
+                </div>
+              </>
+            );
+            const cls =
+              'flex items-center gap-3 p-4 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800';
+            return isRegular ? (
+              <Link key={item.id} href={`/catalog/${item.tomicaNumber}`} className={cls}>
+                {body}
+              </Link>
+            ) : (
+              <div key={item.id} className={cls}>
+                {body}
+                <button
+                  onClick={async () => {
+                    if (!item.id || !confirm(`移除「${item.name}」？`)) return;
+                    await db.collection.delete(item.id);
+                    setCollection((prev) => prev.filter((c) => c.id !== item.id));
+                  }}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 shrink-0"
+                >
+                  移除
+                </button>
               </div>
-              <div className="min-w-0">
-                <p className="font-semibold truncate">{item.name}</p>
-                <p className="text-xs text-gray-500 truncate">
-                  {item.variantName || '掃描加入'}
-                </p>
-              </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
       )}
 
