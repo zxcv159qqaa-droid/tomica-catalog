@@ -16,7 +16,7 @@ const PROMPT = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomi
   "series": "<regular/premium/unlimited/dream/disney/asia/other>",
   "code": "<包裝上的編號文字原樣，例如 46、04、151、SP、RD-01、DM-13、AO-03>",
   "number": <編號中的數字部分，沒有數字（例如 SP）就填 null>,
-  "name": "<車款名稱，日文，照包裝上的完整名稱>",
+  "name": "<包裝上的日文名稱（片假名／漢字那行），不要用英文那行>",
   "variant": "<版本描述，例如：初回特別仕様（金色）或 通常版（紅色）>",
   "confidence": "<high/medium/low>"
 }

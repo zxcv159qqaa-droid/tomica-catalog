@@ -56,10 +56,16 @@ export function findCatalogMatch(
       car.series === series &&
       (car.code ? normalizeCode(car.code) === c : !!number && car.number === number)
   );
-  return {
-    match: candidates.find((car) => isSameCar(car, name)),
-    holder: candidates[0],
-  };
+  let match: TomicaCar | undefined;
+  let best = SAME_CAR_THRESHOLD;
+  for (const car of candidates) {
+    const score = nameScore(car, name);
+    if (score >= best) {
+      best = score;
+      match = car;
+    }
+  }
+  return { match, holder: candidates[0] };
 }
 
 export function carId(series: string, number: number): string {
@@ -101,15 +107,35 @@ export function normalizeName(name: string): string {
   return name.normalize('NFKC').toLowerCase().replace(/[\s・·\-_()（）]/g, '');
 }
 
-export function isSameCar(car: TomicaCar, scannedName: string): boolean {
-  const s = normalizeName(scannedName);
-  if (!s) return false;
-  return [car.name_ja, car.name_en].some((n) => {
-    if (!n) return false;
-    const c = normalizeName(n);
-    return c.includes(s) || s.includes(c);
-  });
+function bigrams(s: string): Set<string> {
+  const out = new Set<string>();
+  for (let i = 0; i < s.length - 1; i++) out.add(s.slice(i, i + 2));
+  return out;
 }
+
+// Dice coefficient; tolerates small OCR / wording differences like "!?" vs "!？"
+function similarity(a: string, b: string): number {
+  const A = bigrams(a);
+  const B = bigrams(b);
+  if (!A.size || !B.size) return 0;
+  let common = 0;
+  A.forEach((g) => B.has(g) && common++);
+  return (2 * common) / (A.size + B.size);
+}
+
+function nameScore(car: TomicaCar, scannedName: string): number {
+  const s = normalizeName(scannedName);
+  if (!s) return 0;
+  return Math.max(
+    ...[car.name_ja, car.name_en].map((n) => {
+      if (!n) return 0;
+      const c = normalizeName(n);
+      return c.includes(s) || s.includes(c) ? 1 : similarity(c, s);
+    })
+  );
+}
+
+const SAME_CAR_THRESHOLD = 0.6;
 
 export function scanVariantId(
   number: number,
