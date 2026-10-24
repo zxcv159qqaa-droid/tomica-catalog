@@ -2,7 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { getCar, getCarById, parseCarId, seriesLabel } from '@/lib/tomica-data';
+import Link from 'next/link';
+import {
+  getCar,
+  getCarById,
+  getCarByVariantId,
+  getGenerations,
+  parseCarId,
+  seriesLabel,
+} from '@/lib/tomica-data';
 import { db, type CollectionItem } from '@/lib/db';
 import CarThumb from '@/components/CarThumb';
 
@@ -20,6 +28,8 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   const [scanned, setScanned] = useState<CollectionItem[]>([]);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [ownedCarIds, setOwnedCarIds] = useState<Set<string>>(new Set());
+  const generations = car && !car.code ? getGenerations(series, number) : [];
 
   useEffect(() => {
     const load = async () => {
@@ -27,6 +37,14 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         .where('tomicaNumber')
         .equals(number)
         .toArray();
+      setOwnedCarIds(
+        new Set(
+          items
+            .filter((i) => !i.name)
+            .map((i) => getCarByVariantId(i.variantId)?.id)
+            .filter(Boolean) as string[]
+        )
+      );
       const variantIds = new Set(car?.variants.map((v) => v.id));
       setCollectedVariants(
         new Set(
@@ -37,7 +55,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
       );
       // SP/RD cars don't own a unique number, so scanned cars can't be tied to them
       setScanned(
-        car?.code
+        car?.code || car?.retired
           ? []
           : items.filter((i) => i.name && (i.series || 'regular') === series)
       );
@@ -160,8 +178,19 @@ export default function CarDetail({ carKey }: { carKey: string }) {
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-center gap-3 min-w-0">
-            <CarThumb src={car.image} series={car.series} number={car.number} code={car.code} size="lg" />
+            <CarThumb
+              src={car.image}
+              series={car.series}
+              number={car.number}
+              code={car.retired && car.gen ? `${car.number}-${car.gen}` : car.code}
+              size="lg"
+            />
             <div className="min-w-0">
+              {car.retired && (
+                <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                  舊款
+                </span>
+              )}
               <h1 className="text-lg font-bold">{car.name_ja}</h1>
               {car.name_en && (
                 <p className="text-sm text-gray-500">{car.name_en}</p>
@@ -185,8 +214,19 @@ export default function CarDetail({ carKey }: { carKey: string }) {
             <p className="text-gray-400 text-xs">系列</p>
             <p className="font-medium">
               {car.series === 'regular' ? '常規系列' : `Tomica ${seriesLabel(car.series)}`}
+              {car.gen ? `（${car.number}-${car.gen}）` : ''}
             </p>
           </div>
+          {car.period && (
+            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 col-span-2">
+              <p className="text-gray-400 text-xs">販售期間</p>
+              <p className="font-medium">
+                {car.period}
+                {car.retired && <span className="ml-2 text-xs text-gray-500">（已停售）</span>}
+              </p>
+              {car.note && <p className="text-xs text-gray-500 mt-1">{car.note}</p>}
+            </div>
+          )}
         </div>
 
         <h2 className="font-semibold mb-3">版本一覽（{car.variants.length}）</h2>
@@ -230,6 +270,47 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         </div>
       </div>
       </Collapsible>
+
+      {generations.length > 1 && (
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 mt-4 mb-4">
+          <h2 className="font-semibold mb-1">歷代 No.{number}（{generations.length}）</h2>
+          <p className="text-xs text-gray-400 mb-3">
+            同一個編號以前出過的車，由新到舊。舊款資料來源約更新到 2023 年，近幾年的可能有缺漏。
+          </p>
+          <div className="space-y-2">
+            {generations.map((g) => {
+              const owned =
+                ownedCarIds.has(g.id) || (g.id === car.id && collectedVariants.size > 0);
+              return (
+                <Link
+                  key={g.id}
+                  href={`/catalog/${g.id}`}
+                  className={`flex items-center gap-3 p-3 rounded-xl border ${
+                    g.id === car.id
+                      ? 'border-blue-400 dark:border-blue-600'
+                      : 'border-gray-200 dark:border-gray-700'
+                  } ${owned ? 'bg-blue-50 dark:bg-blue-950' : 'bg-gray-50 dark:bg-gray-900'}`}
+                >
+                  <span className="w-12 shrink-0 text-xs font-bold text-gray-500">
+                    {g.gen ? `${number}-${g.gen}` : `No.${number}`}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate">{g.name_ja}</p>
+                    <p className="text-xs text-gray-400">
+                      {g.retired ? g.period || '已停售' : `現行${g.period ? `・${g.period}` : ''}`}
+                    </p>
+                  </div>
+                  {owned && (
+                    <span className="text-xs bg-blue-500 text-white px-2 py-0.5 rounded-full shrink-0">
+                      已收藏
+                    </span>
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

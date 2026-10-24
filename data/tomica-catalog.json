@@ -25,7 +25,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/002.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/002.jpg",
+    "gen": 6,
+    "period": "2017/03〜"
   },
   {
     "id": "regular-3",
@@ -36,10 +38,20 @@
     "variants": [
       {
         "id": "r3",
-        "name": "通常版"
+        "name": "通常品（パンダ）",
+        "color": "パンダ"
+      },
+      {
+        "id": "r3f",
+        "name": "初回特別仕様（クマ）",
+        "color": "クマ",
+        "is_first_edition": true
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/003.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/003.jpg",
+    "gen": 6,
+    "period": "2012/04〜",
+    "note": "通常はパンダ・初回特別カラーはクマ"
   },
   {
     "id": "regular-4",
@@ -53,7 +65,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/004.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/004.jpg",
+    "gen": 7,
+    "period": "2005/05〜"
   },
   {
     "id": "regular-5",
@@ -190,10 +204,20 @@
     "variants": [
       {
         "id": "r14",
-        "name": "通常版"
+        "name": "通常品（黄緑）",
+        "color": "黄緑"
+      },
+      {
+        "id": "r14f",
+        "name": "初回特別仕様（青）",
+        "color": "青",
+        "is_first_edition": true
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/014.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/014.jpg",
+    "gen": 8,
+    "period": "2019/04〜",
+    "note": "通常品は黄緑・初回特別仕様は青"
   },
   {
     "id": "regular-15",
@@ -249,7 +273,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/018.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/018.jpg",
+    "gen": 9,
+    "period": "2013/07〜"
   },
   {
     "id": "regular-19",
@@ -277,7 +303,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/020.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/020.jpg",
+    "gen": 12,
+    "period": "2017/10〜"
   },
   {
     "id": "regular-21",
@@ -638,10 +666,20 @@
     "variants": [
       {
         "id": "r46",
-        "name": "通常版"
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r46f",
+        "name": "初回特別仕様（黒）",
+        "color": "黒",
+        "is_first_edition": true
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/pic_046_01.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/pic_046_01.jpg",
+    "gen": 11,
+    "period": "2023/04〜",
+    "note": "通常は赤・初回は黒"
   },
   {
     "id": "regular-47",
@@ -809,7 +847,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/new/images/2101/pic_058_01.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/new/images/2101/pic_058_01.jpg",
+    "gen": 10,
+    "period": "2021/01〜"
   },
   {
     "id": "regular-59",
@@ -921,7 +961,10 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/066.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/066.jpg",
+    "gen": 5,
+    "period": "2018/11〜",
+    "note": "シール付（写真は未貼付）"
   },
   {
     "id": "regular-67",
@@ -1019,7 +1062,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/073.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/073.jpg",
+    "gen": 4,
+    "period": "2011/07〜"
   },
   {
     "id": "regular-74",
@@ -1103,7 +1148,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/079.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/079.jpg",
+    "gen": 4,
+    "period": "2006/10〜"
   },
   {
     "id": "regular-80",
@@ -1187,7 +1234,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/085.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/085.jpg",
+    "gen": 7,
+    "period": "2018/07〜"
   },
   {
     "id": "regular-86",
@@ -1257,7 +1306,10 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/090.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/090.jpg",
+    "gen": 8,
+    "period": "2016/04〜",
+    "note": "初代エネオス("
   },
   {
     "id": "regular-91",
@@ -1327,7 +1379,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/095.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/095.jpg",
+    "gen": 3,
+    "period": "1988/07〜"
   },
   {
     "id": "regular-96",
@@ -1467,7 +1521,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/105.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/105.jpg",
+    "gen": 9,
+    "period": "2018/10〜"
   },
   {
     "id": "regular-106",
@@ -1663,7 +1719,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/119.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/119.jpg",
+    "gen": 5,
+    "period": "2017/11〜"
   },
   {
     "id": "regular-120",
@@ -1747,7 +1805,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/125.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/125.jpg",
+    "gen": 4,
+    "period": "2017/06〜"
   },
   {
     "id": "regular-126",
@@ -1943,7 +2003,9 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/139.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/139.jpg",
+    "gen": 4,
+    "period": "2019/09〜"
   },
   {
     "id": "regular-140",
@@ -4124,6 +4186,5137 @@
     "variants": [
       {
         "id": "dsp-36",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-2-g5",
+    "number": 2,
+    "series": "regular",
+    "name_ja": "範多機械 アスファルトフィニッシャ F1741WZ",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 5,
+    "period": "2011/06〜2017/03",
+    "variants": [
+      {
+        "id": "r2g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-2-g4",
+    "number": 2,
+    "series": "regular",
+    "name_ja": "三菱ふそう キャンターレッカー車",
+    "manufacturer": "三菱ふそう",
+    "retired": true,
+    "gen": 4,
+    "period": "2004/11〜2011/06",
+    "variants": [
+      {
+        "id": "r2g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-2-g3",
+    "number": 2,
+    "series": "regular",
+    "name_ja": "多田野 ラフターラインクレーン TR151S",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "1979/08〜2004/11",
+    "variants": [
+      {
+        "id": "r2g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-2-g2",
+    "number": 2,
+    "series": "regular",
+    "name_ja": "トヨタ ランドクルーザー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1975/05〜1979/08",
+    "note": "初代(No.2-2)→2代目(",
+    "variants": [
+      {
+        "id": "r2g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-2-g1",
+    "number": 2,
+    "series": "regular",
+    "name_ja": "コロナマークII 1900ハードトップ",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1970/08〜1975/05",
+    "note": "写真は復刻版",
+    "variants": [
+      {
+        "id": "r2g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-3-g5",
+    "number": 3,
+    "series": "regular",
+    "name_ja": "トヨタ メガクルーザー パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 5,
+    "period": "2002/06〜2012/04",
+    "variants": [
+      {
+        "id": "r3g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-3-g4",
+    "number": 3,
+    "series": "regular",
+    "name_ja": "ハイエース 宅配便",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "1988/09〜2002/06",
+    "note": "ペリカン便",
+    "variants": [
+      {
+        "id": "r3g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-3-g3",
+    "number": 3,
+    "series": "regular",
+    "name_ja": "ニッサン キャラバン ハイルーフバン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1980/07〜1988/09",
+    "variants": [
+      {
+        "id": "r3g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-3-g2",
+    "number": 3,
+    "series": "regular",
+    "name_ja": "いすゞ スクアート消防車",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 2,
+    "period": "1974/10〜1980/07",
+    "variants": [
+      {
+        "id": "r3g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-3-g1",
+    "number": 3,
+    "series": "regular",
+    "name_ja": "クラウン スーパーデラックス",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1970/08〜1974/10",
+    "variants": [
+      {
+        "id": "r3g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-4-g6",
+    "number": 4,
+    "series": "regular",
+    "name_ja": "ホンダ 白バイ",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 6,
+    "period": "1988/03〜2005/05",
+    "variants": [
+      {
+        "id": "r4g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-4-g5",
+    "number": 4,
+    "series": "regular",
+    "name_ja": "マツダ ファミリア",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 5,
+    "period": "1985/05〜1988/03",
+    "variants": [
+      {
+        "id": "r4g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-4-g4",
+    "number": 4,
+    "series": "regular",
+    "name_ja": "マツダ ファミリア 1500XG",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 4,
+    "period": "1981/05〜1985/05",
+    "variants": [
+      {
+        "id": "r4g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-4-g3",
+    "number": 4,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1975/12〜1981/05",
+    "variants": [
+      {
+        "id": "r4g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-4-g2",
+    "number": 4,
+    "series": "regular",
+    "name_ja": "ニュークラウン パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1972/10〜1975/12",
+    "variants": [
+      {
+        "id": "r4g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-4-g1",
+    "number": 4,
+    "series": "regular",
+    "name_ja": "クラウン パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1970/08〜1972/10",
+    "variants": [
+      {
+        "id": "r4g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-5-g5",
+    "number": 5,
+    "series": "regular",
+    "name_ja": "トヨタ ランドクルーザー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 5,
+    "period": "2008/06〜2013/02",
+    "note": "2代目(",
+    "variants": [
+      {
+        "id": "r5g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-5-g4",
+    "number": 5,
+    "series": "regular",
+    "name_ja": "トヨタ bB",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2000/10〜2008/06",
+    "variants": [
+      {
+        "id": "r5g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-5-g3",
+    "number": 5,
+    "series": "regular",
+    "name_ja": "トヨタ ソアラ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1992/07〜2000/10",
+    "variants": [
+      {
+        "id": "r5g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-5-g2",
+    "number": 5,
+    "series": "regular",
+    "name_ja": "トヨタ ソアラ 2800GT エクストラ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1981/09〜1992/07",
+    "variants": [
+      {
+        "id": "r5g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-5-g1",
+    "number": 5,
+    "series": "regular",
+    "name_ja": "トヨタ 2000GT",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1970/08〜1981/09",
+    "variants": [
+      {
+        "id": "r5g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-8-g3",
+    "number": 8,
+    "series": "regular",
+    "name_ja": "いすゞ 献血車",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 3,
+    "period": "1979/11〜1988/01",
+    "variants": [
+      {
+        "id": "r8g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-8-g2",
+    "number": 8,
+    "series": "regular",
+    "name_ja": "ニッサン サニーエクセレント 1400GX",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "1975/04〜1979/11",
+    "variants": [
+      {
+        "id": "r8g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-8-g1",
+    "number": 8,
+    "series": "regular",
+    "name_ja": "サニー 1200クーペGX",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1971/01〜1975/04",
+    "variants": [
+      {
+        "id": "r8g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-12-g6",
+    "number": 12,
+    "series": "regular",
+    "name_ja": "トヨタ ポルテ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 6,
+    "period": "2013/05〜2015/11",
+    "variants": [
+      {
+        "id": "r12g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-12-g5",
+    "number": 12,
+    "series": "regular",
+    "name_ja": "日産 マーチ",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 5,
+    "period": "2010/11〜2013/05",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r12g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-12-g4",
+    "number": 12,
+    "series": "regular",
+    "name_ja": "日産 高規格救急車",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 4,
+    "period": "2006/08〜2010/11",
+    "variants": [
+      {
+        "id": "r12g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-12-g3",
+    "number": 12,
+    "series": "regular",
+    "name_ja": "トヨタ フォークリフトFD200",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1978/09〜2006/08",
+    "variants": [
+      {
+        "id": "r12g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-12-g2",
+    "number": 12,
+    "series": "regular",
+    "name_ja": "ヤマハ スポーツ TX 750",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1976/01〜1978/09",
+    "note": "シール付き",
+    "variants": [
+      {
+        "id": "r12g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-12-g1",
+    "number": 12,
+    "series": "regular",
+    "name_ja": "カペラ ロータリー クーペ",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1971/10〜1976/01",
+    "variants": [
+      {
+        "id": "r12g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-14-g7",
+    "number": 14,
+    "series": "regular",
+    "name_ja": "スズキ エスクード",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 7,
+    "period": "2016/12〜2019/04",
+    "variants": [
+      {
+        "id": "r14g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-14-g6",
+    "number": 14,
+    "series": "regular",
+    "name_ja": "フォーミュラ ルノー 3.5",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 6,
+    "period": "2014/08〜2016/12",
+    "note": "通常品は黒・初回特別カラーは黄",
+    "variants": [
+      {
+        "id": "r14g6",
+        "name": "通常品（黒）",
+        "color": "黒"
+      },
+      {
+        "id": "r14g6f",
+        "name": "初回特別仕様（黄）",
+        "color": "黄",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-14-g5",
+    "number": 14,
+    "series": "regular",
+    "name_ja": "コマツ 対人地雷除去機 D85MS",
+    "manufacturer": "コマツ",
+    "retired": true,
+    "gen": 5,
+    "period": "2008/09〜2014/08",
+    "variants": [
+      {
+        "id": "r14g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-14-g4",
+    "number": 14,
+    "series": "regular",
+    "name_ja": "三菱スーパーグレートキャリアカー",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 4,
+    "period": "1997/07〜2008/09",
+    "variants": [
+      {
+        "id": "r14g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-14-g3",
+    "number": 14,
+    "series": "regular",
+    "name_ja": "いすず エルフカーキャリア",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "1988/11〜1997/07",
+    "variants": [
+      {
+        "id": "r14g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-14-g2",
+    "number": 14,
+    "series": "regular",
+    "name_ja": "トヨタディーゼル カートランスポーター",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1975/02〜1988/11",
+    "variants": [
+      {
+        "id": "r14g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-14-g1",
+    "number": 14,
+    "series": "regular",
+    "name_ja": "ニッサン ローレル 2000GX",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1971/06〜1975/02",
+    "variants": [
+      {
+        "id": "r14g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-16-g8",
+    "number": 16,
+    "series": "regular",
+    "name_ja": "フィアット 500e",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 8,
+    "period": "2022/03〜（結束不明）",
+    "note": "通常はコパー・初回は濃紺",
+    "variants": [
+      {
+        "id": "r16g8",
+        "name": "通常品（コパー）",
+        "color": "コパー"
+      },
+      {
+        "id": "r16g8f",
+        "name": "初回特別仕様（濃紺）",
+        "color": "濃紺",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-16-g7",
+    "number": 16,
+    "series": "regular",
+    "name_ja": "ランボルギーニ ウルス",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 7,
+    "period": "2019/02〜2022/03",
+    "note": "通常品は黄・初回特別仕様は黒",
+    "variants": [
+      {
+        "id": "r16g7",
+        "name": "通常品（黄）",
+        "color": "黄"
+      },
+      {
+        "id": "r16g7f",
+        "name": "初回特別仕様（黒）",
+        "color": "黒",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-16-g6",
+    "number": 16,
+    "series": "regular",
+    "name_ja": "いすゞ ガーラ ジェイアールバス東北",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 6,
+    "period": "2012/05〜2019/02",
+    "note": "通常品ははやぶさカラー・初回特別カラーは標準カラー（ツバメ）",
+    "variants": [
+      {
+        "id": "r16g6",
+        "name": "通常品（はやぶさカラー）",
+        "color": "はやぶさカラー"
+      },
+      {
+        "id": "r16g6f",
+        "name": "初回特別仕様（標準カラー（ツバメ））",
+        "color": "標準カラー（ツバメ）",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-16-g5",
+    "number": 16,
+    "series": "regular",
+    "name_ja": "スズキ スイフトスポーツ ラリーカップカー",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 5,
+    "period": "2007/11〜2012/05",
+    "variants": [
+      {
+        "id": "r16g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-16-g4",
+    "number": 16,
+    "series": "regular",
+    "name_ja": "マツダ アテンザ",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 4,
+    "period": "2002/10〜2007/11",
+    "note": "初代(No.16-4)→2代目(",
+    "variants": [
+      {
+        "id": "r16g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-16-g3",
+    "number": 16,
+    "series": "regular",
+    "name_ja": "トヨタ カローラ スパシオ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1998/06〜2002/10",
+    "variants": [
+      {
+        "id": "r16g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-16-g2",
+    "number": 16,
+    "series": "regular",
+    "name_ja": "ニッサンディーゼル ダンプトラック",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "1975/04〜1998/06",
+    "note": "黒箱/赤箱",
+    "variants": [
+      {
+        "id": "r16g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-16-g1",
+    "number": 16,
+    "series": "regular",
+    "name_ja": "マツダ ニューコスモ スポーツ",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 1,
+    "period": "1971/06〜1974/11",
+    "variants": [
+      {
+        "id": "r16g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-18-g8",
+    "number": 18,
+    "series": "regular",
+    "name_ja": "大型ブロアー車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 8,
+    "period": "2010/06〜2013/07",
+    "variants": [
+      {
+        "id": "r18g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-18-g7",
+    "number": 18,
+    "series": "regular",
+    "name_ja": "ジープ ラングラー",
+    "manufacturer": "ジープ",
+    "retired": true,
+    "gen": 7,
+    "period": "2008/03〜2010/06",
+    "note": "初代(No.18-7)→2代目(",
+    "variants": [
+      {
+        "id": "r18g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-18-g6",
+    "number": 18,
+    "series": "regular",
+    "name_ja": "日産 ウイングロード",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 6,
+    "period": "2004/10〜2008/03",
+    "variants": [
+      {
+        "id": "r18g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-18-g5",
+    "number": 18,
+    "series": "regular",
+    "name_ja": "スバル レガシィ ツーリングワゴン",
+    "manufacturer": "スバル",
+    "retired": true,
+    "gen": 5,
+    "period": "2001/02〜2004/10",
+    "variants": [
+      {
+        "id": "r18g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-18-g3",
+    "number": 18,
+    "series": "regular",
+    "name_ja": "三菱 ギャラン ラムダ 2000GSR",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 3,
+    "period": "1977/11〜1980/01",
+    "variants": [
+      {
+        "id": "r18g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-18-g2",
+    "number": 18,
+    "series": "regular",
+    "name_ja": "ニッサン ブルーバードU 2000GT-X",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "1974/10〜1977/11",
+    "variants": [
+      {
+        "id": "r18g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g11",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "Honda N BOX",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 11,
+    "period": "2013/08〜2017/10",
+    "note": "初代(No.20-11)→2代目(",
+    "variants": [
+      {
+        "id": "r20g11",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g10",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "Honda インサイト",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 10,
+    "period": "2009/09〜2013/08",
+    "variants": [
+      {
+        "id": "r20g10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g9",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "ダイハツ ムーヴカスタム",
+    "manufacturer": "ダイハツ",
+    "retired": true,
+    "gen": 9,
+    "period": "2005/08〜2009/09",
+    "note": "通常品は紫・初回特別カラーはグレー",
+    "variants": [
+      {
+        "id": "r20g9",
+        "name": "通常品（紫）",
+        "color": "紫"
+      },
+      {
+        "id": "r20g9f",
+        "name": "初回特別仕様（グレー）",
+        "color": "グレー",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g8",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "日産 スカイライン GT-R(R-34)",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 8,
+    "period": "1999/03〜2005/08",
+    "variants": [
+      {
+        "id": "r20g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g7",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "日産 スカイライン GT-R(R-33)",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 7,
+    "period": "1995/07〜1999/03",
+    "variants": [
+      {
+        "id": "r20g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g6",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "ニッサン スカイライン GTR",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 6,
+    "period": "1990/05〜1995/07",
+    "variants": [
+      {
+        "id": "r20g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g5",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "ニッサン スカイライン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 5,
+    "period": "1986/12〜1990/05",
+    "variants": [
+      {
+        "id": "r20g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g4",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "ニッサン スカイライン 2000ターボ GTE・S",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 4,
+    "period": "1982/07〜1986/12",
+    "variants": [
+      {
+        "id": "r20g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g3",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "ニッサン スカイライン 2000ターボ GT-E・S",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1980/10〜1982/07",
+    "variants": [
+      {
+        "id": "r20g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g2",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "ニッサンディーゼル 郵便車",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "1976/06〜1980/10",
+    "variants": [
+      {
+        "id": "r20g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-20-g1",
+    "number": 20,
+    "series": "regular",
+    "name_ja": "ホンダ TN360郵便車",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 1,
+    "period": "1971/09〜1976/06",
+    "variants": [
+      {
+        "id": "r20g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g10",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "いすゞ エルフ 標識車",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 10,
+    "period": "2023/06〜（結束不明）",
+    "variants": [
+      {
+        "id": "r26g10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g9",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 9,
+    "period": "2020/12〜2023/06",
+    "variants": [
+      {
+        "id": "r26g9",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g8",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "マツダ ロードスター",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 8,
+    "period": "2016/02〜2020/12",
+    "note": "通常品は赤・初回特別仕様は黒",
+    "variants": [
+      {
+        "id": "r26g8",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r26g8f",
+        "name": "初回特別仕様（黒）",
+        "color": "黒",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g7",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "東海大学 ソーラーカー 東海チャレンジャー",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 7,
+    "period": "2013/04〜2016/02",
+    "variants": [
+      {
+        "id": "r26g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g6",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "しまじろうカー",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 6,
+    "period": "2009/03〜2013/04",
+    "variants": [
+      {
+        "id": "r26g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g4",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "いすゞ エルフ クレーン TS-30",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 4,
+    "period": "1982/07〜1991/09",
+    "note": "黒箱→赤箱",
+    "variants": [
+      {
+        "id": "r26g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g3",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "ニッサン キャブオール スカイマスター",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1980/09〜1982/07",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r26g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g2",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "小島 009フォード",
+    "manufacturer": "フォード",
+    "retired": true,
+    "gen": 2,
+    "period": "1978/07〜1980/09",
+    "variants": [
+      {
+        "id": "r26g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-26-g1",
+    "number": 26,
+    "series": "regular",
+    "name_ja": "トヨタ セリカ 1600GT",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1971/10〜1978/07",
+    "variants": [
+      {
+        "id": "r26g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g12",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "トヨタ ジャパンタクシー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 12,
+    "period": "2019/06〜（結束不明）",
+    "variants": [
+      {
+        "id": "r27g12",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g11",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "日産 NV200 タクシー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 11,
+    "period": "2017/07〜2019/06",
+    "note": "通常品と初回特別仕様はデザイン違い",
+    "variants": [
+      {
+        "id": "r27g11",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g10",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "日産 NV350キャラバン 消防指揮車",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 10,
+    "period": "2013/10〜2017/07",
+    "variants": [
+      {
+        "id": "r27g10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g9",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "日産 ジューク",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 9,
+    "period": "2010/12〜2013/10",
+    "variants": [
+      {
+        "id": "r27g9",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g8",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "トヨタ カローラ アクシオ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 8,
+    "period": "2007/05〜2010/12",
+    "variants": [
+      {
+        "id": "r27g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g7",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "三菱 グランディス",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 7,
+    "period": "2004/08〜2007/05",
+    "note": "通常品は白・初回特別カラーは水色",
+    "variants": [
+      {
+        "id": "r27g7",
+        "name": "通常品（白）",
+        "color": "白"
+      },
+      {
+        "id": "r27g7f",
+        "name": "初回特別仕様（水色）",
+        "color": "水色",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g6",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "トヨタ Will Vi",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 6,
+    "period": "2000/11〜2004/08",
+    "variants": [
+      {
+        "id": "r27g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g5",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "いすゞ ハイパック バン",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 5,
+    "period": "1985/02〜2000/11",
+    "note": "Footwork",
+    "variants": [
+      {
+        "id": "r27g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g4",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "トヨタ ハイエース 石焼きいも",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "1978/10〜1985/02",
+    "variants": [
+      {
+        "id": "r27g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g3",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン ファイアチーフカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1975/12〜1978/10",
+    "variants": [
+      {
+        "id": "r27g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g2",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン ファイアチーフカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1972/10〜1975/12",
+    "variants": [
+      {
+        "id": "r27g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-27-g1",
+    "number": 27,
+    "series": "regular",
+    "name_ja": "クラウン ファイアチーフカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1971/04〜1972/10",
+    "variants": [
+      {
+        "id": "r27g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g11",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "いすゞ サインカー",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 11,
+    "period": "2019/04〜2021/06",
+    "variants": [
+      {
+        "id": "r28g11",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g10",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "ヤンマー コンバイン YH590",
+    "manufacturer": "ヤンマー",
+    "retired": true,
+    "gen": 10,
+    "period": "2015/10〜2019/04",
+    "note": "YANMAR",
+    "variants": [
+      {
+        "id": "r28g10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g9",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "ジョンディア コンバイン 9670STS",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 9,
+    "period": "2013/03〜2015/10",
+    "note": "JHON DEERE",
+    "variants": [
+      {
+        "id": "r28g9",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g8",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "トヨタ iQ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 8,
+    "period": "2009/06〜2013/03",
+    "variants": [
+      {
+        "id": "r28g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g7",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "Honda エリシオン",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 7,
+    "period": "2004/11〜2009/06",
+    "variants": [
+      {
+        "id": "r28g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g6",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "クラウン 道路公団パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 6,
+    "period": "1988/06〜2004/11",
+    "note": "日本道路公団道路パトロールカー",
+    "variants": [
+      {
+        "id": "r28g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g5",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン タクシー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 5,
+    "period": "1984/05〜1988/06",
+    "variants": [
+      {
+        "id": "r28g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g4",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "ニッサン セドリック タクシー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 4,
+    "period": "1980/08〜1984/05",
+    "variants": [
+      {
+        "id": "r28g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g3",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "ニッサン セドリック タクシー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1977/03〜1980/08",
+    "variants": [
+      {
+        "id": "r28g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g2",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "トヨタ ニュークラウン タクシー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1972/09〜1977/03",
+    "variants": [
+      {
+        "id": "r28g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-28-g1",
+    "number": 28,
+    "series": "regular",
+    "name_ja": "クラウン タクシー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1971/03〜1972/09",
+    "variants": [
+      {
+        "id": "r28g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g10",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "ダイハツ ハイゼット",
+    "manufacturer": "ダイハツ",
+    "retired": true,
+    "gen": 10,
+    "period": "2022/08〜（結束不明）",
+    "note": "通常品はシルバー・初回特別仕様はオレンジ",
+    "variants": [
+      {
+        "id": "r30g10",
+        "name": "通常品（シルバー）",
+        "color": "シルバー"
+      },
+      {
+        "id": "r30g10f",
+        "name": "初回特別仕様（オレンジ）",
+        "color": "オレンジ",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g9",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "日野レンジャー 重機搬送車",
+    "manufacturer": "日野",
+    "retired": true,
+    "gen": 9,
+    "period": "2016/09〜2022/08",
+    "note": "通常品は赤・初回特別仕様は緑",
+    "variants": [
+      {
+        "id": "r30g9",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r30g9f",
+        "name": "初回特別仕様（緑）",
+        "color": "緑",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g8",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "恐竜搬送車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 8,
+    "period": "2011/01〜2016/06",
+    "note": "ティラノサウルス",
+    "variants": [
+      {
+        "id": "r30g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g7",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "三菱ふそう エアロスター 路線バス",
+    "manufacturer": "三菱ふそう",
+    "retired": true,
+    "gen": 7,
+    "period": "2006/09〜2011/01",
+    "variants": [
+      {
+        "id": "r30g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g6",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "三菱 パジェロ",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 6,
+    "period": "1999/09〜2006/09",
+    "note": "2代目(No.30-5)→3代目(No.30-6)→4代目(",
+    "variants": [
+      {
+        "id": "r30g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g5",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "三菱 パジェロ メタルトップ",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 5,
+    "period": "1993/07〜1999/09",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r30g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g4",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "ホンダ クイント インテグラ",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 4,
+    "period": "1985/09〜1993/07",
+    "variants": [
+      {
+        "id": "r30g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g3",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "ホンダ CB 750F 白バイ",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 3,
+    "period": "1982/12〜1985/09",
+    "note": "シール付",
+    "variants": [
+      {
+        "id": "r30g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g2",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "ヤマハ スポーツ TX750 白バイ",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1975/12〜1982/12",
+    "note": "シール付",
+    "variants": [
+      {
+        "id": "r30g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-30-g1",
+    "number": 30,
+    "series": "regular",
+    "name_ja": "コルト ギャランGTO",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/02〜1975/12",
+    "variants": [
+      {
+        "id": "r30g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g10",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "トヨタ カムリ スポーツ 覆面パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 10,
+    "period": "2022/05〜（結束不明）",
+    "variants": [
+      {
+        "id": "r31g10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g9",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "シボレー コルベット ZR1",
+    "manufacturer": "シボレー",
+    "retired": true,
+    "gen": 9,
+    "period": "2019/01〜2022/05",
+    "note": "通常品は黒・初回特別仕様はオレンジ",
+    "variants": [
+      {
+        "id": "r31g9",
+        "name": "通常品（黒）",
+        "color": "黒"
+      },
+      {
+        "id": "r31g9f",
+        "name": "初回特別仕様（オレンジ）",
+        "color": "オレンジ",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g8",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "トヨタ FJクルーザー パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 8,
+    "period": "2015/11〜2019/01",
+    "note": "警視庁",
+    "variants": [
+      {
+        "id": "r31g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g7",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "UDトラックス コンドル",
+    "manufacturer": "UDトラックス",
+    "retired": true,
+    "gen": 7,
+    "period": "2012/07〜2015/11",
+    "note": "Road to Your Success Condor",
+    "variants": [
+      {
+        "id": "r31g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g6",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "日産ディーゼル クオン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 6,
+    "period": "2006/02〜2012/07",
+    "variants": [
+      {
+        "id": "r31g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g5",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "日産 シーマ",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 5,
+    "period": "2001/09〜2006/02",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r31g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g4",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "日産 プリメーラ",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 4,
+    "period": "1994/10〜2001/09",
+    "variants": [
+      {
+        "id": "r31g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g3",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "スバル サンバー ハイルーフ パネルバン",
+    "manufacturer": "スバル",
+    "retired": true,
+    "gen": 3,
+    "period": "1985/02〜1994/10",
+    "note": "赤帽",
+    "variants": [
+      {
+        "id": "r31g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g2",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "スズキ キャリィ(郵便車)",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 2,
+    "period": "1980/01〜1985/02",
+    "variants": [
+      {
+        "id": "r31g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-31-g1",
+    "number": 31,
+    "series": "regular",
+    "name_ja": "トヨタ EX7",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/05〜1980/01",
+    "variants": [
+      {
+        "id": "r31g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g11",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "カロ・ビー",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 11,
+    "period": "2022/07〜（結束不明）",
+    "variants": [
+      {
+        "id": "r33g11",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g10",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "ホンダ フィット",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 10,
+    "period": "2020/07〜2022/07",
+    "note": "3代目(",
+    "variants": [
+      {
+        "id": "r33g10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g9",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "フォルクスワーゲン ザ・ビートル",
+    "manufacturer": "フォルクスワーゲン",
+    "retired": true,
+    "gen": 9,
+    "period": "2013/06〜2020/07",
+    "note": "通常品は黄・初回特別カラーは白",
+    "variants": [
+      {
+        "id": "r33g9",
+        "name": "通常品（黄）",
+        "color": "黄"
+      },
+      {
+        "id": "r33g9f",
+        "name": "初回特別仕様（白）",
+        "color": "白",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g8",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "ダイハツ ムーヴ コンテ",
+    "manufacturer": "ダイハツ",
+    "retired": true,
+    "gen": 8,
+    "period": "2009/04〜2013/06",
+    "variants": [
+      {
+        "id": "r33g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g7",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "トヨタ ヴィッツ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 7,
+    "period": "2005/10〜2009/04",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r33g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g6",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "トヨタ スープラ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 6,
+    "period": "1994/10〜2005/10",
+    "variants": [
+      {
+        "id": "r33g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g5",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "トヨタ セリカ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 5,
+    "period": "1986/05〜1994/10",
+    "variants": [
+      {
+        "id": "r33g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g4",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "トヨタ セリカ XX 2800GT",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "1982/04〜1986/05",
+    "variants": [
+      {
+        "id": "r33g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g3",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "トヨタ セリカ LB 2000GT",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1978/07〜1982/04",
+    "variants": [
+      {
+        "id": "r33g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g2",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "石川島コーリング ピックローバー R5",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1975/05〜1978/07",
+    "variants": [
+      {
+        "id": "r33g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-33-g1",
+    "number": 33,
+    "series": "regular",
+    "name_ja": "ニッサン セドリック",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/02〜1975/05",
+    "variants": [
+      {
+        "id": "r33g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g11",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "トヨタ アクア",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 11,
+    "period": "2022/10〜（結束不明）",
+    "note": "通常はシルバー・初回特別仕様は黒",
+    "variants": [
+      {
+        "id": "r34g11",
+        "name": "通常品（シルバー）",
+        "color": "シルバー"
+      },
+      {
+        "id": "r34g11f",
+        "name": "初回特別仕様（黒）",
+        "color": "黒",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g10",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "ランボルギーニ ウラカン ペルフォルマンテ",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 10,
+    "period": "2018/02〜2022/10",
+    "note": "通常品はオレンジ・初回特別カラーは黄",
+    "variants": [
+      {
+        "id": "r34g10",
+        "name": "通常品（オレンジ）",
+        "color": "オレンジ"
+      },
+      {
+        "id": "r34g10f",
+        "name": "初回特別仕様（黄）",
+        "color": "黄",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g9",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "ALSOK 現金輸送車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 9,
+    "period": "2015/01〜2018/02",
+    "note": "ALSOK ALways Security OK",
+    "variants": [
+      {
+        "id": "r34g9",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g8",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "コマツ ホイール式油圧ショベル PW200",
+    "manufacturer": "コマツ",
+    "retired": true,
+    "gen": 8,
+    "period": "2011/11〜2015/01",
+    "variants": [
+      {
+        "id": "r34g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g7",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "三菱 デリカ D:5",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 7,
+    "period": "2008/01〜2011/11",
+    "note": "初代(No.34-7)→2代目(",
+    "variants": [
+      {
+        "id": "r34g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g6",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "三菱 ランサーエボリューションVII GT-A",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 6,
+    "period": "2002/08〜2008/01",
+    "variants": [
+      {
+        "id": "r34g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g5",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "マツダ 787B",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 5,
+    "period": "1992/03〜2002/08",
+    "variants": [
+      {
+        "id": "r34g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g4",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "ニッサン ブルーバード ワゴン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 4,
+    "period": "1984/08〜1992/03",
+    "variants": [
+      {
+        "id": "r34g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g3",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "ホンダ シビック カントリー",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 3,
+    "period": "1981/02〜1984/08",
+    "variants": [
+      {
+        "id": "r34g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g2",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "ED75形 電気機関車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1979/08〜1981/02",
+    "variants": [
+      {
+        "id": "r34g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-34-g1",
+    "number": 34,
+    "series": "regular",
+    "name_ja": "マツダ RX500",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/06〜1979/08",
+    "variants": [
+      {
+        "id": "r34g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-38-g8",
+    "number": 38,
+    "series": "regular",
+    "name_ja": "トヨタ車体 コムス",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 8,
+    "period": "2015/07〜2020/09",
+    "variants": [
+      {
+        "id": "r38g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-38-g7",
+    "number": 38,
+    "series": "regular",
+    "name_ja": "機動救助車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 7,
+    "period": "2011/02〜2015/07",
+    "note": "警視庁",
+    "variants": [
+      {
+        "id": "r38g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-38-g6",
+    "number": 38,
+    "series": "regular",
+    "name_ja": "ポケモンバス",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 6,
+    "period": "1999/01〜2011/02",
+    "variants": [
+      {
+        "id": "r38g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-38-g5",
+    "number": 38,
+    "series": "regular",
+    "name_ja": "いすゞエルフ スカイマスター",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 5,
+    "period": "1987/08〜1999/01",
+    "variants": [
+      {
+        "id": "r38g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-38-g4",
+    "number": 38,
+    "series": "regular",
+    "name_ja": "三菱 ランサーターボ",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 4,
+    "period": "1982/07〜1987/08",
+    "variants": [
+      {
+        "id": "r38g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-38-g3",
+    "number": 38,
+    "series": "regular",
+    "name_ja": "マツダ コスモL リミテッド",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 3,
+    "period": "1978/07〜1982/07",
+    "variants": [
+      {
+        "id": "r38g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-38-g2",
+    "number": 38,
+    "series": "regular",
+    "name_ja": "トヨタ ダイナ 保冷車",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1977/03〜1978/07",
+    "variants": [
+      {
+        "id": "r38g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-38-g1",
+    "number": 38,
+    "series": "regular",
+    "name_ja": "トヨタ ハイエース 日通冷凍車",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/04〜1977/03",
+    "variants": [
+      {
+        "id": "r38g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-43-g4",
+    "number": 43,
+    "series": "regular",
+    "name_ja": "ホンダ NSX",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 4,
+    "period": "2016/12〜（結束不明）",
+    "note": "通常品は赤・初回特別仕様は白",
+    "variants": [
+      {
+        "id": "r43g4",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r43g4f",
+        "name": "初回特別仕様（白）",
+        "color": "白",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-43-g3",
+    "number": 43,
+    "series": "regular",
+    "name_ja": "ミニクーパー",
+    "manufacturer": "MINI",
+    "retired": true,
+    "gen": 3,
+    "period": "2006/09〜2016/12",
+    "variants": [
+      {
+        "id": "r43g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-43-g2",
+    "number": 43,
+    "series": "regular",
+    "name_ja": "日産 ディーゼルクレーン車",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "1987/11〜2006/09",
+    "variants": [
+      {
+        "id": "r43g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-43-g1",
+    "number": 43,
+    "series": "regular",
+    "name_ja": "トヨタ センチュリー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/06〜1987/11",
+    "variants": [
+      {
+        "id": "r43g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g10",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "マツダ3",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 10,
+    "period": "2020/11〜2023/04",
+    "variants": [
+      {
+        "id": "r46g10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g9",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "ダイハツ キャスト",
+    "manufacturer": "ダイハツ",
+    "retired": true,
+    "gen": 9,
+    "period": "2016/06〜（結束不明）",
+    "note": "通常品は赤・初回特別カラーはシルバー",
+    "variants": [
+      {
+        "id": "r46g9",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r46g9f",
+        "name": "初回特別仕様（シルバー）",
+        "color": "シルバー",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g8",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "トヨタ 86",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 8,
+    "period": "2012/06〜2016/06",
+    "note": "通常品は赤・初回特別カラーはシルバー",
+    "variants": [
+      {
+        "id": "r46g8",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r46g8f",
+        "name": "初回特別仕様（シルバー）",
+        "color": "シルバー",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g7",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "Honda オデッセイ",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 7,
+    "period": "2009/05〜2012/06",
+    "variants": [
+      {
+        "id": "r46g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g6",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "Honda オデッセイ",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 6,
+    "period": "2004/04〜2009/05",
+    "note": "通常品は紫・初回特別カラーは白",
+    "variants": [
+      {
+        "id": "r46g6",
+        "name": "通常品（紫）",
+        "color": "紫"
+      },
+      {
+        "id": "r46g6f",
+        "name": "初回特別仕様（白）",
+        "color": "白",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g5",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "ホンダ オデッセイ",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 5,
+    "period": "2001/05〜2004/04",
+    "variants": [
+      {
+        "id": "r46g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g4",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "ホンダ オデッセイ",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 4,
+    "period": "1996/06〜2001/05",
+    "variants": [
+      {
+        "id": "r46g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g3",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "セリカ ラリー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1992/03〜1996/06",
+    "variants": [
+      {
+        "id": "r46g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g2",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "童夢-零",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1979/01〜1992/03",
+    "variants": [
+      {
+        "id": "r46g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-46-g1",
+    "number": 46,
+    "series": "regular",
+    "name_ja": "マツダ ライトバス",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/07〜1979/01",
+    "variants": [
+      {
+        "id": "r46g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-47-g8",
+    "number": 47,
+    "series": "regular",
+    "name_ja": "EQS バイ メルセデス-EQ",
+    "manufacturer": "メルセデス・ベンツ",
+    "retired": true,
+    "gen": 8,
+    "period": "2023/07〜（結束不明）",
+    "note": "初回特別仕様は白・通常は黒",
+    "variants": [
+      {
+        "id": "r47g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-47-g7",
+    "number": 47,
+    "series": "regular",
+    "name_ja": "ダイハツ タフト",
+    "manufacturer": "ダイハツ",
+    "retired": true,
+    "gen": 7,
+    "period": "2021/03〜2023/07",
+    "variants": [
+      {
+        "id": "r47g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-47-g6",
+    "number": 47,
+    "series": "regular",
+    "name_ja": "日本除雪機製作所 ロータリー除雪車 HTR265",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 6,
+    "period": "2010/12〜2021/03",
+    "note": "NICHIJO",
+    "variants": [
+      {
+        "id": "r47g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-47-g5",
+    "number": 47,
+    "series": "regular",
+    "name_ja": "動物運搬車(ペンギン)",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 5,
+    "period": "2006/01〜2010/12",
+    "variants": [
+      {
+        "id": "r47g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-47-g4",
+    "number": 47,
+    "series": "regular",
+    "name_ja": "三菱 キャンター 清掃車",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 4,
+    "period": "1981/02〜2006/01",
+    "note": "黒箱→赤箱",
+    "variants": [
+      {
+        "id": "r47g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-47-g3",
+    "number": 47,
+    "series": "regular",
+    "name_ja": "ニッサン セドリック 空港タクシー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1979/02〜1981/02",
+    "variants": [
+      {
+        "id": "r47g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-47-g2",
+    "number": 47,
+    "series": "regular",
+    "name_ja": "ニッサン グロリア バン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "1977/01〜1979/02",
+    "variants": [
+      {
+        "id": "r47g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-47-g1",
+    "number": 47,
+    "series": "regular",
+    "name_ja": "ニッサン セドリックワゴン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/08〜1977/01",
+    "note": "絶版・新車リストや、その他トミカラインナップ一覧はこちらから！",
+    "variants": [
+      {
+        "id": "r47g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-58-g8",
+    "number": 58,
+    "series": "regular",
+    "name_ja": "ダイハツ ウェイク",
+    "manufacturer": "ダイハツ",
+    "retired": true,
+    "gen": 8,
+    "period": "2015/09〜2018/06",
+    "note": "通常品は黄・初回特別仕様はオレンジ",
+    "variants": [
+      {
+        "id": "r58g8",
+        "name": "通常品（黄）",
+        "color": "黄"
+      },
+      {
+        "id": "r58g8f",
+        "name": "初回特別仕様（オレンジ）",
+        "color": "オレンジ",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-58-g7",
+    "number": 58,
+    "series": "regular",
+    "name_ja": "スズキ ワゴンR",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 7,
+    "period": "2013/09〜2015/09",
+    "note": "3代目(No.58-6)→4代目(No.58-7)→5代目(",
+    "variants": [
+      {
+        "id": "r58g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-58-g6",
+    "number": 58,
+    "series": "regular",
+    "name_ja": "スズキ ワゴンR",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 6,
+    "period": "2009/05〜2013/09",
+    "note": "2代目(",
+    "variants": [
+      {
+        "id": "r58g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-58-g5",
+    "number": 58,
+    "series": "regular",
+    "name_ja": "日産 セドリック パトロールカー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 5,
+    "period": "2000/02〜2009/05",
+    "variants": [
+      {
+        "id": "r58g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-58-g4",
+    "number": 58,
+    "series": "regular",
+    "name_ja": "日産 セドリック パトロールカー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 4,
+    "period": "1988/03〜2000/02",
+    "variants": [
+      {
+        "id": "r58g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-58-g3",
+    "number": 58,
+    "series": "regular",
+    "name_ja": "ニッサン セドリック パトロールカー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1984/05〜1988/03",
+    "variants": [
+      {
+        "id": "r58g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-58-g2",
+    "number": 58,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1980/09〜1984/05",
+    "variants": [
+      {
+        "id": "r58g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-58-g1",
+    "number": 58,
+    "series": "regular",
+    "name_ja": "ニッサン フェアレディ 240ZG",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1974/08〜1980/09",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r58g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-59-g6",
+    "number": 59,
+    "series": "regular",
+    "name_ja": "日産 フェアレディZ",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 6,
+    "period": "2022/02〜（結束不明）",
+    "note": "通常はシルバー・初回は黄",
+    "variants": [
+      {
+        "id": "r59g6",
+        "name": "通常品（シルバー）",
+        "color": "シルバー"
+      },
+      {
+        "id": "r59g6f",
+        "name": "初回特別仕様（黄）",
+        "color": "黄",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-59-g5",
+    "number": 59,
+    "series": "regular",
+    "name_ja": "F8 トリブート",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 5,
+    "period": "2020/02〜2022/02",
+    "note": "通常は青・初回特別仕様は赤",
+    "variants": [
+      {
+        "id": "r59g5",
+        "name": "通常品（青）",
+        "color": "青"
+      },
+      {
+        "id": "r59g5f",
+        "name": "初回特別仕様（赤）",
+        "color": "赤",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-59-g4",
+    "number": 59,
+    "series": "regular",
+    "name_ja": "いすゞ エルフ 佐川急便",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 4,
+    "period": "2013/02〜2020/02",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r59g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-59-g3",
+    "number": 59,
+    "series": "regular",
+    "name_ja": "酒井重工業タンデム振動ローラ SW502-1",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "2009/02〜2013/12",
+    "variants": [
+      {
+        "id": "r59g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-59-g2",
+    "number": 59,
+    "series": "regular",
+    "name_ja": "ダイナパック CC21",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1983/11〜2009/02",
+    "variants": [
+      {
+        "id": "r59g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-59-g1",
+    "number": 59,
+    "series": "regular",
+    "name_ja": "日立 ダンプ・カー",
+    "manufacturer": "日立建機",
+    "retired": true,
+    "gen": 1,
+    "period": "1973/01〜1983/11",
+    "variants": [
+      {
+        "id": "r59g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-60-g8",
+    "number": 60,
+    "series": "regular",
+    "name_ja": "Honda e",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 8,
+    "period": "2021/08〜（結束不明）",
+    "variants": [
+      {
+        "id": "r60g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-60-g7",
+    "number": 60,
+    "series": "regular",
+    "name_ja": "いすゞ エルフ 車両運搬車",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 7,
+    "period": "2017/03〜2021/08",
+    "note": "通常は青・初回特別カラーは白",
+    "variants": [
+      {
+        "id": "r60g7",
+        "name": "通常品（青）",
+        "color": "青"
+      },
+      {
+        "id": "r60g7f",
+        "name": "初回特別仕様（白）",
+        "color": "白",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-60-g6",
+    "number": 60,
+    "series": "regular",
+    "name_ja": "フォード マスタング GT V8",
+    "manufacturer": "フォード",
+    "retired": true,
+    "gen": 6,
+    "period": "2014/07〜2017/03",
+    "note": "通常は青・初回特別カラーは赤",
+    "variants": [
+      {
+        "id": "r60g6",
+        "name": "通常品（青）",
+        "color": "青"
+      },
+      {
+        "id": "r60g6f",
+        "name": "初回特別仕様（赤）",
+        "color": "赤",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-60-g5",
+    "number": 60,
+    "series": "regular",
+    "name_ja": "トヨタ カローラ フィールダー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 5,
+    "period": "2013/01〜2014/07",
+    "variants": [
+      {
+        "id": "r60g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-60-g4",
+    "number": 60,
+    "series": "regular",
+    "name_ja": "トヨタ マークX 個人タクシー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2008/12〜2013/01",
+    "variants": [
+      {
+        "id": "r60g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-60-g3",
+    "number": 60,
+    "series": "regular",
+    "name_ja": "トヨタ セルシオ 個人タクシー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "2005/03〜2008/12",
+    "variants": [
+      {
+        "id": "r60g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-60-g1",
+    "number": 60,
+    "series": "regular",
+    "name_ja": "ダットサン 第一号車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1973/04〜1981/12",
+    "variants": [
+      {
+        "id": "r60g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-62-g11",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "ラフェラーリ",
+    "manufacturer": "フェラーリ",
+    "retired": true,
+    "gen": 11,
+    "period": "2018/08〜（結束不明）",
+    "note": "通常品は赤・初回特別仕様は黒",
+    "variants": [
+      {
+        "id": "r62g11",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r62g11f",
+        "name": "初回特別仕様（黒）",
+        "color": "黒",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-62-g8",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "マツダ アクセラスポーツ",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 8,
+    "period": "2010/02〜2013/10",
+    "variants": [
+      {
+        "id": "r62g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-62-g7",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "トヨタ ハリアー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 7,
+    "period": "2004/05〜2010/02",
+    "variants": [
+      {
+        "id": "r62g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-62-g6",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "ダイハツ ミゼットII",
+    "manufacturer": "ダイハツ",
+    "retired": true,
+    "gen": 6,
+    "period": "1997/04〜2004/05",
+    "variants": [
+      {
+        "id": "r62g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-62-g4",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "ウィリアムズ ホンダF-1",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 4,
+    "period": "1987/10〜1991/06",
+    "variants": [
+      {
+        "id": "r62g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-62-g3",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "いすゞ ジャーニーQ 移動図書館",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 3,
+    "period": "1980/10〜1987/10",
+    "note": "いどうとしょかん",
+    "variants": [
+      {
+        "id": "r62g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-62-g2",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "ニッサン シルビア LS タイプX",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "1977/03〜1980/10",
+    "note": "初代(No.62-2)→2代目(",
+    "variants": [
+      {
+        "id": "r62g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-62-g1",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "ニッサン ブルーバードU 1800 SSS-E",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1973/02〜1977/03",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r62g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-64-g7",
+    "number": 64,
+    "series": "regular",
+    "name_ja": "日産 アリア",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 7,
+    "period": "2021/03〜2023/05",
+    "note": "通常はサンライズカッパー・初回特別仕様はシルバー",
+    "variants": [
+      {
+        "id": "r64g7",
+        "name": "通常品（サンライズカッパー）",
+        "color": "サンライズカッパー"
+      },
+      {
+        "id": "r64g7f",
+        "name": "初回特別仕様（シルバー）",
+        "color": "シルバー",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-64-g6",
+    "number": 64,
+    "series": "regular",
+    "name_ja": "488 GTB",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 6,
+    "period": "2018/11〜2021/03",
+    "note": "通常は赤・初回特別仕様は黄",
+    "variants": [
+      {
+        "id": "r64g6",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r64g6f",
+        "name": "初回特別仕様（黄）",
+        "color": "黄",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-64-g4",
+    "number": 64,
+    "series": "regular",
+    "name_ja": "トヨタ マークX",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2010/07〜2013/05",
+    "variants": [
+      {
+        "id": "r64g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-64-g3",
+    "number": 64,
+    "series": "regular",
+    "name_ja": "ホンダ S2000",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 3,
+    "period": "1999/07〜2010/07",
+    "note": "トミカプレミアムで後期車種発売",
+    "variants": [
+      {
+        "id": "r64g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-64-g2",
+    "number": 64,
+    "series": "regular",
+    "name_ja": "いすゞ エルフFF マイパックバックホー",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 2,
+    "period": "1978/01〜1999/07",
+    "note": "黒箱→赤箱",
+    "variants": [
+      {
+        "id": "r64g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-64-g1",
+    "number": 64,
+    "series": "regular",
+    "name_ja": "トヨタ ハイラックス",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "1973/04〜1978/01",
+    "variants": [
+      {
+        "id": "r64g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-66-g3",
+    "number": 66,
+    "series": "regular",
+    "name_ja": "ヤンマー コンバイン AJ218",
+    "manufacturer": "ヤンマー",
+    "retired": true,
+    "gen": 3,
+    "period": "2009/03〜2015/05",
+    "variants": [
+      {
+        "id": "r66g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-66-g2",
+    "number": 66,
+    "series": "regular",
+    "name_ja": "ふそう トラック クレーン",
+    "manufacturer": "三菱ふそう",
+    "retired": true,
+    "gen": 2,
+    "period": "1977/03〜2009/03",
+    "variants": [
+      {
+        "id": "r66g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-72-g7",
+    "number": 72,
+    "series": "regular",
+    "name_ja": "ロータス エリーゼ スポーツ 220 II",
+    "manufacturer": "ロータス",
+    "retired": true,
+    "gen": 7,
+    "period": "2021/12〜（結束不明）",
+    "note": "通常は黄・初回特別仕様は白",
+    "variants": [
+      {
+        "id": "r72g7",
+        "name": "通常品（黄）",
+        "color": "黄"
+      },
+      {
+        "id": "r72g7f",
+        "name": "初回特別仕様（白）",
+        "color": "白",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-72-g6",
+    "number": 72,
+    "series": "regular",
+    "name_ja": "日野セレガ ジェイアールバス東北 こまちカラー",
+    "manufacturer": "日野",
+    "retired": true,
+    "gen": 6,
+    "period": "2015/12〜2021/12",
+    "variants": [
+      {
+        "id": "r72g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-72-g5",
+    "number": 72,
+    "series": "regular",
+    "name_ja": "三菱ふそう エアロスター エコ ハイブリッド",
+    "manufacturer": "三菱ふそう",
+    "retired": true,
+    "gen": 5,
+    "period": "2010/03〜2015/12",
+    "variants": [
+      {
+        "id": "r72g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-72-g4",
+    "number": 72,
+    "series": "regular",
+    "name_ja": "トヨタ マーク X",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2005/05〜2010/03",
+    "variants": [
+      {
+        "id": "r72g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-72-g3",
+    "number": 72,
+    "series": "regular",
+    "name_ja": "三菱 パジェロ ラリータイプ",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 3,
+    "period": "2001/07〜2005.05",
+    "variants": [
+      {
+        "id": "r72g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-72-g2",
+    "number": 72,
+    "series": "regular",
+    "name_ja": "ホンダ ビート",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 2,
+    "period": "1992/04〜2001/07",
+    "variants": [
+      {
+        "id": "r72g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-72-g1",
+    "number": 72,
+    "series": "regular",
+    "name_ja": "UD ユニック トラッククレーン",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1973/09〜1992/04",
+    "variants": [
+      {
+        "id": "r72g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-73-g3",
+    "number": 73,
+    "series": "regular",
+    "name_ja": "タダノ ラフテレーンクレーン CREVO 600",
+    "manufacturer": "タダノ",
+    "retired": true,
+    "gen": 3,
+    "period": "2004/07〜2011/07",
+    "variants": [
+      {
+        "id": "r73g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-73-g2",
+    "number": 73,
+    "series": "regular",
+    "name_ja": "いすゞ オフロードダンプ",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 2,
+    "period": "1978/04〜2004/07",
+    "note": "黒箱→赤箱",
+    "variants": [
+      {
+        "id": "r73g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-73-g1",
+    "number": 73,
+    "series": "regular",
+    "name_ja": "ホンダ F-1",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 1,
+    "period": "1974/06〜1978/04",
+    "variants": [
+      {
+        "id": "r73g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g12",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "アストンマーティン DBX",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 12,
+    "period": "2022/01〜（結束不明）",
+    "note": "通常は赤・初回特別仕様は黒",
+    "variants": [
+      {
+        "id": "r75g12",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r75g12f",
+        "name": "初回特別仕様（黒）",
+        "color": "黒",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g11",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "スズキ スペーシア ギア",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 11,
+    "period": "2019/10〜2022/01",
+    "variants": [
+      {
+        "id": "r75g11",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g10",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "スズキ ハスラー",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 10,
+    "period": "2014/10〜2019/10",
+    "note": "通常はオレンジ・初回特別仕様は赤",
+    "variants": [
+      {
+        "id": "r75g10",
+        "name": "通常品（オレンジ）",
+        "color": "オレンジ"
+      },
+      {
+        "id": "r75g10f",
+        "name": "初回特別仕様（赤）",
+        "color": "赤",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g9",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "ツナグデザイン ウロボロス",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 9,
+    "period": "2011/04〜2014/10",
+    "variants": [
+      {
+        "id": "r75g9",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g8",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "日産 エクストレイル",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 8,
+    "period": "2008/04〜2011/04",
+    "note": "初代(No.75-8)→２代目(",
+    "variants": [
+      {
+        "id": "r75g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g7",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "スマート フォーツー クーペ",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 7,
+    "period": "2005/03〜2008/04",
+    "variants": [
+      {
+        "id": "r75g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g6",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "ニッサン キャラバン パトロールカー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 6,
+    "period": "1983/07〜2005/03",
+    "variants": [
+      {
+        "id": "r75g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g5",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "スズキ セルボ",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 5,
+    "period": "1983/05〜1987/07",
+    "variants": [
+      {
+        "id": "r75g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g4",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "ふそう LPGローリー",
+    "manufacturer": "三菱ふそう",
+    "retired": true,
+    "gen": 4,
+    "period": "1980/09〜1983/05",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r75g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g3",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "ニッサン ブルーバード 2000G6-EL",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1978/01〜1980/09",
+    "note": "3代目(",
+    "variants": [
+      {
+        "id": "r75g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g2",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "NHK TV 中継車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1974/05〜1978/01",
+    "variants": [
+      {
+        "id": "r75g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75-g1",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "ウルトラマン マットカー",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/06〜1974/05",
+    "variants": [
+      {
+        "id": "r75g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-77-g7",
+    "number": 77,
+    "series": "regular",
+    "name_ja": "日野 プロフィア 日本通運トラック",
+    "manufacturer": "日野",
+    "retired": true,
+    "gen": 7,
+    "period": "2015/03〜2022/10",
+    "variants": [
+      {
+        "id": "r77g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-77-g6",
+    "number": 77,
+    "series": "regular",
+    "name_ja": "日野 プロフィア",
+    "manufacturer": "日野",
+    "retired": true,
+    "gen": 6,
+    "period": "2005/01〜2015/03",
+    "variants": [
+      {
+        "id": "r77g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-77-g5",
+    "number": 77,
+    "series": "regular",
+    "name_ja": "三菱キャンター レッカー車",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 5,
+    "period": "1986/06〜2005/01",
+    "note": "写真は台車欠品",
+    "variants": [
+      {
+        "id": "r77g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-77-g4",
+    "number": 77,
+    "series": "regular",
+    "name_ja": "三菱キャンター グリット スイーパ",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 4,
+    "period": "1981/12〜1986/06",
+    "variants": [
+      {
+        "id": "r77g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-77-g3",
+    "number": 77,
+    "series": "regular",
+    "name_ja": "トヨタ 自衛隊ロケット車(HQ15V型)",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1978/07〜1981/12",
+    "variants": [
+      {
+        "id": "r77g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-77-g2",
+    "number": 77,
+    "series": "regular",
+    "name_ja": "ニッサン グロリア バン パトロールカー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "1977/01〜1978/07",
+    "variants": [
+      {
+        "id": "r77g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-77-g1",
+    "number": 77,
+    "series": "regular",
+    "name_ja": "セドリック パトロールカー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/11〜1977/01",
+    "variants": [
+      {
+        "id": "r77g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-79-g3",
+    "number": 79,
+    "series": "regular",
+    "name_ja": "三菱ふそう ワンマンバス",
+    "manufacturer": "三菱ふそう",
+    "retired": true,
+    "gen": 3,
+    "period": "1985/11〜2006/10",
+    "note": "都営バス",
+    "variants": [
+      {
+        "id": "r79g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-79-g2",
+    "number": 79,
+    "series": "regular",
+    "name_ja": "三菱ふそう ワンマンバス",
+    "manufacturer": "三菱ふそう",
+    "retired": true,
+    "gen": 2,
+    "period": "1974/01〜1985/11",
+    "variants": [
+      {
+        "id": "r79g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-79-g1",
+    "number": 79,
+    "series": "regular",
+    "name_ja": "10-4・10-10 ギャラン",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1972/08〜1974/01",
+    "variants": [
+      {
+        "id": "r79g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-82-g8",
+    "number": 82,
+    "series": "regular",
+    "name_ja": "トヨタ SORA",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 8,
+    "period": "2020/09〜（結束不明）",
+    "note": "実車は京浜急行バスに導入された燃料電池バス",
+    "variants": [
+      {
+        "id": "r82g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-82-g7",
+    "number": 82,
+    "series": "regular",
+    "name_ja": "マツダ CX-5 パトロールカー",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 7,
+    "period": "2015/09〜2020/09",
+    "note": "広島県警パトカー",
+    "variants": [
+      {
+        "id": "r82g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-82-g5",
+    "number": 82,
+    "series": "regular",
+    "name_ja": "スズキ ラパン",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 5,
+    "period": "2009/10〜2012/12",
+    "variants": [
+      {
+        "id": "r82g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-82-g4",
+    "number": 82,
+    "series": "regular",
+    "name_ja": "トヨタ パッソ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2004/12〜2009/10",
+    "note": "初代(No.82-4)→2代目(",
+    "variants": [
+      {
+        "id": "r82g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-82-g3",
+    "number": 82,
+    "series": "regular",
+    "name_ja": "日産 ステージア",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1998/11〜2004/12",
+    "variants": [
+      {
+        "id": "r82g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-82-g2",
+    "number": 82,
+    "series": "regular",
+    "name_ja": "ピザ宅配バイク",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1989/10〜1998/11",
+    "variants": [
+      {
+        "id": "r82g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-82-g1",
+    "number": 82,
+    "series": "regular",
+    "name_ja": "ニッサン スカイライン 2000GT-X",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1974/08〜1989/10",
+    "variants": [
+      {
+        "id": "r82g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-85-g6",
+    "number": 85,
+    "series": "regular",
+    "name_ja": "トヨタ FJクルーザー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 6,
+    "period": "2011/08〜2018/07",
+    "note": "通常は黄・初回特別カラーは青",
+    "variants": [
+      {
+        "id": "r85g6",
+        "name": "通常品（黄）",
+        "color": "黄"
+      },
+      {
+        "id": "r85g6f",
+        "name": "初回特別仕様（青）",
+        "color": "青",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-85-g5",
+    "number": 85,
+    "series": "regular",
+    "name_ja": "三菱 パジェロ",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 5,
+    "period": "2007/04〜2011/08",
+    "note": "3代目(",
+    "variants": [
+      {
+        "id": "r85g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-85-g4",
+    "number": 85,
+    "series": "regular",
+    "name_ja": "三菱パジェロ 機動救助隊指揮車",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 4,
+    "period": "2004/02〜2007/04",
+    "variants": [
+      {
+        "id": "r85g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-85-g3",
+    "number": 85,
+    "series": "regular",
+    "name_ja": "スカイラインGT-R 捜査用パトロールカー",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "1999/06〜2004/02",
+    "variants": [
+      {
+        "id": "r85g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-85-g2",
+    "number": 85,
+    "series": "regular",
+    "name_ja": "道路工事標識車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1988/08〜1999/06",
+    "note": "写真は標識3つ欠品",
+    "variants": [
+      {
+        "id": "r85g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-85-g1",
+    "number": 85,
+    "series": "regular",
+    "name_ja": "ニッサン グロリア 2000GX",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1974/07〜1988/08",
+    "variants": [
+      {
+        "id": "r85g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-87-g9",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "トヨタ GR スープラ 富士スピードウェイ セーフティーカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 9,
+    "period": "2021/07〜（結束不明）",
+    "variants": [
+      {
+        "id": "r87g9",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-87-g8",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "ホンダ スーパーカブ",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 8,
+    "period": "2018/03〜2021/07",
+    "variants": [
+      {
+        "id": "r87g8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-87-g7",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "ランボルギーニ アヴェンタドール LP 700-4 ドバイ警察仕様",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 7,
+    "period": "2015/05〜2018/03",
+    "variants": [
+      {
+        "id": "r87g7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-87-g6",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "ランボルギーニ アヴェンタドール LP 700-4",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 6,
+    "period": "2012/07〜2015/05",
+    "note": "通常はオレンジ・初回特別カラーはシルバー",
+    "variants": [
+      {
+        "id": "r87g6",
+        "name": "通常品（オレンジ）",
+        "color": "オレンジ"
+      },
+      {
+        "id": "r87g6f",
+        "name": "初回特別仕様（シルバー）",
+        "color": "シルバー",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-87-g5",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "ランボルギーニ ムルシエラゴ",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 5,
+    "period": "2004/01〜2012/07",
+    "note": "通常はオレンジ・初回特別カラーは黄緑",
+    "variants": [
+      {
+        "id": "r87g5",
+        "name": "通常品（オレンジ）",
+        "color": "オレンジ"
+      },
+      {
+        "id": "r87g5f",
+        "name": "初回特別仕様（黄緑）",
+        "color": "黄緑",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-87-g3",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "エスティマ 救急車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "1992/04〜2000/01",
+    "variants": [
+      {
+        "id": "r87g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-87-g2",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "メルセデス ベンツ 450SEL",
+    "manufacturer": "メルセデス・ベンツ",
+    "retired": true,
+    "gen": 2,
+    "period": "1988/09〜1992/04",
+    "variants": [
+      {
+        "id": "r87g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-87-g1",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "ニッサン キャブオール ルートトラック",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "1974/09〜1988/09",
+    "variants": [
+      {
+        "id": "r87g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-90-g7",
+    "number": 90,
+    "series": "regular",
+    "name_ja": "フィアット 500",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 7,
+    "period": "2013/09〜2016/04",
+    "note": "通常は白・初回特別カラーは水色",
+    "variants": [
+      {
+        "id": "r90g7",
+        "name": "通常品（白）",
+        "color": "白"
+      },
+      {
+        "id": "r90g7f",
+        "name": "初回特別仕様（水色）",
+        "color": "水色",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-90-g6",
+    "number": 90,
+    "series": "regular",
+    "name_ja": "テントむし",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 6,
+    "period": "2008/06〜2013/09",
+    "variants": [
+      {
+        "id": "r90g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-90-g5",
+    "number": 90,
+    "series": "regular",
+    "name_ja": "スズキ キャリィ",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 5,
+    "period": "2003/07〜2008/06",
+    "note": "写真は車軸曲がりあり",
+    "variants": [
+      {
+        "id": "r90g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-90-g4",
+    "number": 90,
+    "series": "regular",
+    "name_ja": "いすゞ エルフ 移動青果店",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 4,
+    "period": "2000/03〜2003/07",
+    "variants": [
+      {
+        "id": "r90g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-90-g3",
+    "number": 90,
+    "series": "regular",
+    "name_ja": "トヨタ ソアラ パトロールカー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 3,
+    "period": "1992/10〜2000/03",
+    "variants": [
+      {
+        "id": "r90g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-90-g2",
+    "number": 90,
+    "series": "regular",
+    "name_ja": "ポルシェ 935-78 ターボ",
+    "manufacturer": "ポルシェ",
+    "retired": true,
+    "gen": 2,
+    "period": "1988/05〜1992/10",
+    "variants": [
+      {
+        "id": "r90g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-90-g1",
+    "number": 90,
+    "series": "regular",
+    "name_ja": "ふそう コンテナ運搬車",
+    "manufacturer": "三菱ふそう",
+    "retired": true,
+    "gen": 1,
+    "period": "1975/01〜1989/05",
+    "variants": [
+      {
+        "id": "r90g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-95-g2",
+    "number": 95,
+    "series": "regular",
+    "name_ja": "UD コンドル クレーン付カーゴトラック",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1977/07〜1988/07",
+    "variants": [
+      {
+        "id": "r95g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-95-g1",
+    "number": 95,
+    "series": "regular",
+    "name_ja": "日本航空 ジャンボ ケン引車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1975/04〜1977/07",
+    "variants": [
+      {
+        "id": "r95g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-96-g6",
+    "number": 96,
+    "series": "regular",
+    "name_ja": "ヤマハ YFZ450R",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 6,
+    "period": "2010/05〜2016/03",
+    "variants": [
+      {
+        "id": "r96g6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-96-g5",
+    "number": 96,
+    "series": "regular",
+    "name_ja": "マツダ RX-8",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 5,
+    "period": "2003/08〜2010/05",
+    "note": "通常は赤・初回特別カラーは白",
+    "variants": [
+      {
+        "id": "r96g5",
+        "name": "通常品（赤）",
+        "color": "赤"
+      },
+      {
+        "id": "r96g5f",
+        "name": "初回特別仕様（白）",
+        "color": "白",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-96-g4",
+    "number": 96,
+    "series": "regular",
+    "name_ja": "トヨタ セリカ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2000/05〜2003/08",
+    "note": "5代目(",
+    "variants": [
+      {
+        "id": "r96g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-96-g3",
+    "number": 96,
+    "series": "regular",
+    "name_ja": "スバル サンバー 牛乳屋",
+    "manufacturer": "スバル",
+    "retired": true,
+    "gen": 3,
+    "period": "1988/11〜2000/05",
+    "variants": [
+      {
+        "id": "r96g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-96-g2",
+    "number": 96,
+    "series": "regular",
+    "name_ja": "ダットサン ピックアップ",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "1978/02〜1988/11",
+    "variants": [
+      {
+        "id": "r96g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-96-g1",
+    "number": 96,
+    "series": "regular",
+    "name_ja": "日本航空 コンテナー ケン引車",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "1975/04〜1978/02",
+    "variants": [
+      {
+        "id": "r96g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-105-g8",
+    "number": 105,
+    "series": "regular",
+    "name_ja": "日産 NV350キャラバン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 8,
+    "period": "2016/04〜2018/10",
+    "note": "通常は白・初回特別仕様は黄",
+    "variants": [
+      {
+        "id": "r105g8",
+        "name": "通常品（白）",
+        "color": "白"
+      },
+      {
+        "id": "r105g8f",
+        "name": "初回特別仕様（黄）",
+        "color": "黄",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-105-g7",
+    "number": 105,
+    "series": "regular",
+    "name_ja": "スカイライン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 7,
+    "period": "2014/01〜2016/04",
+    "note": "通常は水色・初回特別カラーはガンメタ",
+    "variants": [
+      {
+        "id": "r105g7",
+        "name": "通常品（水色）",
+        "color": "水色"
+      },
+      {
+        "id": "r105g7f",
+        "name": "初回特別仕様（ガンメタ）",
+        "color": "ガンメタ",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-105-g6",
+    "number": 105,
+    "series": "regular",
+    "name_ja": "スズキ MRワゴン",
+    "manufacturer": "スズキ",
+    "retired": true,
+    "gen": 6,
+    "period": "2012/01〜2014/01",
+    "note": "通常は白・初回特別カラーは赤",
+    "variants": [
+      {
+        "id": "r105g6",
+        "name": "通常品（白）",
+        "color": "白"
+      },
+      {
+        "id": "r105g6f",
+        "name": "初回特別仕様（赤）",
+        "color": "赤",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-105-g5",
+    "number": 105,
+    "series": "regular",
+    "name_ja": "コカ・コーラ ルートトラック",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 5,
+    "period": "2009/08〜2012/01",
+    "variants": [
+      {
+        "id": "r105g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-105-g4",
+    "number": 105,
+    "series": "regular",
+    "name_ja": "コカ・コーラ ルートトラック",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 4,
+    "period": "2006/11〜2009/08",
+    "variants": [
+      {
+        "id": "r105g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-105-g3",
+    "number": 105,
+    "series": "regular",
+    "name_ja": "コカ・コーラ ルートトラック",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "1996/10〜2006/11",
+    "variants": [
+      {
+        "id": "r105g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-105-g1",
+    "number": 105,
+    "series": "regular",
+    "name_ja": "シグマ MC74 マツダ",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 1,
+    "period": "1975/10〜1989/02",
+    "variants": [
+      {
+        "id": "r105g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-114-g4",
+    "number": 114,
+    "series": "regular",
+    "name_ja": "トヨタ センチュリー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2019/09〜（結束不明）",
+    "note": "通常は黒・初回特別仕様はシルバー",
+    "variants": [
+      {
+        "id": "r114g4",
+        "name": "通常品（黒）",
+        "color": "黒"
+      },
+      {
+        "id": "r114g4f",
+        "name": "初回特別仕様（シルバー）",
+        "color": "シルバー",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-114-g3",
+    "number": 114,
+    "series": "regular",
+    "name_ja": "自衛隊 軽装甲機動車",
+    "manufacturer": "自衛隊",
+    "retired": true,
+    "gen": 3,
+    "period": "2006/10〜2019/09",
+    "variants": [
+      {
+        "id": "r114g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-114-g2",
+    "number": 114,
+    "series": "regular",
+    "name_ja": "コマツ ブルドーザ D375A",
+    "manufacturer": "コマツ",
+    "retired": true,
+    "gen": 2,
+    "period": "1995/06〜2006/10",
+    "variants": [
+      {
+        "id": "r114g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-114-g1",
+    "number": 114,
+    "series": "regular",
+    "name_ja": "シボレー カマロ ポリスカー",
+    "manufacturer": "シボレー",
+    "retired": true,
+    "gen": 1,
+    "period": "1988/02〜1995/06",
+    "variants": [
+      {
+        "id": "r114g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-119-g4",
+    "number": 119,
+    "series": "regular",
+    "name_ja": "モリタ 消救車 FFA-001",
+    "manufacturer": "モリタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2004/09〜2017/11",
+    "variants": [
+      {
+        "id": "r119g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-119-g3",
+    "number": 119,
+    "series": "regular",
+    "name_ja": "福祉 サービスカー",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "2001/08〜2004/09",
+    "variants": [
+      {
+        "id": "r119g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-119-g2",
+    "number": 119,
+    "series": "regular",
+    "name_ja": "ハイエース消防指揮車",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "1991/04〜2001/08",
+    "variants": [
+      {
+        "id": "r119g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-125-g3",
+    "number": 125,
+    "series": "regular",
+    "name_ja": "超電導リニア L0系",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "2015/09〜2017/06",
+    "variants": [
+      {
+        "id": "r125g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-125-g2",
+    "number": 125,
+    "series": "regular",
+    "name_ja": "EF510-501 北斗星",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "2013/06〜2015/09",
+    "note": "損傷多め",
+    "variants": [
+      {
+        "id": "r125g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-125-g1",
+    "number": 125,
+    "series": "regular",
+    "name_ja": "ヤンマー クールコンテナ トレーラー",
+    "manufacturer": "ヤンマー",
+    "retired": true,
+    "gen": 1,
+    "period": "2008/12〜2013/06",
+    "variants": [
+      {
+        "id": "r125g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-129-g3",
+    "number": 129,
+    "series": "regular",
+    "name_ja": "宇部興産 ダブルストレーラー",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "2020/09〜（結束不明）",
+    "variants": [
+      {
+        "id": "r129g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-129-g2",
+    "number": 129,
+    "series": "regular",
+    "name_ja": "さんふらわあ",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "2018/03〜2020/09",
+    "note": "初代(",
+    "variants": [
+      {
+        "id": "r129g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-129-g1",
+    "number": 129,
+    "series": "regular",
+    "name_ja": "レーシングトランスポーター",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "2008/12〜2018/03",
+    "variants": [
+      {
+        "id": "r129g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-138-g2",
+    "number": 138,
+    "series": "regular",
+    "name_ja": "きかんしゃパーシー",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "2014/03〜（結束不明）",
+    "variants": [
+      {
+        "id": "r138g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-138-g1",
+    "number": 138,
+    "series": "regular",
+    "name_ja": "機関車バス青春号",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 1,
+    "period": "2009/10〜2014/03",
+    "variants": [
+      {
+        "id": "r138g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-139-g3",
+    "number": 139,
+    "series": "regular",
+    "name_ja": "TRAIN SUITE 四季島",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "2017/09〜2019/09",
+    "variants": [
+      {
+        "id": "r139g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-139-g2",
+    "number": 139,
+    "series": "regular",
+    "name_ja": "E3系新幹線",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "2015/03〜2017/09",
+    "note": "通常はつばさ・初回特別仕様はとれいゆ",
+    "variants": [
+      {
+        "id": "r139g2",
+        "name": "通常品（つばさ）",
+        "color": "つばさ"
+      },
+      {
+        "id": "r139g2f",
+        "name": "初回特別仕様（とれいゆ）",
+        "color": "とれいゆ",
+        "is_first_edition": true
+      }
+    ]
+  },
+  {
+    "id": "regular-139-g1",
+    "number": 139,
+    "series": "regular",
+    "name_ja": "いすゞ ギガ パネルバントレーラー",
+    "manufacturer": "いすゞ",
+    "retired": true,
+    "gen": 1,
+    "period": "2009/12〜2015/03",
+    "variants": [
+      {
+        "id": "r139g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-142-g3",
+    "number": 142,
+    "series": "regular",
+    "name_ja": "すみっコぐらし しろくま",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 3,
+    "period": "2017/05〜（結束不明）",
+    "variants": [
+      {
+        "id": "r142g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-142-g2",
+    "number": 142,
+    "series": "regular",
+    "name_ja": "エルモ",
+    "manufacturer": "その他",
+    "retired": true,
+    "gen": 2,
+    "period": "2015/05〜2017/05",
+    "variants": [
+      {
+        "id": "r142g2",
         "name": "通常版"
       }
     ]

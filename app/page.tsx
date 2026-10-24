@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { getAllCars, searchCars, normalizeName } from '@/lib/tomica-data';
+import { getAllCars, getCurrentCars, searchCars, normalizeName } from '@/lib/tomica-data';
 import ScannedCard from '@/components/ScannedCard';
 import { useCollection } from '@/lib/useCollection';
 import CarCard from '@/components/CarCard';
@@ -13,8 +13,10 @@ export default function HomePage() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<FilterMode>('collected');
   const allCars = useMemo(() => getAllCars(), []);
+  const currentCars = useMemo(() => getCurrentCars(), []);
   const { collectedByCar, scannedItems, wishlistIds, ownedCount } =
     useCollection();
+  const collectedCurrent = currentCars.filter((c) => collectedByCar.has(c.id)).length;
 
   const visibleScanned = useMemo(() => {
     const q = normalizeName(search);
@@ -36,7 +38,7 @@ export default function HomePage() {
       case 'wishlist':
         return cars.filter((c) => wishlistIds.has(c.id));
       case 'missing':
-        return cars.filter((c) => !collectedByCar.has(c.id));
+        return cars.filter((c) => !c.retired && !collectedByCar.has(c.id));
     }
   }, [search, filter, allCars, collectedByCar, wishlistIds]);
 
@@ -48,11 +50,11 @@ export default function HomePage() {
         <h1 className="text-2xl font-bold">🚗 我的 Tomica 收藏</h1>
         <div className="mt-2 flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
           <span>
-            圖鑑{' '}
+            現行車款{' '}
             <strong className="text-blue-600 dark:text-blue-400">
-              {collectedByCar.size}
+              {collectedCurrent}
             </strong>{' '}
-            / {allCars.length} 款
+            / {currentCars.length} 款
           </span>
           <span>
             共收藏{' '}
@@ -66,7 +68,7 @@ export default function HomePage() {
           <div
             className="bg-blue-600 h-2 rounded-full transition-all"
             style={{
-              width: `${(collectedByCar.size / allCars.length) * 100}%`,
+              width: `${(collectedCurrent / currentCars.length) * 100}%`,
             }}
           />
         </div>

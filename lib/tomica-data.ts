@@ -19,6 +19,11 @@ export interface TomicaCar {
   manufacturer: string;
   scale?: string;
   image?: string;
+  // History: older cars that used this number are `retired`; `gen` is the box sub-number (46-11 → 11)
+  retired?: boolean;
+  gen?: number;
+  period?: string;
+  note?: string;
   variants: TomicaVariant[];
 }
 
@@ -81,6 +86,19 @@ export function parseCarId(id: string): { series: string; number: number } {
 
 export function getAllCars(): TomicaCar[] {
   return catalog;
+}
+
+const currentCars = catalog.filter((c) => !c.retired);
+
+export function getCurrentCars(): TomicaCar[] {
+  return currentCars;
+}
+
+// Every car that has used this number, current one first, then newest to oldest
+export function getGenerations(series: string, number: number): TomicaCar[] {
+  return catalog
+    .filter((c) => c.series === series && c.number === number && !c.code)
+    .sort((a, b) => Number(!!a.retired) - Number(!!b.retired) || (b.gen ?? 0) - (a.gen ?? 0));
 }
 
 export function getCar(series: string, number: number): TomicaCar | undefined {

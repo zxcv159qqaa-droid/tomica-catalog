@@ -39,14 +39,30 @@ export default function CarCard({
         )}
 
         <div className="flex items-center gap-3">
-          <CarThumb src={car.image} series={car.series} number={car.number} code={car.code} />
+          <CarThumb
+            src={car.image}
+            series={car.series}
+            number={car.number}
+            code={car.retired && car.gen ? `${car.number}-${car.gen}` : car.code}
+          />
 
           <div className="flex-1 min-w-0 pr-14">
             <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100 line-clamp-2">
+              {car.retired && (
+                <span className="mr-1 text-[10px] font-medium align-middle px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                  舊款
+                </span>
+              )}
               {car.name_ja}
             </h3>
             <div className="flex items-center gap-2 mt-1.5 text-xs text-gray-400 dark:text-gray-500">
               <span>{car.manufacturer}</span>
+              {car.period && (
+                <>
+                  <span className="text-gray-300 dark:text-gray-600">|</span>
+                  <span>{car.period}</span>
+                </>
+              )}
               {variantCount > 1 && (
                 <>
                   <span className="text-gray-300 dark:text-gray-600">|</span>

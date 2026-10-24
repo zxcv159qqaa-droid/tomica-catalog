@@ -28,6 +28,7 @@ export default function CatalogPage() {
   const [series, setSeries] = useState<string>('regular');
   const [filter, setFilter] = useState<CatalogFilter>('all');
   const [manufacturer, setManufacturer] = useState('all');
+  const [showHistory, setShowHistory] = useState(false);
   const { collectedByCar, wishlistIds, scannedItems } = useCollection();
 
   // Scanned cars of this series that aren't in the current lineup (older releases, reused numbers)
@@ -49,9 +50,22 @@ export default function CatalogPage() {
     );
   }, [seriesScanned, filter, manufacturer, search]);
 
-  const seriesCars = useMemo(
-    () => getAllCars().filter((c) => c.series === series),
+  const hasHistory = useMemo(
+    () => getAllCars().some((c) => c.series === series && c.retired),
     [series]
+  );
+  const seriesCars = useMemo(
+    () =>
+      getAllCars()
+        .filter((c) => c.series === series && (showHistory || !c.retired))
+        .sort(
+          (a, b) =>
+            (a.code ? 1 : 0) - (b.code ? 1 : 0) ||
+            a.number - b.number ||
+            Number(!!a.retired) - Number(!!b.retired) ||
+            (b.gen ?? 0) - (a.gen ?? 0)
+        ),
+    [series, showHistory]
   );
   const manufacturers = useMemo(() => getAllManufacturers(seriesCars), [seriesCars]);
   const collectedInSeries = seriesCars.filter((c) =>
@@ -89,6 +103,18 @@ export default function CatalogPage() {
 
       <SearchBar value={search} onChange={setSearch} />
 
+      {hasHistory && (
+        <label className="flex items-center gap-2 mt-3 text-sm text-gray-600 dark:text-gray-300">
+          <input
+            type="checkbox"
+            checked={showHistory}
+            onChange={(e) => setShowHistory(e.target.checked)}
+            className="w-4 h-4 accent-blue-600"
+          />
+          含歷代舊款（同編號以前的車）
+        </label>
+      )}
+
       <div className="flex gap-2 mt-4 overflow-x-auto">
         {(
           [
@@ -120,6 +146,7 @@ export default function CatalogPage() {
 
       <p className="text-xs text-gray-400 mb-3">
         顯示 {filteredCars.length} 款・資料來源：タカラトミー官網現行商品
+        {showHistory && '；歷代舊款：こつめBLOG（2026/5 存檔）'}
       </p>
 
       {visibleScanned.length > 0 && (
