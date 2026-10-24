@@ -13,6 +13,22 @@ import {
 } from '@/lib/tomica-data';
 import { db } from '@/lib/db';
 
+function makeThumb(dataUrl: string, maxSide = 240): Promise<string | undefined> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      canvas.getContext('2d')?.drawImage(img, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL('image/jpeg', 0.7));
+    };
+    img.onerror = () => resolve(undefined);
+    img.src = dataUrl;
+  });
+}
+
 export default function ScanPage() {
   const [apiKey, setApiKey] = useState('');
   const [hasServerKey, setHasServerKey] = useState(false);
@@ -101,6 +117,7 @@ export default function ScanPage() {
         name: result.name || `No.${result.number}`,
         variantName: result.variant,
         series,
+        thumb: previewUrl ? await makeThumb(previewUrl) : undefined,
         addedAt: new Date(),
       });
     }

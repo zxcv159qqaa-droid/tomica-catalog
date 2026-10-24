@@ -62,6 +62,7 @@ export default function SettingsPage() {
             name: item.name,
             variantName: item.variantName,
             series: item.series,
+            thumb: item.thumb,
           }))
         );
       }

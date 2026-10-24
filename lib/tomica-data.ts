@@ -16,6 +16,7 @@ export interface TomicaCar {
   name_en?: string;
   manufacturer: string;
   scale?: string;
+  image?: string;
   variants: TomicaVariant[];
 }
 

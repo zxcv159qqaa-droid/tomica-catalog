@@ -6,9 +6,9 @@ import {
   getAllCars,
   searchCars,
   normalizeName,
-  seriesLabel,
   carId,
 } from '@/lib/tomica-data';
+import CarThumb from '@/components/CarThumb';
 import { useCollection } from '@/lib/useCollection';
 import CarCard from '@/components/CarCard';
 import SearchBar from '@/components/SearchBar';
@@ -110,16 +110,11 @@ export default function HomePage() {
               href={`/catalog/${carId(item.series || 'regular', item.tomicaNumber)}`}
               className="flex items-center gap-3 p-4 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
             >
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex flex-col items-center justify-center shrink-0">
-                {item.series && item.series !== 'regular' && (
-                  <span className="text-[9px] leading-none text-blue-500">
-                    {seriesLabel(item.series)}
-                  </span>
-                )}
-                <span className="font-bold text-blue-600 dark:text-blue-400">
-                  {item.tomicaNumber}
-                </span>
-              </div>
+              <CarThumb
+                src={item.thumb}
+                series={item.series}
+                number={item.tomicaNumber}
+              />
               <div className="min-w-0 flex-1">
                 <p className="font-semibold truncate">{item.name}</p>
                 <p className="text-xs text-gray-500 truncate">

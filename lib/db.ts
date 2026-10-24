@@ -10,6 +10,8 @@ export interface CollectionItem {
   name?: string;
   variantName?: string;
   series?: string;
+  // Small JPEG data URL of the user's own scan photo
+  thumb?: string;
 }
 
 export interface WishlistItem {

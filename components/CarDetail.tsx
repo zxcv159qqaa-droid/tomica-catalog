@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getCar, parseCarId, seriesLabel } from '@/lib/tomica-data';
 import { db, type CollectionItem } from '@/lib/db';
+import CarThumb from '@/components/CarThumb';
 
 export default function CarDetail({ carKey }: { carKey: string }) {
   const router = useRouter();
@@ -63,8 +64,9 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         {scanned.map((item) => (
           <div
             key={item.id}
-            className="flex items-center justify-between gap-2 p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
+            className="flex items-center justify-between gap-3 p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
           >
+            <CarThumb src={item.thumb} series={item.series} number={item.tomicaNumber} />
             <div className="flex-1 min-w-0">
               <p className="font-medium text-sm">{item.name}</p>
               {item.variantName && (
@@ -142,16 +144,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-14 h-14 shrink-0 bg-blue-100 dark:bg-blue-900 rounded-xl flex flex-col items-center justify-center">
-              {car.series !== 'regular' && (
-                <span className="text-[10px] leading-none text-blue-500">
-                  {seriesLabel(car.series)}
-                </span>
-              )}
-              <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
-                {car.number}
-              </span>
-            </div>
+            <CarThumb src={car.image} series={car.series} number={car.number} size="lg" />
             <div className="min-w-0">
               <h1 className="text-lg font-bold">{car.name_ja}</h1>
               {car.name_en && (

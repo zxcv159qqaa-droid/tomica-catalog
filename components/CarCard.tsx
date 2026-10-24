@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { seriesLabel, type TomicaCar } from '@/lib/tomica-data';
+import type { TomicaCar } from '@/lib/tomica-data';
+import CarThumb from '@/components/CarThumb';
 
 interface CarCardProps {
   car: TomicaCar;
@@ -37,17 +38,8 @@ export default function CarCard({
           </div>
         )}
 
-        <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex flex-col items-center justify-center">
-            {car.series !== 'regular' && (
-              <span className="text-[9px] leading-none text-gray-500 dark:text-gray-400">
-                {seriesLabel(car.series)}
-              </span>
-            )}
-            <span className="text-lg font-bold text-gray-600 dark:text-gray-300 leading-tight">
-              {car.number}
-            </span>
-          </div>
+        <div className="flex items-center gap-3">
+          <CarThumb src={car.image} series={car.series} number={car.number} />
 
           <div className="flex-1 min-w-0 pr-14">
             <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100 line-clamp-2">
