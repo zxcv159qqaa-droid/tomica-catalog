@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-flash'];
+const MODELS = [
+  'gemini-2.5-flash',
+  'gemini-flash-latest',
+  'gemini-2.5-flash-lite',
+  'gemini-flash-lite-latest',
+];
 const MAX_RETRIES = 2;
 
 const PROMPT = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomica 小汽車。
@@ -72,6 +77,7 @@ export async function POST(req: NextRequest) {
 
   const genAI = new GoogleGenerativeAI(apiKey);
   let lastError = '';
+  const failures: string[] = [];
 
   for (const modelName of MODELS) {
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
@@ -117,6 +123,8 @@ export async function POST(req: NextRequest) {
           lastError.includes('no longer available');
 
         if (isModelGone || (isRetryable && attempt >= MAX_RETRIES)) {
+          const status = /\[(\d{3})[^\]]*\]/.exec(lastError)?.[1] ?? '?';
+          failures.push(`${modelName}: ${status}`);
           break;
         }
 
@@ -127,6 +135,7 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({
     success: false,
-    error: `所有模型都暫時無法使用，請稍後再試。(${lastError})`,
+    error: `AI 辨識服務暫時忙碌，請稍後再試。(${failures.join(', ')})`,
+    detail: lastError,
   });
 }
