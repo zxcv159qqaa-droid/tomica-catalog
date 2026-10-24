@@ -9,11 +9,10 @@ export default async function CarDetailPage({
   params: Promise<{ number: string }>;
 }) {
   const { number } = await params;
-  const carNumber = parseInt(number, 10);
 
   return (
     <Suspense fallback={<div className="px-4 pt-6 text-center">載入中...</div>}>
-      <CarDetail carNumber={carNumber} />
+      <CarDetail carKey={decodeURIComponent(number)} />
     </Suspense>
   );
 }

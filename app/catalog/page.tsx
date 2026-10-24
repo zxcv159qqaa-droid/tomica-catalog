@@ -1,101 +1,82 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
-import { db, type CollectionItem, type WishlistItem } from '@/lib/db';
+import { useState, useMemo } from 'react';
 import {
   getAllCars,
   searchCars,
   getAllManufacturers,
+  seriesLabel,
+  CATALOG_SERIES,
 } from '@/lib/tomica-data';
+import { useCollection } from '@/lib/useCollection';
 import CarCard from '@/components/CarCard';
 import SearchBar from '@/components/SearchBar';
 
 type CatalogFilter = 'all' | 'collected' | 'uncollected';
 
+const pill = (active: boolean) =>
+  `px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
+    active
+      ? 'bg-blue-600 text-white'
+      : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+  }`;
+
 export default function CatalogPage() {
-  const [collection, setCollection] = useState<CollectionItem[]>([]);
-  const [wishlist, setWishlist] = useState<WishlistItem[]>([]);
   const [search, setSearch] = useState('');
+  const [series, setSeries] = useState<string>('regular');
   const [filter, setFilter] = useState<CatalogFilter>('all');
   const [manufacturer, setManufacturer] = useState('all');
-  const allCars = useMemo(() => getAllCars(), []);
-  const manufacturers = useMemo(() => getAllManufacturers(), []);
+  const { collectedByCar, wishlistIds } = useCollection();
 
-  useEffect(() => {
-    const load = async () => {
-      const col = (await db.collection.toArray()).filter((c) => !c.name);
-      const wish = await db.wishlist.toArray();
-      setCollection(col);
-      setWishlist(wish);
-    };
-    load();
-  }, []);
-
-  const collectedNumbers = useMemo(
-    () => new Set(collection.map((c) => c.tomicaNumber)),
-    [collection]
+  const seriesCars = useMemo(
+    () => getAllCars().filter((c) => c.series === series),
+    [series]
   );
-
-  const wishlistNumbers = useMemo(
-    () => new Set(wishlist.map((w) => w.tomicaNumber)),
-    [wishlist]
-  );
-
-  const collectedVariantsByNumber = useMemo(() => {
-    const map = new Map<number, string[]>();
-    for (const item of collection) {
-      const existing = map.get(item.tomicaNumber) || [];
-      existing.push(item.variantId);
-      map.set(item.tomicaNumber, existing);
-    }
-    return map;
-  }, [collection]);
+  const manufacturers = useMemo(() => getAllManufacturers(seriesCars), [seriesCars]);
+  const collectedInSeries = seriesCars.filter((c) =>
+    collectedByCar.has(c.id)
+  ).length;
 
   const filteredCars = useMemo(() => {
-    let cars = search ? searchCars(search) : allCars;
-
+    let cars = searchCars(search, seriesCars);
     if (manufacturer !== 'all') {
       cars = cars.filter((c) => c.manufacturer === manufacturer);
     }
-
-    switch (filter) {
-      case 'collected':
-        cars = cars.filter((c) => collectedNumbers.has(c.number));
-        break;
-      case 'uncollected':
-        cars = cars.filter((c) => !collectedNumbers.has(c.number));
-        break;
-    }
-
+    if (filter === 'collected') cars = cars.filter((c) => collectedByCar.has(c.id));
+    if (filter === 'uncollected') cars = cars.filter((c) => !collectedByCar.has(c.id));
     return cars;
-  }, [search, filter, manufacturer, allCars, collectedNumbers]);
+  }, [search, filter, manufacturer, seriesCars, collectedByCar]);
 
   return (
     <div className="px-4 pt-6">
       <h1 className="text-2xl font-bold mb-4">📖 Tomica 圖鑑</h1>
+
+      <div className="flex gap-2 mb-3">
+        {CATALOG_SERIES.map((s) => (
+          <button
+            key={s}
+            onClick={() => {
+              setSeries(s);
+              setManufacturer('all');
+            }}
+            className={pill(series === s)}
+          >
+            {seriesLabel(s)}
+          </button>
+        ))}
+      </div>
 
       <SearchBar value={search} onChange={setSearch} />
 
       <div className="flex gap-2 mt-4 overflow-x-auto">
         {(
           [
-            { key: 'all', label: `全部 (${allCars.length})` },
-            { key: 'collected', label: `已收 (${collectedNumbers.size})` },
-            {
-              key: 'uncollected',
-              label: `未收 (${allCars.length - collectedNumbers.size})`,
-            },
+            { key: 'all', label: `全部 (${seriesCars.length})` },
+            { key: 'collected', label: `已收 (${collectedInSeries})` },
+            { key: 'uncollected', label: `未收 (${seriesCars.length - collectedInSeries})` },
           ] as const
         ).map(({ key, label }) => (
-          <button
-            key={key}
-            onClick={() => setFilter(key)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-              filter === key
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
-            }`}
-          >
+          <button key={key} onClick={() => setFilter(key)} className={pill(filter === key)}>
             {label}
           </button>
         ))}
@@ -117,17 +98,16 @@ export default function CatalogPage() {
       </div>
 
       <p className="text-xs text-gray-400 mb-3">
-        顯示 {filteredCars.length} 款
+        顯示 {filteredCars.length} 款・資料來源：タカラトミー官網現行商品
       </p>
 
       <div className="flex flex-col gap-3">
         {filteredCars.map((car) => (
           <CarCard
-            key={car.number}
+            key={car.id}
             car={car}
-            isCollected={collectedNumbers.has(car.number)}
-            isWishlisted={wishlistNumbers.has(car.number)}
-            collectedVariants={collectedVariantsByNumber.get(car.number) || []}
+            isWishlisted={wishlistIds.has(car.id)}
+            collectedVariants={collectedByCar.get(car.id)}
           />
         ))}
       </div>

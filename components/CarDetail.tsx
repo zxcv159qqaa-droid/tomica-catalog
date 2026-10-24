@@ -2,42 +2,54 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { getCarByNumber } from '@/lib/tomica-data';
+import { getCar, parseCarId, seriesLabel } from '@/lib/tomica-data';
 import { db, type CollectionItem } from '@/lib/db';
 
-export default function CarDetail({ carNumber }: { carNumber: number }) {
+export default function CarDetail({ carKey }: { carKey: string }) {
   const router = useRouter();
-  const car = getCarByNumber(carNumber);
+  const { series, number } = parseCarId(carKey);
+  const car = getCar(series, number);
+  const label = `${series === 'regular' ? '' : seriesLabel(series) + ' '}No.${number}`;
 
   const [collectedVariants, setCollectedVariants] = useState<Set<string>>(
     new Set()
   );
-  const [wishlistNumbers, setWishlistNumbers] = useState<Set<number>>(
-    new Set()
-  );
   const [scanned, setScanned] = useState<CollectionItem[]>([]);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     const load = async () => {
       const items = await db.collection
         .where('tomicaNumber')
-        .equals(carNumber)
+        .equals(number)
         .toArray();
+      const variantIds = new Set(car?.variants.map((v) => v.id));
       setCollectedVariants(
-        new Set(items.filter((i) => !i.name).map((i) => i.variantId))
+        new Set(
+          items
+            .filter((i) => !i.name && variantIds.has(i.variantId))
+            .map((i) => i.variantId)
+        )
       );
       setScanned(
-        items.filter((i) => i.name && (!i.series || i.series === 'regular'))
+        items.filter((i) => i.name && (i.series || 'regular') === series)
       );
-
-      const wish = await db.wishlist
-        .where('tomicaNumber')
-        .equals(carNumber)
-        .toArray();
-      setWishlistNumbers(new Set(wish.map((w) => w.tomicaNumber)));
+      if (car) {
+        const wish = await db.wishlist.where('variantId').equals(car.id).count();
+        setIsWishlisted(wish > 0);
+      }
     };
     load();
-  }, [carNumber]);
+  }, [car, number, series]);
+
+  const backButton = (
+    <button
+      onClick={() => router.back()}
+      className="text-sm text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-1"
+    >
+      ← 返回
+    </button>
+  );
 
   const removeScanned = async (id: number) => {
     await db.collection.delete(id);
@@ -46,12 +58,12 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
 
   const scannedSection = scanned.length > 0 && (
     <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 mb-4">
-      <h2 className="font-semibold mb-3">已收藏的 No.{carNumber}</h2>
+      <h2 className="font-semibold mb-3">已收藏的 {label}</h2>
       <div className="space-y-2">
         {scanned.map((item) => (
           <div
             key={item.id}
-            className="flex items-center justify-between p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
+            className="flex items-center justify-between gap-2 p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
           >
             <div className="flex-1 min-w-0">
               <p className="font-medium text-sm">{item.name}</p>
@@ -71,31 +83,16 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
     </div>
   );
 
-  if (!car && scanned.length > 0) {
-    return (
-      <div className="px-4 pt-6">
-        <button
-          onClick={() => router.back()}
-          className="text-sm text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-1"
-        >
-          ← 返回
-        </button>
-        {scannedSection}
-      </div>
-    );
-  }
-
   if (!car) {
     return (
-      <div className="px-4 pt-6 text-center">
-        <p className="text-4xl mb-3">❓</p>
-        <p>找不到 No.{carNumber} 的資料</p>
-        <button
-          onClick={() => router.back()}
-          className="mt-4 px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg text-sm"
-        >
-          返回
-        </button>
+      <div className="px-4 pt-6">
+        {backButton}
+        {scannedSection || (
+          <div className="text-center">
+            <p className="text-4xl mb-3">❓</p>
+            <p>圖鑑中沒有 {label} 的資料</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -110,8 +107,9 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
       });
     } else {
       await db.collection.add({
-        tomicaNumber: carNumber,
+        tomicaNumber: car.number,
         variantId,
+        series: car.series,
         addedAt: new Date(),
       });
       setCollectedVariants((prev) => new Set(prev).add(variantId));
@@ -119,50 +117,46 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
   };
 
   const toggleWishlist = async () => {
-    if (wishlistNumbers.has(carNumber)) {
-      await db.wishlist.where('tomicaNumber').equals(carNumber).delete();
-      setWishlistNumbers((prev) => {
-        const next = new Set(prev);
-        next.delete(carNumber);
-        return next;
-      });
+    if (isWishlisted) {
+      await db.wishlist.where('variantId').equals(car.id).delete();
     } else {
       await db.wishlist.add({
-        tomicaNumber: carNumber,
+        tomicaNumber: car.number,
+        variantId: car.id,
         addedAt: new Date(),
       });
-      setWishlistNumbers((prev) => new Set(prev).add(carNumber));
     }
+    setIsWishlisted(!isWishlisted);
   };
-
-  const isWishlisted = wishlistNumbers.has(carNumber);
 
   return (
     <div className="px-4 pt-6">
-      <button
-        onClick={() => router.back()}
-        className="text-sm text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-1"
-      >
-        ← 返回
-      </button>
+      {backButton}
 
       {scannedSection}
 
       {scanned.length > 0 && (
-        <p className="text-xs text-gray-500 mb-2">圖鑑資料庫中的同編號舊款：</p>
+        <p className="text-xs text-gray-500 mb-2">圖鑑中目前的 {label}：</p>
       )}
 
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center">
+        <div className="flex items-start justify-between gap-3 mb-4">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-14 h-14 shrink-0 bg-blue-100 dark:bg-blue-900 rounded-xl flex flex-col items-center justify-center">
+              {car.series !== 'regular' && (
+                <span className="text-[10px] leading-none text-blue-500">
+                  {seriesLabel(car.series)}
+                </span>
+              )}
               <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
                 {car.number}
               </span>
             </div>
-            <div>
-              <h1 className="text-xl font-bold">{car.name_ja}</h1>
-              <p className="text-sm text-gray-500">{car.name_en}</p>
+            <div className="min-w-0">
+              <h1 className="text-lg font-bold">{car.name_ja}</h1>
+              {car.name_en && (
+                <p className="text-sm text-gray-500">{car.name_en}</p>
+              )}
             </div>
           </div>
           <button
@@ -179,29 +173,18 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
             <p className="font-medium">{car.manufacturer}</p>
           </div>
           <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
-            <p className="text-gray-400 text-xs">比例</p>
-            <p className="font-medium">{car.scale}</p>
-          </div>
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
             <p className="text-gray-400 text-xs">系列</p>
             <p className="font-medium">
-              {car.series === 'regular' ? '常規系列' : car.series}
-            </p>
-          </div>
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
-            <p className="text-gray-400 text-xs">收藏進度</p>
-            <p className="font-medium">
-              {collectedVariants.size} / {car.variants.length}
+              {car.series === 'regular' ? '常規系列' : `Tomica ${seriesLabel(car.series)}`}
             </p>
           </div>
         </div>
 
-        <h2 className="font-semibold mb-3">
-          版本一覽（{car.variants.length}）
-        </h2>
+        <h2 className="font-semibold mb-3">版本一覽（{car.variants.length}）</h2>
         <div className="space-y-2">
           {car.variants.map((variant) => {
             const isOwned = collectedVariants.has(variant.id);
+            const meta = [variant.color, variant.release_year].filter(Boolean).join(' · ');
             return (
               <div
                 key={variant.id}
@@ -220,9 +203,7 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-gray-400 mt-0.5">
-                    {variant.color} · {variant.release_year}
-                  </p>
+                  {meta && <p className="text-xs text-gray-400 mt-0.5">{meta}</p>}
                 </div>
                 <button
                   onClick={() => toggleVariant(variant.id)}

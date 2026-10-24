@@ -1,711 +1,2758 @@
 [
   {
+    "id": "regular-1",
     "number": 1,
     "series": "regular",
-    "name_ja": "日産 GT-R NISMO",
-    "name_en": "Nissan GT-R NISMO",
-    "manufacturer": "Nissan",
-    "scale": "1/62",
+    "name_ja": "日産 スカイライン GT-R(BNR34) パトロールカー",
+    "manufacturer": "日産",
     "variants": [
-      { "id": "001-a", "name": "初回特別仕様（白）", "color": "白色", "release_year": 2024, "is_first_edition": true },
-      { "id": "001-b", "name": "通常版（紅）", "color": "紅色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r1",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-2",
     "number": 2,
     "series": "regular",
-    "name_ja": "スバル BRZ",
-    "name_en": "Subaru BRZ",
-    "manufacturer": "Subaru",
-    "scale": "1/60",
+    "name_ja": "スバル WRX S4 覆面パトロールカー",
+    "manufacturer": "スバル",
     "variants": [
-      { "id": "002-a", "name": "初回特別仕様（黃）", "color": "黃色", "release_year": 2024, "is_first_edition": true },
-      { "id": "002-b", "name": "通常版（藍）", "color": "藍色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r2",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-3",
     "number": 3,
     "series": "regular",
-    "name_ja": "トヨタ ヤリス",
-    "name_en": "Toyota Yaris",
-    "manufacturer": "Toyota",
-    "scale": "1/62",
+    "name_ja": "動物運搬車",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "003-a", "name": "初回特別仕様（黒）", "color": "黑色", "release_year": 2024, "is_first_edition": true },
-      { "id": "003-b", "name": "通常版（赤）", "color": "紅色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r3",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-4",
     "number": 4,
     "series": "regular",
-    "name_ja": "スズキ ジムニー",
-    "name_en": "Suzuki Jimny",
-    "manufacturer": "Suzuki",
-    "scale": "1/57",
+    "name_ja": "Honda VFR 白バイ",
+    "manufacturer": "ホンダ",
     "variants": [
-      { "id": "004-a", "name": "初回特別仕様（緑）", "color": "綠色", "release_year": 2023, "is_first_edition": true },
-      { "id": "004-b", "name": "通常版（象牙白）", "color": "象牙白", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r4",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-5",
     "number": 5,
     "series": "regular",
-    "name_ja": "シボレー コルベット",
-    "name_en": "Chevrolet Corvette",
-    "manufacturer": "Chevrolet",
-    "scale": "1/64",
+    "name_ja": "トヨタ ダイナ レッカー車",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "005-a", "name": "初回特別仕様（黄）", "color": "黃色", "release_year": 2023, "is_first_edition": true },
-      { "id": "005-b", "name": "通常版（赤）", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r5",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-6",
     "number": 6,
     "series": "regular",
-    "name_ja": "フィアット 500",
-    "name_en": "FIAT 500",
-    "manufacturer": "FIAT",
-    "scale": "1/59",
+    "name_ja": "マツダ CX-5",
+    "manufacturer": "マツダ",
     "variants": [
-      { "id": "006-a", "name": "初回特別仕様（水色）", "color": "水藍色", "release_year": 2023, "is_first_edition": true },
-      { "id": "006-b", "name": "通常版（白）", "color": "白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r6",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-7",
     "number": 7,
     "series": "regular",
-    "name_ja": "トヨタ カムリ スポーツ",
-    "name_en": "Toyota Camry Sports",
-    "manufacturer": "Toyota",
-    "scale": "1/66",
+    "name_ja": "メルセデス-AMG GT R",
+    "manufacturer": "メルセデス・ベンツ",
     "variants": [
-      { "id": "007-a", "name": "初回特別仕様（白）", "color": "白色", "release_year": 2024, "is_first_edition": true },
-      { "id": "007-b", "name": "通常版（赤）", "color": "紅色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r7",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-8",
     "number": 8,
     "series": "regular",
-    "name_ja": "日産 フェアレディZ NISMO",
-    "name_en": "Nissan Fairlady Z NISMO",
-    "manufacturer": "Nissan",
-    "scale": "1/57",
+    "name_ja": "フェラーリ プロサングエ",
+    "manufacturer": "フェラーリ",
     "variants": [
-      { "id": "008-a", "name": "初回特別仕様（白）", "color": "白色", "release_year": 2024, "is_first_edition": true },
-      { "id": "008-b", "name": "通常版（赤）", "color": "紅色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r8",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-9",
     "number": 9,
     "series": "regular",
-    "name_ja": "トヨタ ヴォクシー",
-    "name_en": "Toyota Voxy",
-    "manufacturer": "Toyota",
-    "scale": "1/65",
+    "name_ja": "コマツ 油圧ショベル PC200-10型",
+    "manufacturer": "コマツ",
     "variants": [
-      { "id": "009-a", "name": "初回特別仕様（白）", "color": "白色", "release_year": 2023, "is_first_edition": true },
-      { "id": "009-b", "name": "通常版（黒）", "color": "黑色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r9",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-10",
     "number": 10,
     "series": "regular",
-    "name_ja": "ロータス エミーラ",
-    "name_en": "Lotus Emira",
-    "manufacturer": "Lotus",
-    "scale": "1/60",
+    "name_ja": "ホンダ プレリュード",
+    "manufacturer": "ホンダ",
     "variants": [
-      { "id": "010-a", "name": "初回特別仕様（黒）", "color": "黑色", "release_year": 2023, "is_first_edition": true },
-      { "id": "010-b", "name": "通常版（黄）", "color": "黃色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r10",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-11",
     "number": 11,
     "series": "regular",
-    "name_ja": "SL メルセデス・ベンツ",
-    "name_en": "Mercedes-Benz SL",
-    "manufacturer": "Mercedes-Benz",
-    "scale": "1/65",
+    "name_ja": "ランボルギーニ ウラカン STO",
+    "manufacturer": "ランボルギーニ",
     "variants": [
-      { "id": "011-a", "name": "初回特別仕様", "color": "銀色", "release_year": 2024, "is_first_edition": true },
-      { "id": "011-b", "name": "通常版", "color": "紅色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r11",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-12",
     "number": 12,
     "series": "regular",
-    "name_ja": "フェラーリ ローマ",
-    "name_en": "Ferrari Roma",
-    "manufacturer": "Ferrari",
-    "scale": "1/62",
+    "name_ja": "トヨタ アルファード",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "012-a", "name": "初回特別仕様（黒）", "color": "黑色", "release_year": 2024, "is_first_edition": true },
-      { "id": "012-b", "name": "通常版（赤）", "color": "紅色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r12",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-13",
     "number": 13,
     "series": "regular",
-    "name_ja": "日産 キックス",
-    "name_en": "Nissan Kicks",
-    "manufacturer": "Nissan",
-    "scale": "1/63",
+    "name_ja": "日産 フェアレディZ NISMO GT500",
+    "manufacturer": "日産",
     "variants": [
-      { "id": "013-a", "name": "初回特別仕様", "color": "橘色", "release_year": 2024, "is_first_edition": true },
-      { "id": "013-b", "name": "通常版", "color": "白色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r13",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-14",
     "number": 14,
     "series": "regular",
-    "name_ja": "トヨタ クラウン（スポーツ）",
-    "name_en": "Toyota Crown Sport",
-    "manufacturer": "Toyota",
-    "scale": "1/66",
+    "name_ja": "スズキ ジムニー",
+    "manufacturer": "スズキ",
     "variants": [
-      { "id": "014-a", "name": "初回特別仕様", "color": "黑色", "release_year": 2024, "is_first_edition": true },
-      { "id": "014-b", "name": "通常版", "color": "白色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r14",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-15",
     "number": 15,
     "series": "regular",
-    "name_ja": "ランボルギーニ ウルス",
-    "name_en": "Lamborghini Urus",
-    "manufacturer": "Lamborghini",
-    "scale": "1/66",
+    "name_ja": "ハマー H2",
+    "manufacturer": "ハマー",
     "variants": [
-      { "id": "015-a", "name": "初回特別仕様", "color": "綠色", "release_year": 2024, "is_first_edition": true },
-      { "id": "015-b", "name": "通常版", "color": "黃色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r15",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-16",
     "number": 16,
     "series": "regular",
-    "name_ja": "マクラーレン 720S",
-    "name_en": "McLaren 720S",
-    "manufacturer": "McLaren",
-    "scale": "1/62",
+    "name_ja": "日本交通 タクシー",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "016-a", "name": "初回特別仕様", "color": "黑色", "release_year": 2023, "is_first_edition": true },
-      { "id": "016-b", "name": "通常版", "color": "橘色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r16",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-17",
     "number": 17,
     "series": "regular",
-    "name_ja": "ポルシェ 911 カレラ",
-    "name_en": "Porsche 911 Carrera",
-    "manufacturer": "Porsche",
-    "scale": "1/64",
+    "name_ja": "トヨタ ランドクルーザー 250",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "017-a", "name": "初回特別仕様", "color": "綠色", "release_year": 2023, "is_first_edition": true },
-      { "id": "017-b", "name": "通常版", "color": "白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r17",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-18",
     "number": 18,
     "series": "regular",
-    "name_ja": "三菱 デリカ ミニ",
-    "name_en": "Mitsubishi Delica Mini",
-    "manufacturer": "Mitsubishi",
-    "scale": "1/58",
+    "name_ja": "日産 NV350キャラバン 救急車",
+    "manufacturer": "日産",
     "variants": [
-      { "id": "018-a", "name": "初回特別仕様", "color": "橘色", "release_year": 2024, "is_first_edition": true },
-      { "id": "018-b", "name": "通常版", "color": "米色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r18",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-19",
     "number": 19,
     "series": "regular",
-    "name_ja": "マツダ CX-60",
-    "name_en": "Mazda CX-60",
-    "manufacturer": "Mazda",
-    "scale": "1/66",
+    "name_ja": "ホンダ Super-ONE",
+    "manufacturer": "ホンダ",
     "variants": [
-      { "id": "019-a", "name": "初回特別仕様", "color": "灰色", "release_year": 2023, "is_first_edition": true },
-      { "id": "019-b", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r19",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-20",
     "number": 20,
     "series": "regular",
-    "name_ja": "トヨタ アルファード",
-    "name_en": "Toyota Alphard",
-    "manufacturer": "Toyota",
-    "scale": "1/65",
+    "name_ja": "いすゞ エルガ 都営バス",
+    "manufacturer": "いすゞ",
     "variants": [
-      { "id": "020-a", "name": "初回特別仕様", "color": "白色", "release_year": 2024, "is_first_edition": true },
-      { "id": "020-b", "name": "通常版", "color": "黑色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r20",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-21",
     "number": 21,
     "series": "regular",
-    "name_ja": "ホンダ シビック TYPE R",
-    "name_en": "Honda Civic TYPE R",
-    "manufacturer": "Honda",
-    "scale": "1/64",
+    "name_ja": "日産 リーフ",
+    "manufacturer": "日産",
     "variants": [
-      { "id": "021-a", "name": "初回特別仕様", "color": "黃色", "release_year": 2023, "is_first_edition": true },
-      { "id": "021-b", "name": "通常版", "color": "白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r21",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-22",
     "number": 22,
     "series": "regular",
-    "name_ja": "日産 スカイライン",
-    "name_en": "Nissan Skyline",
-    "manufacturer": "Nissan",
-    "scale": "1/64",
+    "name_ja": "GR スープラ GT4 EVO",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "022-a", "name": "初回特別仕様", "color": "藍色", "release_year": 2023, "is_first_edition": true },
-      { "id": "022-b", "name": "通常版", "color": "黑色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r22",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-23",
     "number": 23,
     "series": "regular",
-    "name_ja": "トヨタ GR86",
-    "name_en": "Toyota GR86",
-    "manufacturer": "Toyota",
-    "scale": "1/60",
+    "name_ja": "日産 NISSAN GT-R",
+    "manufacturer": "日産",
     "variants": [
-      { "id": "023-a", "name": "初回特別仕様", "color": "橘色", "release_year": 2023, "is_first_edition": true },
-      { "id": "023-b", "name": "通常版", "color": "藍色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r23",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-24",
     "number": 24,
     "series": "regular",
-    "name_ja": "トヨタ クラウン",
-    "name_en": "Toyota Crown",
-    "manufacturer": "Toyota",
-    "scale": "1/66",
+    "name_ja": "キャンピングカー",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "024-a", "name": "初回特別仕様", "color": "銅色", "release_year": 2023, "is_first_edition": true },
-      { "id": "024-b", "name": "通常版", "color": "黑色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r24",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-25",
     "number": 25,
     "series": "regular",
-    "name_ja": "トヨタ ハイエース",
-    "name_en": "Toyota HiAce",
-    "manufacturer": "Toyota",
-    "scale": "1/68",
+    "name_ja": "日立建機 ローディングショベル EX8000-7",
+    "manufacturer": "日立建機",
     "variants": [
-      { "id": "025-a", "name": "初回特別仕様", "color": "黃色", "release_year": 2023, "is_first_edition": true },
-      { "id": "025-b", "name": "通常版", "color": "白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r25",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-26",
     "number": 26,
     "series": "regular",
-    "name_ja": "ダイハツ タント",
-    "name_en": "Daihatsu Tanto",
-    "manufacturer": "Daihatsu",
-    "scale": "1/57",
+    "name_ja": "スズキ スペーシア ギア",
+    "manufacturer": "スズキ",
     "variants": [
-      { "id": "026-a", "name": "初回特別仕様", "color": "水藍色", "release_year": 2023, "is_first_edition": true },
-      { "id": "026-b", "name": "通常版", "color": "粉色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r26",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-27",
     "number": 27,
     "series": "regular",
-    "name_ja": "日産 セレナ",
-    "name_en": "Nissan Serena",
-    "manufacturer": "Nissan",
-    "scale": "1/67",
+    "name_ja": "スバル サンバー ケーキカー",
+    "manufacturer": "スバル",
     "variants": [
-      { "id": "027-a", "name": "初回特別仕様", "color": "銀色", "release_year": 2023, "is_first_edition": true },
-      { "id": "027-b", "name": "通常版", "color": "藍色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r27",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-28",
     "number": 28,
     "series": "regular",
-    "name_ja": "スズキ スイフトスポーツ",
-    "name_en": "Suzuki Swift Sport",
-    "manufacturer": "Suzuki",
-    "scale": "1/60",
+    "name_ja": "テスラ モデル Y",
+    "manufacturer": "テスラ",
     "variants": [
-      { "id": "028-a", "name": "初回特別仕様", "color": "藍色", "release_year": 2023, "is_first_edition": true },
-      { "id": "028-b", "name": "通常版", "color": "黃色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r28",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-29",
     "number": 29,
     "series": "regular",
-    "name_ja": "トヨタ ランドクルーザー 250",
-    "name_en": "Toyota Land Cruiser 250",
-    "manufacturer": "Toyota",
-    "scale": "1/71",
+    "name_ja": "トーマスランドエクスプレス",
+    "manufacturer": "きかんしゃトーマス",
     "variants": [
-      { "id": "029-a", "name": "初回特別仕様", "color": "綠色", "release_year": 2024, "is_first_edition": true },
-      { "id": "029-b", "name": "通常版", "color": "白色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r29",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-30",
     "number": 30,
     "series": "regular",
-    "name_ja": "ホンダ フリード",
-    "name_en": "Honda Freed",
-    "manufacturer": "Honda",
-    "scale": "1/62",
+    "name_ja": "三菱 トライトン",
+    "manufacturer": "三菱",
     "variants": [
-      { "id": "030-a", "name": "初回特別仕様", "color": "藍色", "release_year": 2024, "is_first_edition": true },
-      { "id": "030-b", "name": "通常版", "color": "白色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r30",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-31",
     "number": 31,
     "series": "regular",
-    "name_ja": "トヨタ プリウス",
-    "name_en": "Toyota Prius",
-    "manufacturer": "Toyota",
-    "scale": "1/65",
+    "name_ja": "UDトラックス クオン",
+    "manufacturer": "UDトラックス",
     "variants": [
-      { "id": "031-a", "name": "初回特別仕様", "color": "黃綠色", "release_year": 2023, "is_first_edition": true },
-      { "id": "031-b", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r31",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-32",
     "number": 32,
     "series": "regular",
-    "name_ja": "マツダ ロードスター",
-    "name_en": "Mazda Roadster (MX-5)",
-    "manufacturer": "Mazda",
-    "scale": "1/57",
+    "name_ja": "堺市消防局 特別高度救助工作車",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "032-a", "name": "初回特別仕様", "color": "白色", "release_year": 2023, "is_first_edition": true },
-      { "id": "032-b", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r32",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-33",
     "number": 33,
     "series": "regular",
-    "name_ja": "トヨタ RAV4",
-    "name_en": "Toyota RAV4",
-    "manufacturer": "Toyota",
-    "scale": "1/66",
+    "name_ja": "日産 スカイライン パトロールカー",
+    "manufacturer": "日産",
     "variants": [
-      { "id": "033-a", "name": "初回特別仕様", "color": "藍色", "release_year": 2023, "is_first_edition": true },
-      { "id": "033-b", "name": "通常版", "color": "灰色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r33",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-34",
     "number": 34,
     "series": "regular",
-    "name_ja": "スバル WRX S4",
-    "name_en": "Subaru WRX S4",
-    "manufacturer": "Subaru",
-    "scale": "1/62",
+    "name_ja": "F80",
+    "manufacturer": "フェラーリ",
     "variants": [
-      { "id": "034-a", "name": "初回特別仕様", "color": "白色", "release_year": 2023, "is_first_edition": true },
-      { "id": "034-b", "name": "通常版", "color": "藍色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r34",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-35",
     "number": 35,
     "series": "regular",
-    "name_ja": "トヨタ GR スープラ",
-    "name_en": "Toyota GR Supra",
-    "manufacturer": "Toyota",
-    "scale": "1/60",
+    "name_ja": "メルセデスベンツ Gクラス",
+    "manufacturer": "メルセデス・ベンツ",
     "variants": [
-      { "id": "035-a", "name": "初回特別仕様", "color": "灰色", "release_year": 2023, "is_first_edition": true },
-      { "id": "035-b", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r35",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-36",
     "number": 36,
     "series": "regular",
-    "name_ja": "日産 アリア",
-    "name_en": "Nissan Ariya",
-    "manufacturer": "Nissan",
-    "scale": "1/63",
+    "name_ja": "ホンダ アコード",
+    "manufacturer": "ホンダ",
     "variants": [
-      { "id": "036-a", "name": "初回特別仕様", "color": "暁紅色", "release_year": 2023, "is_first_edition": true },
-      { "id": "036-b", "name": "通常版", "color": "藍色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r36",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-37",
     "number": 37,
     "series": "regular",
-    "name_ja": "ホンダ ステップワゴン",
-    "name_en": "Honda Step WGN",
-    "manufacturer": "Honda",
-    "scale": "1/65",
+    "name_ja": "ブガッティ シロン ピュアスポーツ",
+    "manufacturer": "ブガッティ",
     "variants": [
-      { "id": "037-a", "name": "初回特別仕様", "color": "紅色", "release_year": 2023, "is_first_edition": true },
-      { "id": "037-b", "name": "通常版", "color": "白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r37",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-38",
     "number": 38,
     "series": "regular",
-    "name_ja": "フォード マスタング",
-    "name_en": "Ford Mustang",
-    "manufacturer": "Ford",
-    "scale": "1/64",
+    "name_ja": "トヨタ ランドクルーザー",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "038-a", "name": "初回特別仕様", "color": "黑色", "release_year": 2024, "is_first_edition": true },
-      { "id": "038-b", "name": "通常版", "color": "藍色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r38",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-39",
     "number": 39,
     "series": "regular",
-    "name_ja": "ランボルギーニ カウンタック LPI 800-4",
-    "name_en": "Lamborghini Countach LPI 800-4",
-    "manufacturer": "Lamborghini",
-    "scale": "1/65",
+    "name_ja": "凍結防止剤散布車 NWS60BC5",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "039-a", "name": "初回特別仕様", "color": "紅色", "release_year": 2023, "is_first_edition": true },
-      { "id": "039-b", "name": "通常版", "color": "白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r39",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-40",
     "number": 40,
     "series": "regular",
-    "name_ja": "トヨタ ハリアー",
-    "name_en": "Toyota Harrier",
-    "manufacturer": "Toyota",
-    "scale": "1/66",
+    "name_ja": "ミスタードーナツ 移動販売車",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "040-a", "name": "初回特別仕様", "color": "白色", "release_year": 2023, "is_first_edition": true },
-      { "id": "040-b", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r40",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-41",
     "number": 41,
     "series": "regular",
-    "name_ja": "消防ポンプ車",
-    "name_en": "Fire Engine Pump Truck",
-    "manufacturer": "Morita",
-    "scale": "1/75",
+    "name_ja": "モリタ CD-I型 ポンプ消防車",
+    "manufacturer": "モリタ",
     "variants": [
-      { "id": "041-a", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r41",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-42",
     "number": 42,
     "series": "regular",
-    "name_ja": "日野 はしご付消防車",
-    "name_en": "Hino Aerial Ladder Fire Truck",
-    "manufacturer": "Hino",
-    "scale": "1/90",
+    "name_ja": "はとバス",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "042-a", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r42",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-43",
     "number": 43,
     "series": "regular",
-    "name_ja": "トヨタ ランドクルーザー JAF",
-    "name_en": "Toyota Land Cruiser JAF Road Service",
-    "manufacturer": "Toyota",
-    "scale": "1/71",
+    "name_ja": "ランボルギーニ テメラリオ",
+    "manufacturer": "ランボルギーニ",
     "variants": [
-      { "id": "043-a", "name": "通常版", "color": "黃色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r43",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-44",
     "number": 44,
     "series": "regular",
-    "name_ja": "パトカー",
-    "name_en": "Toyota Crown Police Car",
-    "manufacturer": "Toyota",
-    "scale": "1/66",
+    "name_ja": "ホンダ フリード",
+    "manufacturer": "ホンダ",
     "variants": [
-      { "id": "044-a", "name": "通常版", "color": "黑白色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r44",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-45",
     "number": 45,
     "series": "regular",
-    "name_ja": "トヨタ ダイナ レッカー車",
-    "name_en": "Toyota Dyna Wrecker",
-    "manufacturer": "Toyota",
-    "scale": "1/71",
+    "name_ja": "トヨタ ダイナ 清掃車",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "045-a", "name": "通常版", "color": "白藍色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r45",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-46",
     "number": 46,
     "series": "regular",
-    "name_ja": "マツダ CX-5 パトカー",
-    "name_en": "Mazda CX-5 Police Car",
-    "manufacturer": "Mazda",
-    "scale": "1/66",
+    "name_ja": "フェラーリ デイトナ SP3",
+    "manufacturer": "フェラーリ",
     "variants": [
-      { "id": "046-a", "name": "通常版", "color": "黑白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r46",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-47",
     "number": 47,
     "series": "regular",
-    "name_ja": "スズキ エブリィ 郵便車",
-    "name_en": "Suzuki Every Post Van",
-    "manufacturer": "Suzuki",
-    "scale": "1/55",
+    "name_ja": "日産 ノート オーラ",
+    "manufacturer": "日産",
     "variants": [
-      { "id": "047-a", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r47",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-48",
     "number": 48,
     "series": "regular",
-    "name_ja": "ダイハツ コペン GR SPORT",
-    "name_en": "Daihatsu Copen GR SPORT",
-    "manufacturer": "Daihatsu",
-    "scale": "1/57",
+    "name_ja": "ヤマト運輸 EV集配トラック",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "048-a", "name": "初回特別仕様", "color": "銀色", "release_year": 2023, "is_first_edition": true },
-      { "id": "048-b", "name": "通常版", "color": "紅色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r48",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-49",
     "number": 49,
     "series": "regular",
-    "name_ja": "日野 プロフィア トレーラー",
-    "name_en": "Hino Profia Trailer",
-    "manufacturer": "Hino",
-    "scale": "1/89",
+    "name_ja": "トヨタ コースター ようちえんバス",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "049-a", "name": "通常版", "color": "白藍色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r49",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-50",
     "number": 50,
     "series": "regular",
-    "name_ja": "トヨタ GR ヤリス",
-    "name_en": "Toyota GR Yaris",
-    "manufacturer": "Toyota",
-    "scale": "1/61",
+    "name_ja": "三菱 デリカD:5 消防指揮車",
+    "manufacturer": "三菱",
     "variants": [
-      { "id": "050-a", "name": "初回特別仕様", "color": "紅色", "release_year": 2023, "is_first_edition": true },
-      { "id": "050-b", "name": "通常版", "color": "白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r50",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-51",
     "number": 51,
     "series": "regular",
-    "name_ja": "ホンダ ZR-V",
-    "name_en": "Honda ZR-V",
-    "manufacturer": "Honda",
-    "scale": "1/66",
+    "name_ja": "トヨタ クラウン コンフォート タクシー",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "051-a", "name": "初回特別仕様", "color": "紅色", "release_year": 2024, "is_first_edition": true },
-      { "id": "051-b", "name": "通常版", "color": "黑色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r51",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-52",
     "number": 52,
     "series": "regular",
-    "name_ja": "トヨタ センチュリー",
-    "name_en": "Toyota Century",
-    "manufacturer": "Toyota",
-    "scale": "1/70",
+    "name_ja": "ミニクーパー SE カントリーマン All4",
+    "manufacturer": "MINI",
     "variants": [
-      { "id": "052-a", "name": "初回特別仕様", "color": "白色", "release_year": 2024, "is_first_edition": true },
-      { "id": "052-b", "name": "通常版", "color": "黑色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r52",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-53",
     "number": 53,
     "series": "regular",
-    "name_ja": "日産 ノート",
-    "name_en": "Nissan Note",
-    "manufacturer": "Nissan",
-    "scale": "1/63",
+    "name_ja": "UDトラックス クオン ミキサー車",
+    "manufacturer": "UDトラックス",
     "variants": [
-      { "id": "053-a", "name": "初回特別仕様", "color": "紅色", "release_year": 2023, "is_first_edition": true },
-      { "id": "053-b", "name": "通常版", "color": "藍色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r53",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-54",
     "number": 54,
     "series": "regular",
-    "name_ja": "トヨタ アクア",
-    "name_en": "Toyota Aqua",
-    "manufacturer": "Toyota",
-    "scale": "1/63",
+    "name_ja": "トヨタ タウンエース ハンバーガーカー",
+    "manufacturer": "トヨタ",
     "variants": [
-      { "id": "054-a", "name": "初回特別仕様", "color": "黃色", "release_year": 2023, "is_first_edition": true },
-      { "id": "054-b", "name": "通常版", "color": "藍色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r54",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-55",
     "number": 55,
     "series": "regular",
-    "name_ja": "メルセデス-AMG GT R",
-    "name_en": "Mercedes-AMG GT R",
-    "manufacturer": "Mercedes-Benz",
-    "scale": "1/65",
+    "name_ja": "いすゞ ギガ フライドポテトカー",
+    "manufacturer": "いすゞ",
     "variants": [
-      { "id": "055-a", "name": "初回特別仕様", "color": "黑色", "release_year": 2023, "is_first_edition": true },
-      { "id": "055-b", "name": "通常版", "color": "綠色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r55",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-56",
     "number": 56,
     "series": "regular",
-    "name_ja": "いすゞ ギガ ダンプカー",
-    "name_en": "Isuzu Giga Dump Truck",
-    "manufacturer": "Isuzu",
-    "scale": "1/81",
+    "name_ja": "コマツ ブルドーザ D155AX-6",
+    "manufacturer": "コマツ",
     "variants": [
-      { "id": "056-a", "name": "通常版", "color": "黃色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r56",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-57",
     "number": 57,
     "series": "regular",
-    "name_ja": "救急車",
-    "name_en": "Ambulance",
-    "manufacturer": "Toyota",
-    "scale": "1/64",
+    "name_ja": "化石運搬車",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "057-a", "name": "通常版", "color": "白色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r57",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-58",
     "number": 58,
     "series": "regular",
-    "name_ja": "日野 レンジャー 清掃車",
-    "name_en": "Hino Ranger Garbage Truck",
-    "manufacturer": "Hino",
-    "scale": "1/64",
+    "name_ja": "グリコワゴン",
+    "manufacturer": "その他",
     "variants": [
-      { "id": "058-a", "name": "通常版", "color": "黃綠色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r58",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-59",
     "number": 59,
     "series": "regular",
-    "name_ja": "BMW Z4",
-    "name_en": "BMW Z4",
-    "manufacturer": "BMW",
-    "scale": "1/57",
+    "name_ja": "三菱ふそう スーパーグレート",
+    "manufacturer": "三菱ふそう",
     "variants": [
-      { "id": "059-a", "name": "初回特別仕様", "color": "紅色", "release_year": 2023, "is_first_edition": true },
-      { "id": "059-b", "name": "通常版", "color": "銀色", "release_year": 2023, "is_first_edition": false }
+      {
+        "id": "r59",
+        "name": "通常版"
+      }
     ]
   },
   {
+    "id": "regular-60",
     "number": 60,
     "series": "regular",
-    "name_ja": "ホンダ N-BOX",
-    "name_en": "Honda N-BOX",
-    "manufacturer": "Honda",
-    "scale": "1/57",
+    "name_ja": "日産 NISSAN GT-R NISMO",
+    "manufacturer": "日産",
     "variants": [
-      { "id": "060-a", "name": "初回特別仕様", "color": "黃色", "release_year": 2024, "is_first_edition": true },
-      { "id": "060-b", "name": "通常版", "color": "白色", "release_year": 2024, "is_first_edition": false }
+      {
+        "id": "r60",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-61",
+    "number": 61,
+    "series": "regular",
+    "name_ja": "日産 フェアレディZ NISMO パトロールカー",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "r61",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-62",
+    "number": 62,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン セダン",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r62",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-63",
+    "number": 63,
+    "series": "regular",
+    "name_ja": "前田製作所 かにクレーン",
+    "manufacturer": "前田製作所",
+    "variants": [
+      {
+        "id": "r63",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-64",
+    "number": 64,
+    "series": "regular",
+    "name_ja": "ホンダ CB1000F",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "r64",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-65",
+    "number": 65,
+    "series": "regular",
+    "name_ja": "日立建機 双腕作業機 アスタコ",
+    "manufacturer": "日立建機",
+    "variants": [
+      {
+        "id": "r65",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-66",
+    "number": 66,
+    "series": "regular",
+    "name_ja": "広島電鉄 650形",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r66",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-67",
+    "number": 67,
+    "series": "regular",
+    "name_ja": "トヨタ ハイラックス",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r67",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-68",
+    "number": 68,
+    "series": "regular",
+    "name_ja": "郵便車",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r68",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-69",
+    "number": 69,
+    "series": "regular",
+    "name_ja": "水族館トラック",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r69",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-70",
+    "number": 70,
+    "series": "regular",
+    "name_ja": "ランボルギーニ アヴェンタドール SVJ",
+    "manufacturer": "ランボルギーニ",
+    "variants": [
+      {
+        "id": "r70",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-71",
+    "number": 71,
+    "series": "regular",
+    "name_ja": "日立建機 ホイールローダ ZW220",
+    "manufacturer": "日立建機",
+    "variants": [
+      {
+        "id": "r71",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-72",
+    "number": 72,
+    "series": "regular",
+    "name_ja": "ジープ ラングラー",
+    "manufacturer": "ジープ",
+    "variants": [
+      {
+        "id": "r72",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-73",
+    "number": 73,
+    "series": "regular",
+    "name_ja": "コベルコ ラフテレーンクレーン パンサーX 250",
+    "manufacturer": "コベルコ",
+    "variants": [
+      {
+        "id": "r73",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-74",
+    "number": 74,
+    "series": "regular",
+    "name_ja": "ランボルギーニ カウンタック LPI 800-4",
+    "manufacturer": "ランボルギーニ",
+    "variants": [
+      {
+        "id": "r74",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-75",
+    "number": 75,
+    "series": "regular",
+    "name_ja": "ホンダ NSX パトロールカー",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "r75",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-76",
+    "number": 76,
+    "series": "regular",
+    "name_ja": "日産 エクストレイル パトロールカー",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "r76",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-77",
+    "number": 77,
+    "series": "regular",
+    "name_ja": "日立建機 マカダムローラ ZC125M-5",
+    "manufacturer": "日立建機",
+    "variants": [
+      {
+        "id": "r77",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-78",
+    "number": 78,
+    "series": "regular",
+    "name_ja": "ホンダ シビック TYPE R",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "r78",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-79",
+    "number": 79,
+    "series": "regular",
+    "name_ja": "トヨタ ハイメディック救急車",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r79",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-80",
+    "number": 80,
+    "series": "regular",
+    "name_ja": "プロパンガス配送車",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r80",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-81",
+    "number": 81,
+    "series": "regular",
+    "name_ja": "ダイハツ ロッキー パトロールカー",
+    "manufacturer": "ダイハツ",
+    "variants": [
+      {
+        "id": "r81",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-82",
+    "number": 82,
+    "series": "regular",
+    "name_ja": "道路保安用品運搬トラック",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r82",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-83",
+    "number": 83,
+    "series": "regular",
+    "name_ja": "ヤンマー トラクター YT5113",
+    "manufacturer": "ヤンマー",
+    "variants": [
+      {
+        "id": "r83",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-84",
+    "number": 84,
+    "series": "regular",
+    "name_ja": "カルピス® ボトルカー",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r84",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-85",
+    "number": 85,
+    "series": "regular",
+    "name_ja": "三菱ふそう スーパーグレート",
+    "manufacturer": "三菱ふそう",
+    "variants": [
+      {
+        "id": "r85",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-86",
+    "number": 86,
+    "series": "regular",
+    "name_ja": "ダイハツ ムーヴ キャンバス",
+    "manufacturer": "ダイハツ",
+    "variants": [
+      {
+        "id": "r86",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-87",
+    "number": 87,
+    "series": "regular",
+    "name_ja": "散水車",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r87",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-88",
+    "number": 88,
+    "series": "regular",
+    "name_ja": "日産 フェアレディZ NISMO",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "r88",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-89",
+    "number": 89,
+    "series": "regular",
+    "name_ja": "トヨタ GR ヤリス",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r89",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-90",
+    "number": 90,
+    "series": "regular",
+    "name_ja": "UDトラックス クオン エネオス タンクローリー",
+    "manufacturer": "UDトラックス",
+    "variants": [
+      {
+        "id": "r90",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-91",
+    "number": 91,
+    "series": "regular",
+    "name_ja": "フォード マスタング エコブースト ファストバック",
+    "manufacturer": "フォード",
+    "variants": [
+      {
+        "id": "r91",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-92",
+    "number": 92,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン アスリート",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r92",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-93",
+    "number": 93,
+    "series": "regular",
+    "name_ja": "日産 エルグランド",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "r93",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-94",
+    "number": 94,
+    "series": "regular",
+    "name_ja": "光岡 M55",
+    "manufacturer": "光岡",
+    "variants": [
+      {
+        "id": "r94",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-95",
+    "number": 95,
+    "series": "regular",
+    "name_ja": "ロンドンバス",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r95",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-96",
+    "number": 96,
+    "series": "regular",
+    "name_ja": "自衛隊 高機動車",
+    "manufacturer": "自衛隊",
+    "variants": [
+      {
+        "id": "r96",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-97",
+    "number": 97,
+    "series": "regular",
+    "name_ja": "ドクターヘリ",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r97",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-98",
+    "number": 98,
+    "series": "regular",
+    "name_ja": "テスラ モデル 3",
+    "manufacturer": "テスラ",
+    "variants": [
+      {
+        "id": "r98",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-99",
+    "number": 99,
+    "series": "regular",
+    "name_ja": "スズキ ジムニー 多目的災害対策車",
+    "manufacturer": "スズキ",
+    "variants": [
+      {
+        "id": "r99",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-100",
+    "number": 100,
+    "series": "regular",
+    "name_ja": "レクサス IS 350 F SPORT",
+    "manufacturer": "レクサス",
+    "variants": [
+      {
+        "id": "r100",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-101",
+    "number": 101,
+    "series": "regular",
+    "name_ja": "いすゞ ギガ ダンプカー",
+    "manufacturer": "いすゞ",
+    "variants": [
+      {
+        "id": "r101",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-102",
+    "number": 102,
+    "series": "regular",
+    "name_ja": "DHL 配送車",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r102",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-103",
+    "number": 103,
+    "series": "regular",
+    "name_ja": "日立建機 リジッドダンプトラック EH3500AC-3",
+    "manufacturer": "日立建機",
+    "variants": [
+      {
+        "id": "r103",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-104",
+    "number": 104,
+    "series": "regular",
+    "name_ja": "BK117 D-2 ヘリコプター",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r104",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-105",
+    "number": 105,
+    "series": "regular",
+    "name_ja": "日産 GT-R パトロールカー",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "r105",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-106",
+    "number": 106,
+    "series": "regular",
+    "name_ja": "西濃運輸 カンガルー便トラック",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r106",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-107",
+    "number": 107,
+    "series": "regular",
+    "name_ja": "ランボルギーニ レヴエルト",
+    "manufacturer": "ランボルギーニ",
+    "variants": [
+      {
+        "id": "r107",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-108",
+    "number": 108,
+    "series": "regular",
+    "name_ja": "日野はしご付消防車 (モリタ・スーパージャイロラダー)",
+    "manufacturer": "日野",
+    "variants": [
+      {
+        "id": "r108",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-109",
+    "number": 109,
+    "series": "regular",
+    "name_ja": "ホンダ ヴェゼル",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "r109",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-110",
+    "number": 110,
+    "series": "regular",
+    "name_ja": "トヨタ クラウン パトロールカー",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r110",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-111",
+    "number": 111,
+    "series": "regular",
+    "name_ja": "トヨタL&F ジェネオ",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r111",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-112",
+    "number": 112,
+    "series": "regular",
+    "name_ja": "日野ポンチョ",
+    "manufacturer": "日野",
+    "variants": [
+      {
+        "id": "r112",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-113",
+    "number": 113,
+    "series": "regular",
+    "name_ja": "トヨタ ハイエース",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r113",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-114",
+    "number": 114,
+    "series": "regular",
+    "name_ja": "ホンダ N-BOX",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "r114",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-115",
+    "number": 115,
+    "series": "regular",
+    "name_ja": "トヨタ センチュリー",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "r115",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-116",
+    "number": 116,
+    "series": "regular",
+    "name_ja": "スーパーアンビュランス",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r116",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-117",
+    "number": 117,
+    "series": "regular",
+    "name_ja": "スズキ スーパーキャリイ",
+    "manufacturer": "スズキ",
+    "variants": [
+      {
+        "id": "r117",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-118",
+    "number": 118,
+    "series": "regular",
+    "name_ja": "ランボルギーニ ヴェネーノ",
+    "manufacturer": "ランボルギーニ",
+    "variants": [
+      {
+        "id": "r118",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-119",
+    "number": 119,
+    "series": "regular",
+    "name_ja": "モリタ 13mブーム付多目的消防ポンプ自動車 MVF",
+    "manufacturer": "モリタ",
+    "variants": [
+      {
+        "id": "r119",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-120",
+    "number": 120,
+    "series": "regular",
+    "name_ja": "ホンダ シビック TYPE R レースコントロールカー",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "r120",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-121",
+    "number": 121,
+    "series": "regular",
+    "name_ja": "市原市消防局 スクラムフォース",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r121",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-122",
+    "number": 122,
+    "series": "regular",
+    "name_ja": "三菱ふそう スーパーグレート H5系新幹線はやぶさ 輸送車",
+    "manufacturer": "三菱ふそう",
+    "variants": [
+      {
+        "id": "r122",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-123",
+    "number": 123,
+    "series": "regular",
+    "name_ja": "ガリガリ君フルトレーラー",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r123",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-124",
+    "number": 124,
+    "series": "regular",
+    "name_ja": "京阪電車きかんしゃトーマス号2020",
+    "manufacturer": "きかんしゃトーマス",
+    "variants": [
+      {
+        "id": "r124",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-125",
+    "number": 125,
+    "series": "regular",
+    "name_ja": "いすゞ ギガ 木材運搬車",
+    "manufacturer": "いすゞ",
+    "variants": [
+      {
+        "id": "r125",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-126",
+    "number": 126,
+    "series": "regular",
+    "name_ja": "きかんしゃトーマス",
+    "manufacturer": "きかんしゃトーマス",
+    "variants": [
+      {
+        "id": "r126",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-127",
+    "number": 127,
+    "series": "regular",
+    "name_ja": "三菱ふそう スーパーグレート コンクリートポンプ車",
+    "manufacturer": "三菱ふそう",
+    "variants": [
+      {
+        "id": "r127",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-128",
+    "number": 128,
+    "series": "regular",
+    "name_ja": "那覇市消防局 ハイパーミストブロアー車",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r128",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-129",
+    "number": 129,
+    "series": "regular",
+    "name_ja": "いすゞ エルガ 大阪シティバス",
+    "manufacturer": "いすゞ",
+    "variants": [
+      {
+        "id": "r129",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-130",
+    "number": 130,
+    "series": "regular",
+    "name_ja": "コベルコ建機 超大型ビル解体専用機 SK3500D",
+    "manufacturer": "コベルコ",
+    "variants": [
+      {
+        "id": "r130",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-131",
+    "number": 131,
+    "series": "regular",
+    "name_ja": "三菱ふそう スーパーグレート キャリアカー",
+    "manufacturer": "三菱ふそう",
+    "variants": [
+      {
+        "id": "r131",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-132",
+    "number": 132,
+    "series": "regular",
+    "name_ja": "モリタ 小型オフロード消防車 レッドレディバグ & 搬送車",
+    "manufacturer": "モリタ",
+    "variants": [
+      {
+        "id": "r132",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-133",
+    "number": 133,
+    "series": "regular",
+    "name_ja": "コベルコ オールテレーンクレーン KMG5220",
+    "manufacturer": "コベルコ",
+    "variants": [
+      {
+        "id": "r133",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-134",
+    "number": 134,
+    "series": "regular",
+    "name_ja": "メルセデスベンツ シターロ 京成 連節バス",
+    "manufacturer": "メルセデス・ベンツ",
+    "variants": [
+      {
+        "id": "r134",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-135",
+    "number": 135,
+    "series": "regular",
+    "name_ja": "NX 日本通運 ウイングトレーラ",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r135",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-136",
+    "number": 136,
+    "series": "regular",
+    "name_ja": "古河ロックドリル ボルティンガー(B32RL)",
+    "manufacturer": "古河ロックドリル",
+    "variants": [
+      {
+        "id": "r136",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-137",
+    "number": 137,
+    "series": "regular",
+    "name_ja": "海上保安庁 スーパーピューマ H225",
+    "manufacturer": "海上保安庁",
+    "variants": [
+      {
+        "id": "r137",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-138",
+    "number": 138,
+    "series": "regular",
+    "name_ja": "ホンダジェット エリート II",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "r138",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-139",
+    "number": 139,
+    "series": "regular",
+    "name_ja": "家畜運搬車",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r139",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-140",
+    "number": 140,
+    "series": "regular",
+    "name_ja": "海上保安庁 巡視船 あきつしま PLH32",
+    "manufacturer": "海上保安庁",
+    "variants": [
+      {
+        "id": "r140",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-141",
+    "number": 141,
+    "series": "regular",
+    "name_ja": "自衛隊 重装輪回収車",
+    "manufacturer": "自衛隊",
+    "variants": [
+      {
+        "id": "r141",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-142",
+    "number": 142,
+    "series": "regular",
+    "name_ja": "スバル サンバー キッチントレーラー",
+    "manufacturer": "スバル",
+    "variants": [
+      {
+        "id": "r142",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-143",
+    "number": 143,
+    "series": "regular",
+    "name_ja": "日立建機 油圧ショベル ZX210-7 SLF と重機搬送車",
+    "manufacturer": "日立建機",
+    "variants": [
+      {
+        "id": "r143",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-144",
+    "number": 144,
+    "series": "regular",
+    "name_ja": "スーパーアンビュランス",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r144",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-145",
+    "number": 145,
+    "series": "regular",
+    "name_ja": "名古屋市消防局 30m級先端屈折式はしご車",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r145",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-146",
+    "number": 146,
+    "series": "regular",
+    "name_ja": "ホットドッグカー",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r146",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-147",
+    "number": 147,
+    "series": "regular",
+    "name_ja": "UDトラックス クオン トレーラーダンプ",
+    "manufacturer": "UDトラックス",
+    "variants": [
+      {
+        "id": "r147",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-148",
+    "number": 148,
+    "series": "regular",
+    "name_ja": "ハマー H2 リムジン",
+    "manufacturer": "ハマー",
+    "variants": [
+      {
+        "id": "r148",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-149",
+    "number": 149,
+    "series": "regular",
+    "name_ja": "HRC モーターホーム",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "r149",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "regular-150",
+    "number": 150,
+    "series": "regular",
+    "name_ja": "江ノ電300形",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "r150",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-1",
+    "number": 1,
+    "series": "premium",
+    "name_ja": "トミカ スカイライン ターボ スーパーシルエット",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-2",
+    "number": 2,
+    "series": "premium",
+    "name_ja": "三菱 ランサーエボリューション ファイナルエディション",
+    "manufacturer": "三菱",
+    "variants": [
+      {
+        "id": "p2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-3",
+    "number": 3,
+    "series": "premium",
+    "name_ja": "自衛隊 90式戦車",
+    "manufacturer": "自衛隊",
+    "variants": [
+      {
+        "id": "p3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-4",
+    "number": 4,
+    "series": "premium",
+    "name_ja": "トヨタ ランドクルーザー",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-5",
+    "number": 5,
+    "series": "premium",
+    "name_ja": "ランボルギーニ ミウラ P400S",
+    "manufacturer": "ランボルギーニ",
+    "variants": [
+      {
+        "id": "p5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-6",
+    "number": 6,
+    "series": "premium",
+    "name_ja": "日産 180SX",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-7",
+    "number": 7,
+    "series": "premium",
+    "name_ja": "ランボルギーニ エッセンサ SCV12",
+    "manufacturer": "ランボルギーニ",
+    "variants": [
+      {
+        "id": "p7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-8",
+    "number": 8,
+    "series": "premium",
+    "name_ja": "フェラーリ 512 TR",
+    "manufacturer": "フェラーリ",
+    "variants": [
+      {
+        "id": "p8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-9",
+    "number": 9,
+    "series": "premium",
+    "name_ja": "日産 フェアレディZ",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p9",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-10",
+    "number": 10,
+    "series": "premium",
+    "name_ja": "トヨタ クラウン パトロールカー",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-11",
+    "number": 11,
+    "series": "premium",
+    "name_ja": "日産 スカイライン GT-R V-SPECII Nür",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p11",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-12",
+    "number": 12,
+    "series": "premium",
+    "name_ja": "モーリス ミニ",
+    "manufacturer": "MINI",
+    "variants": [
+      {
+        "id": "p12",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-13",
+    "number": 13,
+    "series": "premium",
+    "name_ja": "トヨタ カローラ レビン (AE92)",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p13",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-14",
+    "number": 14,
+    "series": "premium",
+    "name_ja": "マツダ ユーノス ロードスター",
+    "manufacturer": "マツダ",
+    "variants": [
+      {
+        "id": "p14",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-15",
+    "number": 15,
+    "series": "premium",
+    "name_ja": "トヨタ ハイエース",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p15",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-16",
+    "number": 16,
+    "series": "premium",
+    "name_ja": "ホンダ バラードスポーツ CR-X",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "p16",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-17",
+    "number": 17,
+    "series": "premium",
+    "name_ja": "日産 NISSAN GT-R",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p17",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-18",
+    "number": 18,
+    "series": "premium",
+    "name_ja": "SUBARU BRZ R&D SPORT",
+    "manufacturer": "スバル",
+    "variants": [
+      {
+        "id": "p18",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-19",
+    "number": 19,
+    "series": "premium",
+    "name_ja": "日産 シルビア (S15)",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p19",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-20",
+    "number": 20,
+    "series": "premium",
+    "name_ja": "エンツォ フェラーリ",
+    "manufacturer": "フェラーリ",
+    "variants": [
+      {
+        "id": "p20",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-21",
+    "number": 21,
+    "series": "premium",
+    "name_ja": "メルセデスベンツ 190 E 2.5-16 エボリューションII",
+    "manufacturer": "メルセデス・ベンツ",
+    "variants": [
+      {
+        "id": "p21",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-22",
+    "number": 22,
+    "series": "premium",
+    "name_ja": "航空自衛隊 T-4 ブルーインパルス",
+    "manufacturer": "自衛隊",
+    "variants": [
+      {
+        "id": "p22",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-23",
+    "number": 23,
+    "series": "premium",
+    "name_ja": "トヨタ セリカ GT-FOUR RC",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p23",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-24",
+    "number": 24,
+    "series": "premium",
+    "name_ja": "トヨタ マークX 覆面パトロールカー",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p24",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-25",
+    "number": 25,
+    "series": "premium",
+    "name_ja": "トヨタ カローラ レビン",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p25",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-26",
+    "number": 26,
+    "series": "premium",
+    "name_ja": "日産 スカイライン GT-R (BNR32)",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p26",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-27",
+    "number": 27,
+    "series": "premium",
+    "name_ja": "スバル サンバー",
+    "manufacturer": "スバル",
+    "variants": [
+      {
+        "id": "p27",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-28",
+    "number": 28,
+    "series": "premium",
+    "name_ja": "航空自衛隊 F-35A 戦闘機",
+    "manufacturer": "自衛隊",
+    "variants": [
+      {
+        "id": "p28",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-29",
+    "number": 29,
+    "series": "premium",
+    "name_ja": "ホンダ S660",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "p29",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-30",
+    "number": 30,
+    "series": "premium",
+    "name_ja": "スバル インプレッサ WRX タイプR STiバージョン",
+    "manufacturer": "スバル",
+    "variants": [
+      {
+        "id": "p30",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-31",
+    "number": 31,
+    "series": "premium",
+    "name_ja": "F40",
+    "manufacturer": "フェラーリ",
+    "variants": [
+      {
+        "id": "p31",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-32",
+    "number": 32,
+    "series": "premium",
+    "name_ja": "ホンダ NSX Type S",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "p32",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-33",
+    "number": 33,
+    "series": "premium",
+    "name_ja": "ランボルギーニ カウンタック LP 400",
+    "manufacturer": "ランボルギーニ",
+    "variants": [
+      {
+        "id": "p33",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-34",
+    "number": 34,
+    "series": "premium",
+    "name_ja": "日産 スカイライン GT-R (KPGC10)",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p34",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-35",
+    "number": 35,
+    "series": "premium",
+    "name_ja": "マツダ RX-8",
+    "manufacturer": "マツダ",
+    "variants": [
+      {
+        "id": "p35",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-36",
+    "number": 36,
+    "series": "premium",
+    "name_ja": "トヨタ GR スープラ",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p36",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-37",
+    "number": 37,
+    "series": "premium",
+    "name_ja": "ホンダ シビック タイプR (FD2)",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "p37",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-38",
+    "number": 38,
+    "series": "premium",
+    "name_ja": "ラフェラーリ",
+    "manufacturer": "フェラーリ",
+    "variants": [
+      {
+        "id": "p38",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-39",
+    "number": 39,
+    "series": "premium",
+    "name_ja": "シルエイティ (RPS13改)",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p39",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-40",
+    "number": 40,
+    "series": "premium",
+    "name_ja": "トヨタ MR2",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p40",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-41",
+    "number": 41,
+    "series": "premium",
+    "name_ja": "テスラ サイバートラック",
+    "manufacturer": "テスラ",
+    "variants": [
+      {
+        "id": "p41",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-42",
+    "number": 42,
+    "series": "premium",
+    "name_ja": "トヨタ MR2 (SW20)",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p42",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-43",
+    "number": 43,
+    "series": "premium",
+    "name_ja": "トヨタ アルファード",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p43",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-44",
+    "number": 44,
+    "series": "premium",
+    "name_ja": "ホンダ シビック タイプR (FK2)",
+    "manufacturer": "ホンダ",
+    "variants": [
+      {
+        "id": "p44",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-45",
+    "number": 45,
+    "series": "premium",
+    "name_ja": "ロータス エスプリ",
+    "manufacturer": "ロータス",
+    "variants": [
+      {
+        "id": "p45",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-46",
+    "number": 46,
+    "series": "premium",
+    "name_ja": "トヨタ スポーツ800",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p46",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-47",
+    "number": 47,
+    "series": "premium",
+    "name_ja": "トヨタ ソアラ 4.0GTリミテッド",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p47",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-48",
+    "number": 48,
+    "series": "premium",
+    "name_ja": "トヨタ スプリンター トレノ (AE92)",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "p48",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-49",
+    "number": 49,
+    "series": "premium",
+    "name_ja": "日産 NISSAN GT-R (2025)",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p49",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-50",
+    "number": 50,
+    "series": "premium",
+    "name_ja": "日産 ステージア",
+    "manufacturer": "日産",
+    "variants": [
+      {
+        "id": "p50",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-1",
+    "number": 1,
+    "series": "unlimited",
+    "name_ja": "頭文字D AE86 トレノ (藤原拓海)",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "u1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-2",
+    "number": 2,
+    "series": "unlimited",
+    "name_ja": "バック・トゥ・ザ・フューチャー タイムマシン (PART3)",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "u2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-3",
+    "number": 3,
+    "series": "unlimited",
+    "name_ja": "ワイルド・スピード スープラ",
+    "manufacturer": "トヨタ",
+    "variants": [
+      {
+        "id": "u3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-4",
+    "number": 4,
+    "series": "unlimited",
+    "name_ja": "ヱヴァンゲリヲン新劇場版 NERV 官用車 マツダ コスモスポーツ",
+    "manufacturer": "マツダ",
+    "variants": [
+      {
+        "id": "u4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-5",
+    "number": 5,
+    "series": "unlimited",
+    "name_ja": "ルパン三世 カリオストロの城 フィアット500",
+    "manufacturer": "フィアット",
+    "variants": [
+      {
+        "id": "u5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-6",
+    "number": 6,
+    "series": "unlimited",
+    "name_ja": "ハリー・ポッター ホグワーツ特急",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "u6",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-7",
+    "number": 7,
+    "series": "unlimited",
+    "name_ja": "名探偵コナン ポルシェ (ジン)",
+    "manufacturer": "ポルシェ",
+    "variants": [
+      {
+        "id": "u7",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-8",
+    "number": 8,
+    "series": "unlimited",
+    "name_ja": "ヱヴァンゲリヲン新劇場版 アルピーヌ・ルノー A310 (葛城ミサト)",
+    "manufacturer": "アルピーヌ",
+    "variants": [
+      {
+        "id": "u8",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-9",
+    "number": 9,
+    "series": "unlimited",
+    "name_ja": "サイバーフォーミュラ アスラーダ",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "u9",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-10",
+    "number": 10,
+    "series": "unlimited",
+    "name_ja": "銀河鉄道999 999号",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "u10",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-11",
+    "number": 11,
+    "series": "unlimited",
+    "name_ja": "バック・トゥ・ザ・フューチャー タイムマシン (PART2)",
+    "manufacturer": "その他",
+    "variants": [
+      {
+        "id": "u11",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "unlimited-12",
+    "number": 12,
+    "series": "unlimited",
+    "name_ja": "頭文字D RX-7 (高橋啓介)",
+    "manufacturer": "マツダ",
+    "variants": [
+      {
+        "id": "u12",
+        "name": "通常版"
+      }
     ]
   }
 ]

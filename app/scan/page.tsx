@@ -5,7 +5,8 @@ import Link from 'next/link';
 import CameraCapture from '@/components/CameraCapture';
 import type { ScanResult } from '@/lib/gemini';
 import {
-  getCarByNumber,
+  getCar,
+  carId,
   isSameCar,
   scanVariantId,
   seriesLabel,
@@ -23,9 +24,7 @@ export default function ScanPage() {
 
   const series = result?.series || 'regular';
   const catalogCar =
-    result?.success && result.number && series === 'regular'
-      ? getCarByNumber(result.number)
-      : undefined;
+    result?.success && result.number ? getCar(series, result.number) : undefined;
   const catalogMatch =
     !!catalogCar && !!result?.name && isSameCar(catalogCar, result.name);
 
@@ -39,13 +38,14 @@ export default function ScanPage() {
       .equals(number)
       .toArray()
       .then((items) => {
+        const catalogVariants = new Set(catalogCar?.variants.map((v) => v.id));
         setAlreadyOwned(
           catalogMatch
-            ? items.some((i) => !i.name)
+            ? items.some((i) => !i.name && catalogVariants.has(i.variantId))
             : items.some((i) => i.variantId === scanId)
         );
       });
-  }, [result, catalogMatch, series]);
+  }, [result, catalogMatch, catalogCar, series]);
 
   useEffect(() => {
     try {
@@ -91,6 +91,7 @@ export default function ScanPage() {
       await db.collection.add({
         tomicaNumber: result.number,
         variantId: catalogCar.variants[0].id,
+        series,
         addedAt: new Date(),
       });
     } else {
@@ -194,7 +195,7 @@ export default function ScanPage() {
               )}
               {!catalogMatch && catalogCar && (
                 <p className="mt-3 text-xs text-gray-500">
-                  圖鑑資料庫的 No.{result.number} 是「{catalogCar.name_ja}」（不同車款），會以辨識結果另外加入收藏。
+                  圖鑑中目前的 {seriesLabel(series)} No.{result.number} 是「{catalogCar.name_ja}」，與辨識結果不同（可能是舊款），會以辨識結果另外加入收藏。
                 </p>
               )}
 
@@ -215,9 +216,9 @@ export default function ScanPage() {
                     已加入收藏 ✓
                   </span>
                 )}
-                {series === 'regular' && (
+                {(catalogCar || added) && (
                   <Link
-                    href={`/catalog/${result.number}`}
+                    href={`/catalog/${carId(series, result.number!)}`}
                     className="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-center rounded-lg text-sm font-medium"
                   >
                     查看詳情
