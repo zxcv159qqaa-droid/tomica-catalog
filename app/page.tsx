@@ -1,14 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import Link from 'next/link';
-import {
-  getAllCars,
-  searchCars,
-  normalizeName,
-  carId,
-} from '@/lib/tomica-data';
-import CarThumb from '@/components/CarThumb';
+import { getAllCars, searchCars, normalizeName } from '@/lib/tomica-data';
+import ScannedCard from '@/components/ScannedCard';
 import { useCollection } from '@/lib/useCollection';
 import CarCard from '@/components/CarCard';
 import SearchBar from '@/components/SearchBar';
@@ -105,23 +99,7 @@ export default function HomePage() {
       {showScanned && (
         <div className="flex flex-col gap-3 mb-3">
           {visibleScanned.map((item) => (
-            <Link
-              key={item.id}
-              href={`/catalog/${carId(item.series || 'regular', item.tomicaNumber)}`}
-              className="flex items-center gap-3 p-4 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
-            >
-              <CarThumb
-                src={item.thumb}
-                series={item.series}
-                number={item.tomicaNumber}
-              />
-              <div className="min-w-0 flex-1">
-                <p className="font-semibold truncate">{item.name}</p>
-                <p className="text-xs text-gray-500 truncate">
-                  {item.variantName || '掃描加入'}
-                </p>
-              </div>
-            </Link>
+            <ScannedCard key={item.id} item={item} />
           ))}
         </div>
       )}

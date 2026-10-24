@@ -5,11 +5,13 @@ import {
   getAllCars,
   searchCars,
   getAllManufacturers,
+  normalizeName,
   seriesLabel,
   CATALOG_SERIES,
 } from '@/lib/tomica-data';
 import { useCollection } from '@/lib/useCollection';
 import CarCard from '@/components/CarCard';
+import ScannedCard from '@/components/ScannedCard';
 import SearchBar from '@/components/SearchBar';
 
 type CatalogFilter = 'all' | 'collected' | 'uncollected';
@@ -26,7 +28,26 @@ export default function CatalogPage() {
   const [series, setSeries] = useState<string>('regular');
   const [filter, setFilter] = useState<CatalogFilter>('all');
   const [manufacturer, setManufacturer] = useState('all');
-  const { collectedByCar, wishlistIds } = useCollection();
+  const { collectedByCar, wishlistIds, scannedItems } = useCollection();
+
+  // Scanned cars of this series that aren't in the current lineup (older releases, reused numbers)
+  const seriesScanned = useMemo(
+    () =>
+      scannedItems
+        .filter((c) => (c.series || 'regular') === series)
+        .sort((a, b) => a.tomicaNumber - b.tomicaNumber),
+    [scannedItems, series]
+  );
+  const visibleScanned = useMemo(() => {
+    if (filter === 'uncollected' || manufacturer !== 'all') return [];
+    const q = normalizeName(search);
+    return seriesScanned.filter(
+      (c) =>
+        !q ||
+        c.tomicaNumber.toString() === q ||
+        normalizeName(c.name || '').includes(q)
+    );
+  }, [seriesScanned, filter, manufacturer, search]);
 
   const seriesCars = useMemo(
     () => getAllCars().filter((c) => c.series === series),
@@ -72,7 +93,7 @@ export default function CatalogPage() {
         {(
           [
             { key: 'all', label: `全部 (${seriesCars.length})` },
-            { key: 'collected', label: `已收 (${collectedInSeries})` },
+            { key: 'collected', label: `已收 (${collectedInSeries + seriesScanned.length})` },
             { key: 'uncollected', label: `未收 (${seriesCars.length - collectedInSeries})` },
           ] as const
         ).map(({ key, label }) => (
@@ -100,6 +121,20 @@ export default function CatalogPage() {
       <p className="text-xs text-gray-400 mb-3">
         顯示 {filteredCars.length} 款・資料來源：タカラトミー官網現行商品
       </p>
+
+      {visibleScanned.length > 0 && (
+        <div className="mb-4">
+          <p className="text-xs font-medium text-gray-500 mb-2">
+            你收藏的舊款（官網已下架或編號已輪替）
+          </p>
+          <div className="flex flex-col gap-3">
+            {visibleScanned.map((item) => (
+              <ScannedCard key={item.id} item={item} />
+            ))}
+          </div>
+          <p className="text-xs font-medium text-gray-500 mt-4">目前在售車款</p>
+        </div>
+      )}
 
       <div className="flex flex-col gap-3">
         {filteredCars.map((car) => (
