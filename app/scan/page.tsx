@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import CameraCapture from '@/components/CameraCapture';
 import type { ScanResult } from '@/lib/gemini';
 import {
-  getCar,
   carId,
-  isSameCar,
+  displayCode,
+  findCatalogMatch,
   scanVariantId,
   seriesLabel,
 } from '@/lib/tomica-data';
@@ -39,29 +39,28 @@ export default function ScanPage() {
   const [alreadyOwned, setAlreadyOwned] = useState(false);
 
   const series = result?.series || 'regular';
-  const catalogCar =
-    result?.success && result.number ? getCar(series, result.number) : undefined;
-  const catalogMatch =
-    !!catalogCar && !!result?.name && isSameCar(catalogCar, result.name);
+  const number = result?.number || 0;
+  // Keep codes like "SP" / "DM-13"; plain numbers are already in `number`
+  const code = result?.code && /\D/.test(result.code) ? result.code.toUpperCase() : undefined;
+  const { match: catalogMatch, holder: numberHolder } = useMemo(
+    () =>
+      result?.success && result.name
+        ? findCatalogMatch(series, number, code, result.name)
+        : {},
+    [result, series, number, code]
+  );
+  const scanId = scanVariantId(number, `${code ?? ''}${result?.name ?? ''}`, series);
 
   useEffect(() => {
     setAlreadyOwned(false);
-    if (!result?.success || !result.number) return;
-    const number = result.number;
-    const scanId = scanVariantId(number, result.name || '', series);
+    if (!result?.success) return;
+    const ids = catalogMatch ? catalogMatch.variants.map((v) => v.id) : [scanId];
     db.collection
-      .where('tomicaNumber')
-      .equals(number)
-      .toArray()
-      .then((items) => {
-        const catalogVariants = new Set(catalogCar?.variants.map((v) => v.id));
-        setAlreadyOwned(
-          catalogMatch
-            ? items.some((i) => !i.name && catalogVariants.has(i.variantId))
-            : items.some((i) => i.variantId === scanId)
-        );
-      });
-  }, [result, catalogMatch, catalogCar, series]);
+      .where('variantId')
+      .anyOf(ids)
+      .count()
+      .then((n) => setAlreadyOwned(n > 0));
+  }, [result, catalogMatch, scanId]);
 
   useEffect(() => {
     try {
@@ -101,22 +100,23 @@ export default function ScanPage() {
   };
 
   const handleAddToCollection = async () => {
-    if (!result?.number || alreadyOwned) return;
+    if (!result?.success || alreadyOwned) return;
 
-    if (catalogMatch && catalogCar) {
+    if (catalogMatch) {
       await db.collection.add({
-        tomicaNumber: result.number,
-        variantId: catalogCar.variants[0].id,
+        tomicaNumber: catalogMatch.number,
+        variantId: catalogMatch.variants[0].id,
         series,
         addedAt: new Date(),
       });
     } else {
       await db.collection.add({
-        tomicaNumber: result.number,
-        variantId: scanVariantId(result.number, result.name || '', series),
-        name: result.name || `No.${result.number}`,
+        tomicaNumber: number,
+        variantId: scanId,
+        name: result.name || `No.${number}`,
         variantName: result.variant,
         series,
+        code,
         thumb: previewUrl ? await makeThumb(previewUrl) : undefined,
         addedAt: new Date(),
       });
@@ -182,7 +182,7 @@ export default function ScanPage() {
                 <p>
                   <span className="text-gray-500">編號：</span>
                   <strong>
-                    {seriesLabel(series)} No.{result.number}
+                    {seriesLabel(series)} {displayCode(code, number)}
                   </strong>
                 </p>
                 <p>
@@ -210,9 +210,17 @@ export default function ScanPage() {
                   ⚠️ 你已經有這台了，不用再買！
                 </p>
               )}
-              {!catalogMatch && catalogCar && (
+              {catalogMatch ? (
                 <p className="mt-3 text-xs text-gray-500">
-                  圖鑑中目前的 {seriesLabel(series)} No.{result.number} 是「{catalogCar.name_ja}」，與辨識結果不同（可能是舊款），會以辨識結果另外加入收藏。
+                  已對應到圖鑑：「{catalogMatch.name_ja}」
+                </p>
+              ) : numberHolder && !code ? (
+                <p className="mt-3 text-xs text-gray-500">
+                  圖鑑中目前的 {seriesLabel(series)} {displayCode(code, number)} 是「{numberHolder.name_ja}」，與辨識結果不同（可能是舊款），會以辨識結果另外加入收藏。
+                </p>
+              ) : (
+                <p className="mt-3 text-xs text-gray-500">
+                  圖鑑中沒有這台（可能已停售），會以辨識結果加入收藏。
                 </p>
               )}
 
@@ -233,9 +241,9 @@ export default function ScanPage() {
                     已加入收藏 ✓
                   </span>
                 )}
-                {(catalogCar || added) && (
+                {(catalogMatch || added) && (
                   <Link
-                    href={`/catalog/${carId(series, result.number!)}`}
+                    href={`/catalog/${catalogMatch ? catalogMatch.id : carId(series, number)}`}
                     className="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-center rounded-lg text-sm font-medium"
                   >
                     查看詳情

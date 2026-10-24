@@ -14,7 +14,7 @@ export default function ScannedCard({ item }: { item: CollectionItem }) {
       <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
         已收藏
       </div>
-      <CarThumb src={item.thumb} series={item.series} number={item.tomicaNumber} />
+      <CarThumb src={item.thumb} series={item.series} number={item.tomicaNumber} code={item.code} />
       <div className="min-w-0 flex-1 pr-14">
         <p className="font-semibold text-sm line-clamp-2">{item.name}</p>
         <p className="text-xs text-gray-500 truncate mt-1">

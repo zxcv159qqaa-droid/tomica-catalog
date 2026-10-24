@@ -11,6 +11,8 @@ export interface TomicaVariant {
 export interface TomicaCar {
   id: string;
   number: number;
+  // Box label when it isn't a plain number, e.g. "SP", "RD-01"
+  code?: string;
   series: string;
   name_ja: string;
   name_en?: string;
@@ -27,7 +29,38 @@ const byVariantId = new Map(
   catalog.flatMap((car) => car.variants.map((v) => [v.id, car] as const))
 );
 
-export const CATALOG_SERIES = ['regular', 'premium', 'unlimited'] as const;
+export const CATALOG_SERIES = ['regular', 'premium', 'unlimited', 'dream'] as const;
+
+export function displayCode(code: string | undefined, number: number): string {
+  return code || String(number);
+}
+
+export function getCarById(id: string): TomicaCar | undefined {
+  return byId.get(id);
+}
+
+function normalizeCode(code?: string): string {
+  return (code || '').normalize('NFKC').toUpperCase().replace(/\s/g, '');
+}
+
+// Finds the catalog car for a scan. `holder` is a different car currently using that number/code.
+export function findCatalogMatch(
+  series: string,
+  number: number | undefined,
+  code: string | undefined,
+  name: string
+): { match?: TomicaCar; holder?: TomicaCar } {
+  const c = normalizeCode(code);
+  const candidates = catalog.filter(
+    (car) =>
+      car.series === series &&
+      (car.code ? normalizeCode(car.code) === c : !!number && car.number === number)
+  );
+  return {
+    match: candidates.find((car) => isSameCar(car, name)),
+    holder: candidates[0],
+  };
+}
 
 export function carId(series: string, number: number): string {
   return `${series}-${number}`;
@@ -91,6 +124,8 @@ const SERIES_LABELS: Record<string, string> = {
   premium: 'Premium',
   unlimited: 'Unlimited',
   dream: 'Dream',
+  disney: 'Disney Motors',
+  asia: 'Asia Original',
   other: '其他',
 };
 

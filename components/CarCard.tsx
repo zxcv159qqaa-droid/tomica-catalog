@@ -39,7 +39,7 @@ export default function CarCard({
         )}
 
         <div className="flex items-center gap-3">
-          <CarThumb src={car.image} series={car.series} number={car.number} />
+          <CarThumb src={car.image} series={car.series} number={car.number} code={car.code} />
 
           <div className="flex-1 min-w-0 pr-14">
             <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100 line-clamp-2">

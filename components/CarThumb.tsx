@@ -1,19 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { seriesLabel } from '@/lib/tomica-data';
+import { displayCode, seriesLabel } from '@/lib/tomica-data';
 
 interface CarThumbProps {
   src?: string;
   series?: string;
   number: number;
+  code?: string;
   size?: 'sm' | 'lg';
 }
 
-export default function CarThumb({ src, series = 'regular', number, size = 'sm' }: CarThumbProps) {
+export default function CarThumb({ src, series = 'regular', number, code, size = 'sm' }: CarThumbProps) {
   const [failed, setFailed] = useState(false);
   const box = size === 'lg' ? 'w-28 h-20' : 'w-20 h-14';
-  const tag = `${series === 'regular' ? '' : seriesLabel(series) + ' '}${number}`;
+  const label = displayCode(code, number);
+  const tag = `${series === 'regular' ? '' : seriesLabel(series) + ' '}${label}`;
 
   if (!src || failed) {
     return (
@@ -23,8 +25,8 @@ export default function CarThumb({ src, series = 'regular', number, size = 'sm' 
             {seriesLabel(series)}
           </span>
         )}
-        <span className="text-lg font-bold text-gray-600 dark:text-gray-300 leading-tight">
-          {number}
+        <span className={`${label.length > 3 ? 'text-sm' : 'text-lg'} font-bold text-gray-600 dark:text-gray-300 leading-tight`}>
+          {label}
         </span>
       </div>
     );

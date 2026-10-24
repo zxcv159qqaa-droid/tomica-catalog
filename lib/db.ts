@@ -10,6 +10,7 @@ export interface CollectionItem {
   name?: string;
   variantName?: string;
   series?: string;
+  code?: string;
   // Small JPEG data URL of the user's own scan photo
   thumb?: string;
 }

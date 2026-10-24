@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { getCar, parseCarId, seriesLabel } from '@/lib/tomica-data';
+import { getCar, getCarById, parseCarId, seriesLabel } from '@/lib/tomica-data';
 import { db, type CollectionItem } from '@/lib/db';
 import CarThumb from '@/components/CarThumb';
 
 export default function CarDetail({ carKey }: { carKey: string }) {
   const router = useRouter();
-  const { series, number } = parseCarId(carKey);
-  const car = getCar(series, number);
-  const label = `${series === 'regular' ? '' : seriesLabel(series) + ' '}No.${number}`;
+  const parsed = parseCarId(carKey);
+  const car = getCarById(carKey) ?? getCar(parsed.series, parsed.number);
+  const series = car?.series ?? parsed.series;
+  const number = car?.number ?? parsed.number;
+  const label = `${series === 'regular' ? '' : seriesLabel(series) + ' '}${car?.code ?? `No.${number}`}`;
 
   const [collectedVariants, setCollectedVariants] = useState<Set<string>>(
     new Set()
@@ -33,8 +35,11 @@ export default function CarDetail({ carKey }: { carKey: string }) {
             .map((i) => i.variantId)
         )
       );
+      // SP/RD cars don't own a unique number, so scanned cars can't be tied to them
       setScanned(
-        items.filter((i) => i.name && (i.series || 'regular') === series)
+        car?.code
+          ? []
+          : items.filter((i) => i.name && (i.series || 'regular') === series)
       );
       if (car) {
         const wish = await db.wishlist.where('variantId').equals(car.id).count();
@@ -68,7 +73,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
             key={item.id}
             className="flex items-center justify-between gap-3 p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
           >
-            <CarThumb src={item.thumb} series={item.series} number={item.tomicaNumber} />
+            <CarThumb src={item.thumb} series={item.series} number={item.tomicaNumber} code={item.code} />
             <div className="flex-1 min-w-0">
               <p className="font-medium text-sm">{item.name}</p>
               {item.variantName && (
@@ -155,7 +160,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-center gap-3 min-w-0">
-            <CarThumb src={car.image} series={car.series} number={car.number} size="lg" />
+            <CarThumb src={car.image} series={car.series} number={car.number} code={car.code} size="lg" />
             <div className="min-w-0">
               <h1 className="text-lg font-bold">{car.name_ja}</h1>
               {car.name_en && (
@@ -173,7 +178,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
 
         <div className="grid grid-cols-2 gap-3 text-sm mb-6">
           <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
-            <p className="text-gray-400 text-xs">製造商</p>
+            <p className="text-gray-400 text-xs">{car.series === 'dream' ? '主題' : '製造商'}</p>
             <p className="font-medium">{car.manufacturer}</p>
           </div>
           <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">

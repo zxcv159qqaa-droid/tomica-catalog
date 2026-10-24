@@ -109,7 +109,7 @@ export default function CatalogPage() {
           onChange={(e) => setManufacturer(e.target.value)}
           className="w-full px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <option value="all">所有製造商</option>
+          <option value="all">{series === 'dream' ? '所有主題' : '所有製造商'}</option>
           {manufacturers.map((m) => (
             <option key={m} value={m}>
               {m}
