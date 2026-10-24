@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getCarByNumber } from '@/lib/tomica-data';
-import { db } from '@/lib/db';
+import { db, type CollectionItem } from '@/lib/db';
 
 export default function CarDetail({ carNumber }: { carNumber: number }) {
   const router = useRouter();
@@ -15,6 +15,7 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
   const [wishlistNumbers, setWishlistNumbers] = useState<Set<number>>(
     new Set()
   );
+  const [scanned, setScanned] = useState<CollectionItem[]>([]);
 
   useEffect(() => {
     const load = async () => {
@@ -22,7 +23,10 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
         .where('tomicaNumber')
         .equals(carNumber)
         .toArray();
-      setCollectedVariants(new Set(items.map((i) => i.variantId)));
+      setCollectedVariants(
+        new Set(items.filter((i) => !i.name).map((i) => i.variantId))
+      );
+      setScanned(items.filter((i) => i.name));
 
       const wish = await db.wishlist
         .where('tomicaNumber')
@@ -32,6 +36,52 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
     };
     load();
   }, [carNumber]);
+
+  const removeScanned = async (id: number) => {
+    await db.collection.delete(id);
+    setScanned((prev) => prev.filter((i) => i.id !== id));
+  };
+
+  const scannedSection = scanned.length > 0 && (
+    <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 mb-4">
+      <h2 className="font-semibold mb-3">已收藏的 No.{carNumber}</h2>
+      <div className="space-y-2">
+        {scanned.map((item) => (
+          <div
+            key={item.id}
+            className="flex items-center justify-between p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
+          >
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-sm">{item.name}</p>
+              {item.variantName && (
+                <p className="text-xs text-gray-400 mt-0.5">{item.variantName}</p>
+              )}
+            </div>
+            <button
+              onClick={() => item.id && removeScanned(item.id)}
+              className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
+            >
+              移除
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  if (!car && scanned.length > 0) {
+    return (
+      <div className="px-4 pt-6">
+        <button
+          onClick={() => router.back()}
+          className="text-sm text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-1"
+        >
+          ← 返回
+        </button>
+        {scannedSection}
+      </div>
+    );
+  }
 
   if (!car) {
     return (
@@ -93,6 +143,12 @@ export default function CarDetail({ carNumber }: { carNumber: number }) {
       >
         ← 返回
       </button>
+
+      {scannedSection}
+
+      {scanned.length > 0 && (
+        <p className="text-xs text-gray-500 mb-2">圖鑑資料庫中的同編號舊款：</p>
+      )}
 
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between mb-4">

@@ -6,6 +6,9 @@ export interface CollectionItem {
   variantId: string;
   addedAt: Date;
   notes?: string;
+  // Set only for scanned cars that don't match the built-in catalog entry for this number
+  name?: string;
+  variantName?: string;
 }
 
 export interface WishlistItem {

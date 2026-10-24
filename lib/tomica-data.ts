@@ -40,6 +40,23 @@ export function searchCars(query: string): TomicaCar[] {
   );
 }
 
+export function normalizeName(name: string): string {
+  return name.normalize('NFKC').toLowerCase().replace(/[\s・·\-_]/g, '');
+}
+
+export function isSameCar(car: TomicaCar, scannedName: string): boolean {
+  const s = normalizeName(scannedName);
+  if (!s) return false;
+  return [car.name_ja, car.name_en].some((n) => {
+    const c = normalizeName(n);
+    return c.includes(s) || s.includes(c);
+  });
+}
+
+export function scanVariantId(number: number, name: string): string {
+  return `scan-${number}-${normalizeName(name)}`;
+}
+
 export function getCarsByManufacturer(manufacturer: string): TomicaCar[] {
   return catalog.filter(
     (car) => car.manufacturer.toLowerCase() === manufacturer.toLowerCase()

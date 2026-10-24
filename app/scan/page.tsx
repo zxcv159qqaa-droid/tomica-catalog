@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import CameraCapture from '@/components/CameraCapture';
 import type { ScanResult } from '@/lib/gemini';
-import { getCarByNumber } from '@/lib/tomica-data';
+import { getCarByNumber, isSameCar, scanVariantId } from '@/lib/tomica-data';
 import { db } from '@/lib/db';
 
 export default function ScanPage() {
@@ -14,6 +14,30 @@ export default function ScanPage() {
   const [result, setResult] = useState<ScanResult | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [added, setAdded] = useState(false);
+  const [alreadyOwned, setAlreadyOwned] = useState(false);
+
+  const catalogCar =
+    result?.success && result.number ? getCarByNumber(result.number) : undefined;
+  const catalogMatch =
+    !!catalogCar && !!result?.name && isSameCar(catalogCar, result.name);
+
+  useEffect(() => {
+    setAlreadyOwned(false);
+    if (!result?.success || !result.number) return;
+    const number = result.number;
+    const scanId = scanVariantId(number, result.name || '');
+    db.collection
+      .where('tomicaNumber')
+      .equals(number)
+      .toArray()
+      .then((items) => {
+        setAlreadyOwned(
+          catalogMatch
+            ? items.some((i) => !i.name)
+            : items.some((i) => i.variantId === scanId)
+        );
+      });
+  }, [result, catalogMatch]);
 
   useEffect(() => {
     try {
@@ -53,25 +77,23 @@ export default function ScanPage() {
   };
 
   const handleAddToCollection = async () => {
-    if (!result?.number) return;
-    const car = getCarByNumber(result.number);
-    const variantId = car?.variants[0]?.id || `${result.number}-unknown`;
+    if (!result?.number || alreadyOwned) return;
 
-    const existing = await db.collection
-      .where('tomicaNumber')
-      .equals(result.number)
-      .first();
-
-    if (existing) {
-      setAdded(true);
-      return;
+    if (catalogMatch && catalogCar) {
+      await db.collection.add({
+        tomicaNumber: result.number,
+        variantId: catalogCar.variants[0].id,
+        addedAt: new Date(),
+      });
+    } else {
+      await db.collection.add({
+        tomicaNumber: result.number,
+        variantId: scanVariantId(result.number, result.name || ''),
+        name: result.name || `No.${result.number}`,
+        variantName: result.variant,
+        addedAt: new Date(),
+      });
     }
-
-    await db.collection.add({
-      tomicaNumber: result.number,
-      variantId,
-      addedAt: new Date(),
-    });
     setAdded(true);
   };
 
@@ -154,8 +176,23 @@ export default function ScanPage() {
                 </p>
               </div>
 
+              {alreadyOwned && !added && (
+                <p className="mt-3 p-2 rounded-lg bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-sm font-medium">
+                  ⚠️ 你已經有這台了，不用再買！
+                </p>
+              )}
+              {!catalogMatch && catalogCar && (
+                <p className="mt-3 text-xs text-gray-500">
+                  圖鑑資料庫的 No.{result.number} 是「{catalogCar.name_ja}」（不同車款），會以辨識結果另外加入收藏。
+                </p>
+              )}
+
               <div className="mt-4 flex gap-2">
-                {!added ? (
+                {alreadyOwned && !added ? (
+                  <span className="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-center rounded-lg text-sm text-gray-500">
+                    已收藏
+                  </span>
+                ) : !added ? (
                   <button
                     onClick={handleAddToCollection}
                     className="flex-1 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium"

@@ -23,7 +23,7 @@ export default function CatalogPage() {
 
   useEffect(() => {
     const load = async () => {
-      const col = await db.collection.toArray();
+      const col = (await db.collection.toArray()).filter((c) => !c.name);
       const wish = await db.wishlist.toArray();
       setCollection(col);
       setWishlist(wish);

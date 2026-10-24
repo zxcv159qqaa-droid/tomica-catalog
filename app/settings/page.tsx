@@ -59,6 +59,8 @@ export default function SettingsPage() {
             variantId: item.variantId,
             addedAt: new Date(item.addedAt as string),
             notes: item.notes,
+            name: item.name,
+            variantName: item.variantName,
           }))
         );
       }
