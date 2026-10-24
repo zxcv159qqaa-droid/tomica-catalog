@@ -17,6 +17,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   );
   const [scanned, setScanned] = useState<CollectionItem[]>([]);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -39,6 +40,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         const wish = await db.wishlist.where('variantId').equals(car.id).count();
         setIsWishlisted(wish > 0);
       }
+      setLoaded(true);
     };
     load();
   }, [car, number, series]);
@@ -84,6 +86,10 @@ export default function CarDetail({ carKey }: { carKey: string }) {
       </div>
     </div>
   );
+
+  if (!loaded) {
+    return <div className="px-4 pt-6">{backButton}</div>;
+  }
 
   if (!car) {
     return (
@@ -137,10 +143,15 @@ export default function CarDetail({ carKey }: { carKey: string }) {
 
       {scannedSection}
 
-      {scanned.length > 0 && (
-        <p className="text-xs text-gray-500 mb-2">圖鑑中目前的 {label}：</p>
-      )}
-
+      <Collapsible
+        collapsed={scanned.length > 0}
+        summary={
+          <>
+            ⚠️ 編號已輪替：官網目前的 {label} 是另一台車「{car.name_ja}」，跟你收藏的不同。
+            <span className="underline ml-1">查看</span>
+          </>
+        }
+      >
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-center gap-3 min-w-0">
@@ -213,6 +224,27 @@ export default function CarDetail({ carKey }: { carKey: string }) {
           })}
         </div>
       </div>
+      </Collapsible>
     </div>
+  );
+}
+
+function Collapsible({
+  collapsed,
+  summary,
+  children,
+}: {
+  collapsed: boolean;
+  summary: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  if (!collapsed) return <>{children}</>;
+  return (
+    <details className="group">
+      <summary className="list-none cursor-pointer text-xs text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-3 mb-3">
+        {summary}
+      </summary>
+      {children}
+    </details>
   );
 }
