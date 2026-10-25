@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import type { TomicaCar } from '@/lib/tomica-data';
+import { genLabel, type TomicaCar } from '@/lib/tomica-data';
 import CarThumb from '@/components/CarThumb';
 
 interface CarCardProps {
@@ -43,7 +43,7 @@ export default function CarCard({
             src={car.image}
             series={car.series}
             number={car.number}
-            code={car.retired && car.gen ? `${car.number}-${car.gen}` : car.code}
+            code={car.retired && car.series === 'regular' ? genLabel(car) : car.code}
           />
 
           <div className="flex-1 min-w-0 pr-14">

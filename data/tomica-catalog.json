@@ -2304,7 +2304,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-01/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-01/img/thumb.jpg",
+    "gen": 2
   },
   {
     "id": "premium-2",
@@ -2318,7 +2319,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-02-202311N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-02-202311N/img/thumb.jpg",
+    "gen": 4
   },
   {
     "id": "premium-3",
@@ -2346,7 +2348,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-04-202312N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-04-202312N/img/thumb.jpg",
+    "gen": 5
   },
   {
     "id": "premium-5",
@@ -2360,7 +2363,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-05-202607N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-05-202607N/img/thumb.jpg",
+    "gen": 4
   },
   {
     "id": "premium-6",
@@ -2374,7 +2378,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-06-202505N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-06-202505N/img/thumb.jpg",
+    "gen": 4
   },
   {
     "id": "premium-7",
@@ -2388,7 +2393,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-07-202212/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-07-202212/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-8",
@@ -2402,7 +2408,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-08-202604N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-08-202604N/img/thumb.jpg",
+    "gen": 5
   },
   {
     "id": "premium-9",
@@ -2416,7 +2423,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-09/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-09/img/thumb.jpg",
+    "gen": 2
   },
   {
     "id": "premium-10",
@@ -2430,7 +2438,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-10-202403N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-10-202403N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-11",
@@ -2458,7 +2467,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-12-202402N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-12-202402N/img/thumb.jpg",
+    "gen": 4
   },
   {
     "id": "premium-13",
@@ -2472,7 +2482,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-13-202609N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-13-202609N/img/thumb.jpg",
+    "gen": 6
   },
   {
     "id": "premium-14",
@@ -2486,7 +2497,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-14-202412N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-14-202412N/img/thumb.jpg",
+    "gen": 5
   },
   {
     "id": "premium-15",
@@ -2500,7 +2512,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-15-202610N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-15-202610N/img/thumb.jpg",
+    "gen": 4
   },
   {
     "id": "premium-16",
@@ -2514,7 +2527,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-16-202502N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-16-202502N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-17",
@@ -2528,7 +2542,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-17-202409N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-17-202409N/img/thumb.jpg",
+    "gen": 4
   },
   {
     "id": "premium-18",
@@ -2542,7 +2557,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-18/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-18/img/thumb.jpg",
+    "gen": 2
   },
   {
     "id": "premium-19",
@@ -2556,7 +2572,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-19-202401N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-19-202401N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-20",
@@ -2570,7 +2587,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-20-202404N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-20-202404N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-21",
@@ -2584,7 +2602,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-21-202605N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-21-202605N/img/thumb.jpg",
+    "gen": 4
   },
   {
     "id": "premium-22",
@@ -2612,7 +2631,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-23-202606N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-23-202606N/img/thumb.jpg",
+    "gen": 4
   },
   {
     "id": "premium-24",
@@ -2626,7 +2646,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-24-202608N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-24-202608N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-25",
@@ -2640,7 +2661,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-25-202410N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-25-202410N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-26",
@@ -2668,7 +2690,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-27-202503N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-27-202503N/img/thumb.jpg",
+    "gen": 2
   },
   {
     "id": "premium-28",
@@ -2696,7 +2719,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-29-202611N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-29-202611N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-30",
@@ -2710,7 +2734,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-30-202204/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-30-202204/img/thumb.jpg",
+    "gen": 2
   },
   {
     "id": "premium-31",
@@ -2738,7 +2763,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-32-202301/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-32-202301/img/thumb.jpg",
+    "gen": 2
   },
   {
     "id": "premium-33",
@@ -2752,7 +2778,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-33-202407N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-33-202407N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-34",
@@ -2780,7 +2807,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-35-202612N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-35-202612N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-36",
@@ -2794,7 +2822,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-36-202501N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-36-202501N/img/thumb.jpg",
+    "gen": 3
   },
   {
     "id": "premium-37",
@@ -2822,7 +2851,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-38-202504N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-38-202504N/img/thumb.jpg",
+    "gen": 2
   },
   {
     "id": "premium-39",
@@ -2850,7 +2880,8 @@
         "name": "通常版"
       }
     ],
-    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-40-202304N/img/thumb.jpg"
+    "image": "https://www.takaratomy.co.jp/products/tomica/tomicabrand/premium/premium-40-202304N/img/thumb.jpg",
+    "gen": 2
   },
   {
     "id": "premium-41",
@@ -21483,6 +21514,1142 @@
     "variants": [
       {
         "id": "r150g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-15-g1",
+    "number": 15,
+    "series": "premium",
+    "name_ja": "スバル インプレッサ 22B-STiバージョン",
+    "manufacturer": "スバル",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/04〜2019/04",
+    "variants": [
+      {
+        "id": "p15g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-15-g2",
+    "number": 15,
+    "series": "premium",
+    "name_ja": "ランボルギーニ ディアブロ SV",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 2,
+    "period": "2019/04〜2024/11",
+    "variants": [
+      {
+        "id": "p15g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-15-g3",
+    "number": 15,
+    "series": "premium",
+    "name_ja": "日産 フェアレディZ(Z31)",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "2024/11〜2026/10",
+    "variants": [
+      {
+        "id": "p15g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-13-g1",
+    "number": 13,
+    "series": "premium",
+    "name_ja": "日産 IDSコンセプト",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/04〜2017/04",
+    "variants": [
+      {
+        "id": "p13g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-13-g2",
+    "number": 13,
+    "series": "premium",
+    "name_ja": "日産 スカイライン GT-R",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "2017/04〜2019/06",
+    "variants": [
+      {
+        "id": "p13g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-13-g3",
+    "number": 13,
+    "series": "premium",
+    "name_ja": "ディーノ246GT",
+    "manufacturer": "フェラーリ",
+    "retired": true,
+    "gen": 3,
+    "period": "2019/06〜2022/07",
+    "variants": [
+      {
+        "id": "p13g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-13-g4",
+    "number": 13,
+    "series": "premium",
+    "name_ja": "三菱ランサーエボリューションVI GSR",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 4,
+    "period": "2022/07〜2024/08",
+    "variants": [
+      {
+        "id": "p13g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-13-g5",
+    "number": 13,
+    "series": "premium",
+    "name_ja": "三菱 スタリオン",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 5,
+    "period": "2024/08〜2026/09",
+    "variants": [
+      {
+        "id": "p13g5",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-24-g1",
+    "number": 24,
+    "series": "premium",
+    "name_ja": "SUBARU WRX STI NBR CHALLENGE",
+    "manufacturer": "スバル",
+    "retired": true,
+    "gen": 1,
+    "period": "2017/10〜2024/05",
+    "variants": [
+      {
+        "id": "p24g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-24-g2",
+    "number": 24,
+    "series": "premium",
+    "name_ja": "ホンダ プレリュード",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 2,
+    "period": "2024/05〜2026/08",
+    "variants": [
+      {
+        "id": "p24g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-5-g1",
+    "number": 5,
+    "series": "premium",
+    "name_ja": "ロータス ヨーロッパ スペシャル",
+    "manufacturer": "ロータス",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/04〜2017/10",
+    "variants": [
+      {
+        "id": "p5g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-5-g2",
+    "number": 5,
+    "series": "premium",
+    "name_ja": "ランボルギーニ イオタ SVR",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 2,
+    "period": "2017/10〜2023/07",
+    "variants": [
+      {
+        "id": "p5g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-5-g3",
+    "number": 5,
+    "series": "premium",
+    "name_ja": "ランボルギーニ ムルシエラゴ",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 3,
+    "period": "2023/07〜2026/07",
+    "variants": [
+      {
+        "id": "p5g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-23-g1",
+    "number": 23,
+    "series": "premium",
+    "name_ja": "三菱 ランサーGSRエボリューションIII",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 1,
+    "period": "2017/07〜2021/08",
+    "variants": [
+      {
+        "id": "p23g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-23-g2",
+    "number": 23,
+    "series": "premium",
+    "name_ja": "GT-R50 by イタルデザイン",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "2021/08〜2023/10",
+    "variants": [
+      {
+        "id": "p23g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-23-g3",
+    "number": 23,
+    "series": "premium",
+    "name_ja": "スバルインプレッサWRX",
+    "manufacturer": "スバル",
+    "retired": true,
+    "gen": 3,
+    "period": "2023/10〜2026/06",
+    "variants": [
+      {
+        "id": "p23g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-21-g1",
+    "number": 21,
+    "series": "premium",
+    "name_ja": "ホンダ NSX Type R",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 1,
+    "period": "2017/01〜2021/01",
+    "variants": [
+      {
+        "id": "p21g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-21-g2",
+    "number": 21,
+    "series": "premium",
+    "name_ja": "トヨタ ソアラ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "2021/01〜2023/05",
+    "variants": [
+      {
+        "id": "p21g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-21-g3",
+    "number": 21,
+    "series": "premium",
+    "name_ja": "ポンティアック ファイヤーバード",
+    "manufacturer": "ポンティアック",
+    "retired": true,
+    "gen": 3,
+    "period": "2023/05〜2026/05",
+    "variants": [
+      {
+        "id": "p21g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-8-g1",
+    "number": 8,
+    "series": "premium",
+    "name_ja": "レクサス RC F GT500",
+    "manufacturer": "レクサス",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/07〜2019/04",
+    "variants": [
+      {
+        "id": "p8g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-8-g2",
+    "number": 8,
+    "series": "premium",
+    "name_ja": "日産 シルビア",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "2019/04〜2021/06",
+    "variants": [
+      {
+        "id": "p8g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-8-g3",
+    "number": 8,
+    "series": "premium",
+    "name_ja": "日産スカイライン2000ターボGT-E・S",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "2021/06〜2023/09",
+    "variants": [
+      {
+        "id": "p8g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-8-g4",
+    "number": 8,
+    "series": "premium",
+    "name_ja": "フェラーリF355",
+    "manufacturer": "フェラーリ",
+    "retired": true,
+    "gen": 4,
+    "period": "2023/09〜2026/04",
+    "variants": [
+      {
+        "id": "p8g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-6-g1",
+    "number": 6,
+    "series": "premium",
+    "name_ja": "JAXA はやぶさ2",
+    "manufacturer": "JAXA",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/04〜2018/08",
+    "variants": [
+      {
+        "id": "p6g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-6-g2",
+    "number": 6,
+    "series": "premium",
+    "name_ja": "フェラーリ テスタロッサ",
+    "manufacturer": "フェラーリ",
+    "retired": true,
+    "gen": 2,
+    "period": "2018/08〜2023/01",
+    "variants": [
+      {
+        "id": "p6g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-6-g3",
+    "number": 6,
+    "series": "premium",
+    "name_ja": "フェラーリF50",
+    "manufacturer": "フェラーリ",
+    "retired": true,
+    "gen": 3,
+    "period": "2023/01〜2025/05",
+    "variants": [
+      {
+        "id": "p6g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-38-g1",
+    "number": 38,
+    "series": "premium",
+    "name_ja": "マツダ サバンナRX-7",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 1,
+    "period": "2020/08〜2025/04",
+    "variants": [
+      {
+        "id": "p38g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-27-g1",
+    "number": 27,
+    "series": "premium",
+    "name_ja": "トヨタ 2000GT",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "2018/04〜2025/03",
+    "variants": [
+      {
+        "id": "p27g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-16-g1",
+    "number": 16,
+    "series": "premium",
+    "name_ja": "トヨタ 86GRMN",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/04〜2019/07",
+    "variants": [
+      {
+        "id": "p16g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-16-g2",
+    "number": 16,
+    "series": "premium",
+    "name_ja": "陸上自衛隊 16式機動戦闘車",
+    "manufacturer": "自衛隊",
+    "retired": true,
+    "gen": 2,
+    "period": "2019/07〜2025/02",
+    "variants": [
+      {
+        "id": "p16g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-36-g1",
+    "number": 36,
+    "series": "premium",
+    "name_ja": "365 GTS4",
+    "manufacturer": "フェラーリ",
+    "retired": true,
+    "gen": 1,
+    "period": "2020/06〜2022/04",
+    "variants": [
+      {
+        "id": "p36g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-36-g2",
+    "number": 36,
+    "series": "premium",
+    "name_ja": "ホンダ NSX-R",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 2,
+    "period": "2022/04〜2025/01",
+    "variants": [
+      {
+        "id": "p36g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-14-g1",
+    "number": 14,
+    "series": "premium",
+    "name_ja": "トヨタ S-FR",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/04〜2017/04",
+    "variants": [
+      {
+        "id": "p14g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-14-g2",
+    "number": 14,
+    "series": "premium",
+    "name_ja": "トヨタ スープラ",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "2017/04〜2019/07",
+    "variants": [
+      {
+        "id": "p14g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-14-g3",
+    "number": 14,
+    "series": "premium",
+    "name_ja": "マクラーレン セナ",
+    "manufacturer": "マクラーレン",
+    "retired": true,
+    "gen": 3,
+    "period": "2019/07〜2022/10",
+    "variants": [
+      {
+        "id": "p14g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-14-g4",
+    "number": 14,
+    "series": "premium",
+    "name_ja": "セリカ XX",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 4,
+    "period": "2022/10〜2024/12",
+    "variants": [
+      {
+        "id": "p14g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-25-g1",
+    "number": 25,
+    "series": "premium",
+    "name_ja": "キャデラック エルドラド ビアリッツ",
+    "manufacturer": "キャデラック",
+    "retired": true,
+    "gen": 1,
+    "period": "2018/01〜2022/06",
+    "variants": [
+      {
+        "id": "p25g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-25-g2",
+    "number": 25,
+    "series": "premium",
+    "name_ja": "トヨタ スープラ(A70)",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "2022/06〜2024/10",
+    "variants": [
+      {
+        "id": "p25g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-17-g1",
+    "number": 17,
+    "series": "premium",
+    "name_ja": "ホンダ S2000 TYPE S",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/07〜2018/12",
+    "variants": [
+      {
+        "id": "p17g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-17-g2",
+    "number": 17,
+    "series": "premium",
+    "name_ja": "フェラーリ512BB",
+    "manufacturer": "フェラーリ",
+    "retired": true,
+    "gen": 2,
+    "period": "2018/12〜2021/07",
+    "variants": [
+      {
+        "id": "p17g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-17-g3",
+    "number": 17,
+    "series": "premium",
+    "name_ja": "日産スカイライン2000GT-R(KPGC110)",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "2021/07〜2024/09",
+    "variants": [
+      {
+        "id": "p17g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-33-g1",
+    "number": 33,
+    "series": "premium",
+    "name_ja": "ランボルギーニ ガヤルド スーパーレジェーラ",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 1,
+    "period": "2020/01〜2022/01",
+    "variants": [
+      {
+        "id": "p33g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-33-g2",
+    "number": 33,
+    "series": "premium",
+    "name_ja": "フェラーリ FXX K",
+    "manufacturer": "フェラーリ",
+    "retired": true,
+    "gen": 2,
+    "period": "2022/01〜2024/07",
+    "variants": [
+      {
+        "id": "p33g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-35-g1",
+    "number": 35,
+    "series": "premium",
+    "name_ja": "アストンマーティンDB5",
+    "manufacturer": "アストンマーティン",
+    "retired": true,
+    "gen": 1,
+    "period": "2020/06〜2022/08",
+    "variants": [
+      {
+        "id": "p35g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-35-g2",
+    "number": 35,
+    "series": "premium",
+    "name_ja": "ホンダ シティ ターボII",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 2,
+    "period": "2022/08〜2024/06",
+    "variants": [
+      {
+        "id": "p35g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-20-g1",
+    "number": 20,
+    "series": "premium",
+    "name_ja": "日産 スカイライン HT 2000 ターボ RS",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/10〜2021/10",
+    "variants": [
+      {
+        "id": "p20g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-20-g2",
+    "number": 20,
+    "series": "premium",
+    "name_ja": "ブガッティ ヴェイロン 16.4",
+    "manufacturer": "ブガッティ",
+    "retired": true,
+    "gen": 2,
+    "period": "2021/10〜2024/04",
+    "variants": [
+      {
+        "id": "p20g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-10-g1",
+    "number": 10,
+    "series": "premium",
+    "name_ja": "ランボルギーニ カウンタック LP500S",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/10〜2021/04",
+    "variants": [
+      {
+        "id": "p10g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-10-g2",
+    "number": 10,
+    "series": "premium",
+    "name_ja": "トヨタ ヤリスWRC",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "2021/04〜2024/03",
+    "variants": [
+      {
+        "id": "p10g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-12-g1",
+    "number": 12,
+    "series": "premium",
+    "name_ja": "トヨタ セリカ GT-FOUR",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/02〜2017/07",
+    "variants": [
+      {
+        "id": "p12g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-12-g2",
+    "number": 12,
+    "series": "premium",
+    "name_ja": "ポルシェ 911 カレラ RS 2.7",
+    "manufacturer": "ポルシェ",
+    "retired": true,
+    "gen": 2,
+    "period": "2017/07〜2021/04",
+    "variants": [
+      {
+        "id": "p12g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-12-g3",
+    "number": 12,
+    "series": "premium",
+    "name_ja": "ランボルギーニ カウンタック 25th アニバーサリー",
+    "manufacturer": "ランボルギーニ",
+    "retired": true,
+    "gen": 3,
+    "period": "2021/04〜2024/02",
+    "variants": [
+      {
+        "id": "p12g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-19-g1",
+    "number": 19,
+    "series": "premium",
+    "name_ja": "ランチア ストラトス HF ラリー",
+    "manufacturer": "ランチア",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/10〜2021/09",
+    "variants": [
+      {
+        "id": "p19g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-19-g2",
+    "number": 19,
+    "series": "premium",
+    "name_ja": "トヨタ セルシオ(初代)",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "2021/09〜2024/01",
+    "variants": [
+      {
+        "id": "p19g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-4-g1",
+    "number": 4,
+    "series": "premium",
+    "name_ja": "マツダ RX-7 FD3S RE雨宮仕様",
+    "manufacturer": "マツダ",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/04〜2018/01",
+    "variants": [
+      {
+        "id": "p4g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-4-g2",
+    "number": 4,
+    "series": "premium",
+    "name_ja": "日産 レパード",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 2,
+    "period": "2018/01〜2020/01",
+    "variants": [
+      {
+        "id": "p4g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-4-g3",
+    "number": 4,
+    "series": "premium",
+    "name_ja": "日産 スカイライン GTS-R",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 3,
+    "period": "2020/01〜2022/01",
+    "variants": [
+      {
+        "id": "p4g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-4-g4",
+    "number": 4,
+    "series": "premium",
+    "name_ja": "三菱 パジェロ",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 4,
+    "period": "2022/01〜2023/12",
+    "variants": [
+      {
+        "id": "p4g4",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-2-g1",
+    "number": 2,
+    "series": "premium",
+    "name_ja": "モリタ 林野火災用消防車",
+    "manufacturer": "モリタ",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/04〜2019/01",
+    "variants": [
+      {
+        "id": "p2g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-2-g2",
+    "number": 2,
+    "series": "premium",
+    "name_ja": "トヨタ セリカ 2000GT-FOUR",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "2019/01〜2021/01",
+    "variants": [
+      {
+        "id": "p2g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-2-g3",
+    "number": 2,
+    "series": "premium",
+    "name_ja": "ホンダ インテグラ タイプR",
+    "manufacturer": "ホンダ",
+    "retired": true,
+    "gen": 3,
+    "period": "2021/01〜2023/11",
+    "variants": [
+      {
+        "id": "p2g3",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-29-g1",
+    "number": 29,
+    "series": "premium",
+    "name_ja": "フィアット 500F",
+    "manufacturer": "フィアット",
+    "retired": true,
+    "gen": 1,
+    "period": "2018/07〜2021/10",
+    "variants": [
+      {
+        "id": "p29g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-29-g2",
+    "number": 29,
+    "series": "premium",
+    "name_ja": "マクラーレン F1",
+    "manufacturer": "マクラーレン",
+    "retired": true,
+    "gen": 2,
+    "period": "2021/10〜2023/08",
+    "variants": [
+      {
+        "id": "p29g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-40-g1",
+    "number": 40,
+    "series": "premium",
+    "name_ja": "トヨタ スプリンタートレノ(AE86)",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 1,
+    "period": "2020/12〜2023/06",
+    "variants": [
+      {
+        "id": "p40g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-32-g1",
+    "number": 32,
+    "series": "premium",
+    "name_ja": "フォルクスワーゲン タイプI",
+    "manufacturer": "フォルクスワーゲン",
+    "retired": true,
+    "gen": 1,
+    "period": "2019/10〜2023/01",
+    "variants": [
+      {
+        "id": "p32g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-7-g1",
+    "number": 7,
+    "series": "premium",
+    "name_ja": "フォルクスワーゲン タイプII",
+    "manufacturer": "フォルクスワーゲン",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/07〜2020/12",
+    "variants": [
+      {
+        "id": "p7g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-7-g2",
+    "number": 7,
+    "series": "premium",
+    "name_ja": "ルナクルーザー",
+    "manufacturer": "トヨタ",
+    "retired": true,
+    "gen": 2,
+    "period": "2020/12〜2022/12",
+    "variants": [
+      {
+        "id": "p7g2",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-30-g1",
+    "number": 30,
+    "series": "premium",
+    "name_ja": "レクサス LFA ニュルブルクリンクパッケージ",
+    "manufacturer": "レクサス",
+    "retired": true,
+    "gen": 1,
+    "period": "2018/07〜2022/04",
+    "variants": [
+      {
+        "id": "p30g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-1-g1",
+    "number": 1,
+    "series": "premium",
+    "name_ja": "NISMO R34 GT-R Z-tune",
+    "manufacturer": "日産",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/04〜2019/07",
+    "variants": [
+      {
+        "id": "p1g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-9-g1",
+    "number": 9,
+    "series": "premium",
+    "name_ja": "フォルクスワーゲン タイプIIピックアップ",
+    "manufacturer": "フォルクスワーゲン",
+    "retired": true,
+    "gen": 1,
+    "period": "2015/10〜2017/01",
+    "variants": [
+      {
+        "id": "p9g1",
+        "name": "通常版"
+      }
+    ]
+  },
+  {
+    "id": "premium-18-g1",
+    "number": 18,
+    "series": "premium",
+    "name_ja": "三菱 GTO ツインターボ",
+    "manufacturer": "三菱",
+    "retired": true,
+    "gen": 1,
+    "period": "2016/07〜2018/11",
+    "variants": [
+      {
+        "id": "p18g1",
         "name": "通常版"
       }
     ]

@@ -7,6 +7,7 @@ import {
   getCar,
   getCarById,
   getCarByVariantId,
+  genLabel,
   getGenerations,
   parseCarId,
   seriesLabel,
@@ -182,7 +183,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
               src={car.image}
               series={car.series}
               number={car.number}
-              code={car.retired && car.gen ? `${car.number}-${car.gen}` : car.code}
+              code={car.retired && car.series === 'regular' ? genLabel(car) : car.code}
               size="lg"
             />
             <div className="min-w-0">
@@ -214,7 +215,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
             <p className="text-gray-400 text-xs">系列</p>
             <p className="font-medium">
               {car.series === 'regular' ? '常規系列' : `Tomica ${seriesLabel(car.series)}`}
-              {car.gen ? `（${car.number}-${car.gen}）` : ''}
+              {genLabel(car) ? `（${genLabel(car)}）` : ''}
             </p>
           </div>
           {car.period && (
@@ -273,9 +274,10 @@ export default function CarDetail({ carKey }: { carKey: string }) {
 
       {generations.length > 1 && (
         <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 mt-4 mb-4">
-          <h2 className="font-semibold mb-1">歷代 No.{number}（{generations.length}）</h2>
+          <h2 className="font-semibold mb-1">歷代 {label}（{generations.length}）</h2>
           <p className="text-xs text-gray-400 mb-3">
-            同一個編號以前出過的車，由新到舊。資料來源：ピクシブ百科事典、こつめBLOG。
+            同一個編號以前出過的車，由新到舊。資料來源：
+            {series === 'premium' ? 'トミカの森 プレミアム館' : 'ピクシブ百科事典、こつめBLOG'}。
           </p>
           <div className="space-y-2">
             {generations.map((g) => {
@@ -292,7 +294,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
                   } ${owned ? 'bg-blue-50 dark:bg-blue-950' : 'bg-gray-50 dark:bg-gray-900'}`}
                 >
                   <span className="w-12 shrink-0 text-xs font-bold text-gray-500">
-                    {g.gen ? `${number}-${g.gen}` : `No.${number}`}
+                    {genLabel(g) ?? `No.${number}`}
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{g.name_ja}</p>

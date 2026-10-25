@@ -36,6 +36,12 @@ const byVariantId = new Map(
 
 export const CATALOG_SERIES = ['regular', 'premium', 'unlimited', 'dream'] as const;
 
+// Regular boxes print the generation as a sub-number (46-8); other series have no such marking
+export function genLabel(car: TomicaCar): string | undefined {
+  if (!car.gen) return undefined;
+  return car.series === 'regular' ? `${car.number}-${car.gen}` : `第${car.gen}代`;
+}
+
 export function displayCode(code: string | undefined, number: number): string {
   return code || String(number);
 }
