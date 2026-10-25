@@ -275,7 +275,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 mt-4 mb-4">
           <h2 className="font-semibold mb-1">歷代 No.{number}（{generations.length}）</h2>
           <p className="text-xs text-gray-400 mb-3">
-            同一個編號以前出過的車，由新到舊。舊款資料來源約更新到 2023 年，近幾年的可能有缺漏。
+            同一個編號以前出過的車，由新到舊。資料來源：ピクシブ百科事典、こつめBLOG。
           </p>
           <div className="space-y-2">
             {generations.map((g) => {

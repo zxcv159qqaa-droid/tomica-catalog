@@ -146,7 +146,7 @@ export default function CatalogPage() {
 
       <p className="text-xs text-gray-400 mb-3">
         顯示 {filteredCars.length} 款・資料來源：タカラトミー官網現行商品
-        {showHistory && '；歷代舊款：こつめBLOG（2026/5 存檔）'}
+        {showHistory && '；歷代舊款：ピクシブ百科事典、こつめBLOG'}
       </p>
 
       {visibleScanned.length > 0 && (
