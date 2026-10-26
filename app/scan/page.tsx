@@ -29,6 +29,23 @@ function makeThumb(dataUrl: string, maxSide = 240): Promise<string | undefined> 
   });
 }
 
+async function searchThumbnail(
+  query: string,
+  apiKey: string
+): Promise<{ dataUrl: string; source: string } | null> {
+  try {
+    const res = await fetch('/api/thumb', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, apiKey: apiKey || undefined }),
+    });
+    const data = await res.json();
+    return data.found ? { dataUrl: data.dataUrl, source: data.source } : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function ScanPage() {
   const [apiKey, setApiKey] = useState('');
   const [hasServerKey, setHasServerKey] = useState(false);
@@ -37,6 +54,7 @@ export default function ScanPage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [added, setAdded] = useState(false);
   const [alreadyOwned, setAlreadyOwned] = useState(false);
+  const [thumbStatus, setThumbStatus] = useState<'idle' | 'searching' | 'found' | 'notFound'>('idle');
 
   const series = result?.series || 'regular';
   const number = result?.number || 0;
@@ -79,6 +97,7 @@ export default function ScanPage() {
     setScanning(true);
     setResult(null);
     setAdded(false);
+    setThumbStatus('idle');
     setPreviewUrl(`data:${mimeType};base64,${base64}`);
 
     try {
@@ -102,6 +121,8 @@ export default function ScanPage() {
   const handleAddToCollection = async () => {
     if (!result?.success || alreadyOwned) return;
 
+    const ownPhoto = previewUrl ? await makeThumb(previewUrl) : undefined;
+    let scannedId: number | undefined;
     if (catalogMatch) {
       await db.collection.add({
         tomicaNumber: catalogMatch.number,
@@ -110,26 +131,50 @@ export default function ScanPage() {
         addedAt: new Date(),
       });
     } else {
-      await db.collection.add({
+      scannedId = await db.collection.add({
         tomicaNumber: number,
         variantId: scanId,
         name: result.name || `No.${number}`,
         variantName: result.variant,
         series,
         code,
-        thumb: previewUrl ? await makeThumb(previewUrl) : undefined,
+        thumb: ownPhoto,
         addedAt: new Date(),
       });
     }
     setAdded(true);
+
+    // Catalog cars with an official image need nothing more
+    if (catalogMatch?.image) return;
+    const name = catalogMatch?.name_ja ?? result.name ?? '';
+    const box = `${seriesLabel(series)} ${displayCode(code, number)}`;
+    setThumbStatus('searching');
+    const found = await searchThumbnail(`${box} ${name}`, apiKey);
+    const src = found ? await makeThumb(found.dataUrl) : undefined;
+
+    if (catalogMatch) {
+      // Fall back to the user's own photo so the catalog card isn't blank
+      const image = src ?? ownPhoto;
+      if (image) {
+        await db.carImages.put({
+          carId: catalogMatch.id,
+          src: image,
+          source: src ? found!.source : 'scan',
+          addedAt: new Date(),
+        });
+      }
+    } else if (src && scannedId) {
+      await db.collection.update(scannedId, { thumb: src });
+    }
+    setThumbStatus(src ? 'found' : 'notFound');
   };
 
   const canScan = apiKey || hasServerKey;
 
   if (!canScan) {
     return (
-      <div className="px-4 pt-6">
-        <h1 className="text-2xl font-bold mb-4">📷 拍照辨識</h1>
+      <div className="px-4 sm:px-6 pt-5 max-w-2xl mx-auto">
+        <h2 className="text-xl font-extrabold mb-4">📷 拍照辨識</h2>
         <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
           <p className="text-sm text-amber-800 dark:text-amber-200 mb-3">
             需要設定 Google Gemini API Key 才能使用拍照辨識功能
@@ -146,9 +191,9 @@ export default function ScanPage() {
   }
 
   return (
-    <div className="px-4 pt-6">
-      <h1 className="text-2xl font-bold mb-4">📷 拍照辨識</h1>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+    <div className="px-4 sm:px-6 pt-5 max-w-2xl mx-auto">
+      <h2 className="text-xl font-extrabold mb-4">📷 拍照辨識</h2>
+      <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
         拍攝 Tomica 包裝盒正面或車體，AI 會幫你辨識車款編號和版本
       </p>
 
@@ -159,7 +204,7 @@ export default function ScanPage() {
           <img
             src={previewUrl}
             alt="拍攝的照片"
-            className="w-full rounded-xl border border-gray-200 dark:border-gray-700"
+            className="w-full rounded-xl border border-slate-200 dark:border-slate-700"
           />
         </div>
       )}
@@ -167,7 +212,7 @@ export default function ScanPage() {
       {scanning && (
         <div className="mt-6 text-center py-8">
           <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent" />
-          <p className="mt-3 text-sm text-gray-500">辨識中...</p>
+          <p className="mt-3 text-sm text-slate-500">辨識中...</p>
         </div>
       )}
 
@@ -180,23 +225,23 @@ export default function ScanPage() {
               </h3>
               <div className="space-y-1 text-sm">
                 <p>
-                  <span className="text-gray-500">編號：</span>
+                  <span className="text-slate-500">編號：</span>
                   <strong>
                     {seriesLabel(series)} {displayCode(code, number)}
                   </strong>
                 </p>
                 <p>
-                  <span className="text-gray-500">車名：</span>
+                  <span className="text-slate-500">車名：</span>
                   {result.name}
                 </p>
                 {result.variant && (
                   <p>
-                    <span className="text-gray-500">版本：</span>
+                    <span className="text-slate-500">版本：</span>
                     {result.variant}
                   </p>
                 )}
                 <p>
-                  <span className="text-gray-500">信心度：</span>
+                  <span className="text-slate-500">信心度：</span>
                   {result.confidence === 'high'
                     ? '⭐⭐⭐ 高'
                     : result.confidence === 'medium'
@@ -211,40 +256,52 @@ export default function ScanPage() {
                 </p>
               )}
               {catalogMatch ? (
-                <p className="mt-3 text-xs text-gray-500">
+                <p className="mt-3 text-xs text-slate-500">
                   已對應到圖鑑：「{catalogMatch.name_ja}」
                 </p>
               ) : numberHolder && !code ? (
-                <p className="mt-3 text-xs text-gray-500">
+                <p className="mt-3 text-xs text-slate-500">
                   圖鑑中目前的 {seriesLabel(series)} {displayCode(code, number)} 是「{numberHolder.name_ja}」，與辨識結果不同（可能是舊款），會以辨識結果另外加入收藏。
                 </p>
               ) : (
-                <p className="mt-3 text-xs text-gray-500">
+                <p className="mt-3 text-xs text-slate-500">
                   圖鑑中沒有這台（可能已停售），會以辨識結果加入收藏。
+                </p>
+              )}
+
+              {thumbStatus !== 'idle' && (
+                <p className="mt-3 text-xs text-slate-500">
+                  {thumbStatus === 'searching'
+                    ? '🔎 圖鑑沒有這台的縮圖，正在網路上搜尋…'
+                    : thumbStatus === 'found'
+                      ? '🖼️ 已從網路找到縮圖並補上'
+                      : catalogMatch
+                        ? '網路上沒找到合適的縮圖，先用你拍的照片當縮圖'
+                        : '網路上沒找到合適的縮圖，保留你拍的照片'}
                 </p>
               )}
 
               <div className="mt-4 flex gap-2">
                 {alreadyOwned && !added ? (
-                  <span className="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-center rounded-lg text-sm text-gray-500">
+                  <span className="flex-1 py-2 bg-slate-200 dark:bg-slate-700 text-center rounded-lg text-sm text-slate-500">
                     已收藏
                   </span>
                 ) : !added ? (
                   <button
                     onClick={handleAddToCollection}
-                    className="flex-1 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium"
+                    className="flex-1 py-2 tomica-red text-white rounded-xl text-sm font-medium"
                   >
                     加入收藏
                   </button>
                 ) : (
-                  <span className="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-center rounded-lg text-sm text-gray-500">
+                  <span className="flex-1 py-2 bg-slate-200 dark:bg-slate-700 text-center rounded-lg text-sm text-slate-500">
                     已加入收藏 ✓
                   </span>
                 )}
                 {(catalogMatch || added) && (
                   <Link
                     href={`/catalog/${catalogMatch ? catalogMatch.id : carId(series, number)}`}
-                    className="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-center rounded-lg text-sm font-medium"
+                    className="flex-1 py-2 bg-slate-200 dark:bg-slate-700 text-center rounded-lg text-sm font-medium"
                   >
                     查看詳情
                   </Link>
@@ -261,7 +318,7 @@ export default function ScanPage() {
               </p>
               <Link
                 href="/catalog"
-                className="inline-block mt-3 px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg text-sm font-medium"
+                className="inline-block mt-3 px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg text-sm font-medium"
               >
                 手動搜尋
               </Link>

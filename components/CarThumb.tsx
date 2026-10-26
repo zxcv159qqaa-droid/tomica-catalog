@@ -8,12 +8,15 @@ interface CarThumbProps {
   series?: string;
   number: number;
   code?: string;
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'lg' | 'card';
+  hideTag?: boolean;
 }
 
-export default function CarThumb({ src, series = 'regular', number, code, size = 'sm' }: CarThumbProps) {
+const BOX = { sm: 'w-20 h-14', lg: 'w-28 h-20', card: 'w-full h-32' };
+
+export default function CarThumb({ src, series = 'regular', number, code, size = 'sm', hideTag = false }: CarThumbProps) {
   const [failed, setFailed] = useState(false);
-  const box = size === 'lg' ? 'w-28 h-20' : 'w-20 h-14';
+  const box = BOX[size];
   const label = displayCode(code, number);
   const tag = `${series === 'regular' ? '' : seriesLabel(series) + ' '}${label}`;
 
@@ -43,9 +46,9 @@ export default function CarThumb({ src, series = 'regular', number, code, size =
         onError={() => setFailed(true)}
         className="w-full h-full object-contain"
       />
-      <span className="absolute bottom-0 left-0 px-1 text-[10px] font-bold leading-tight text-white bg-black/60 rounded-tr">
+      {!hideTag && <span className="absolute bottom-0 left-0 px-1 text-[10px] font-bold leading-tight text-white bg-black/60 rounded-tr">
         {tag}
-      </span>
+      </span>}
     </div>
   );
 }

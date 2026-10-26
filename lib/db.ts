@@ -22,14 +22,29 @@ export interface WishlistItem {
   addedAt: Date;
 }
 
+// Thumbnail found for a catalog car that ships without an image (older releases)
+export interface CarImage {
+  carId: string;
+  // Small JPEG data URL
+  src: string;
+  // Page/image URL it came from, or 'scan' when it's the user's own photo
+  source: string;
+  addedAt: Date;
+}
+
 const db = new Dexie('TomicaCatalogDB') as Dexie & {
   collection: EntityTable<CollectionItem, 'id'>;
   wishlist: EntityTable<WishlistItem, 'id'>;
+  carImages: EntityTable<CarImage, 'carId'>;
 };
 
 db.version(1).stores({
   collection: '++id, tomicaNumber, variantId, addedAt',
   wishlist: '++id, tomicaNumber, variantId, addedAt',
+});
+
+db.version(2).stores({
+  carImages: 'carId',
 });
 
 export { db };

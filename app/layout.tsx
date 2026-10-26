@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Suspense } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
+import AppHeader from '@/components/AppHeader';
 import BottomNav from '@/components/BottomNav';
 import PersistStorage from '@/components/PersistStorage';
 import './globals.css';
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#2563eb',
+  themeColor: '#e60012',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
@@ -43,8 +44,9 @@ export default function RootLayout({
       lang="zh-Hant"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100">
-        <main className="flex-1 pb-20 max-w-lg mx-auto w-full">
+      <body className="min-h-full flex flex-col">
+        <AppHeader />
+        <main className="flex-1 pb-20 md:pb-8 max-w-7xl mx-auto w-full">
           {children}
         </main>
         <Suspense>

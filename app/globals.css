@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f9fafb;
-  --foreground: #111827;
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
 @theme inline {
@@ -12,20 +12,55 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Tomica Garage palette: the app's accent ("blue-*" utilities) is the Tomica red */
+@theme {
+  --color-blue-50: #fef2f2;
+  --color-blue-100: #fee2e2;
+  --color-blue-200: #fecaca;
+  --color-blue-300: #fca5a5;
+  --color-blue-400: #f87171;
+  --color-blue-500: #ef4444;
+  --color-blue-600: #e60012;
+  --color-blue-700: #b8000e;
+  --color-blue-800: #991b1b;
+  --color-blue-900: #7f1d1d;
+  --color-blue-950: #450a0a;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #030712;
-    --foreground: #f3f4f6;
+    --background: #020617;
+    --foreground: #f1f5f9;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "Noto Sans TC", "Microsoft JhengHei", sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
 input[type="file"] {
+  display: none;
+}
+
+.tomica-red {
+  background: linear-gradient(135deg, #e60012 0%, #b8000e 100%);
+}
+
+.card-hover {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.14);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
   display: none;
 }

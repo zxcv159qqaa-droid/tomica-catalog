@@ -28,6 +28,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   );
   const [scanned, setScanned] = useState<CollectionItem[]>([]);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [foundImage, setFoundImage] = useState<string>();
   const [loaded, setLoaded] = useState(false);
   const [ownedCarIds, setOwnedCarIds] = useState<Set<string>>(new Set());
   const generations = car && !car.code ? getGenerations(series, number) : [];
@@ -63,6 +64,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
       if (car) {
         const wish = await db.wishlist.where('variantId').equals(car.id).count();
         setIsWishlisted(wish > 0);
+        if (!car.image) setFoundImage((await db.carImages.get(car.id))?.src);
       }
       setLoaded(true);
     };
@@ -84,7 +86,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   };
 
   const scannedSection = scanned.length > 0 && (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 mb-4">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 mb-4">
       <h2 className="font-semibold mb-3">已收藏的 {label}</h2>
       <div className="space-y-2">
         {scanned.map((item) => (
@@ -96,12 +98,12 @@ export default function CarDetail({ carKey }: { carKey: string }) {
             <div className="flex-1 min-w-0">
               <p className="font-medium text-sm">{item.name}</p>
               {item.variantName && (
-                <p className="text-xs text-gray-400 mt-0.5">{item.variantName}</p>
+                <p className="text-xs text-slate-400 mt-0.5">{item.variantName}</p>
               )}
             </div>
             <button
               onClick={() => item.id && removeScanned(item.id)}
-              className="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300"
+              className="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
             >
               移除
             </button>
@@ -112,12 +114,12 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   );
 
   if (!loaded) {
-    return <div className="px-4 pt-6">{backButton}</div>;
+    return <div className="px-4 sm:px-6 pt-5 max-w-3xl mx-auto">{backButton}</div>;
   }
 
   if (!car) {
     return (
-      <div className="px-4 pt-6">
+      <div className="px-4 sm:px-6 pt-5 max-w-3xl mx-auto">
         {backButton}
         {scannedSection || (
           <div className="text-center">
@@ -162,7 +164,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   };
 
   return (
-    <div className="px-4 pt-6">
+    <div className="px-4 sm:px-6 pt-5 max-w-3xl mx-auto">
       {backButton}
 
       {scannedSection}
@@ -176,11 +178,20 @@ export default function CarDetail({ carKey }: { carKey: string }) {
           </>
         }
       >
-      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm">
+        <div className={`px-5 py-3 flex items-center gap-2 text-white ${car.series === 'regular' ? 'tomica-red' : 'bg-slate-900'}`}>
+          <span className="px-2.5 py-0.5 rounded-md bg-white text-red-600 font-black text-xs">
+            {label}
+          </span>
+          <span className="text-xs font-semibold bg-black/25 px-2 py-0.5 rounded-full">
+            {car.series === 'regular' ? '常規系列' : `Tomica ${seriesLabel(car.series)}`}
+          </span>
+        </div>
+        <div className="p-5">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex items-center gap-3 min-w-0">
             <CarThumb
-              src={car.image}
+              src={car.image ?? foundImage}
               series={car.series}
               number={car.number}
               code={car.retired && car.series === 'regular' ? genLabel(car) : car.code}
@@ -188,13 +199,13 @@ export default function CarDetail({ carKey }: { carKey: string }) {
             />
             <div className="min-w-0">
               {car.retired && (
-                <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
                   舊款
                 </span>
               )}
-              <h1 className="text-lg font-bold">{car.name_ja}</h1>
+              <h2 className="text-lg font-bold">{car.name_ja}</h2>
               {car.name_en && (
-                <p className="text-sm text-gray-500">{car.name_en}</p>
+                <p className="text-sm text-slate-500">{car.name_en}</p>
               )}
             </div>
           </div>
@@ -207,25 +218,25 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         </div>
 
         <div className="grid grid-cols-2 gap-3 text-sm mb-6">
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
-            <p className="text-gray-400 text-xs">{car.series === 'dream' ? '主題' : '製造商'}</p>
+          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3">
+            <p className="text-slate-400 text-xs">{car.series === 'dream' ? '主題' : '製造商'}</p>
             <p className="font-medium">{car.manufacturer}</p>
           </div>
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3">
-            <p className="text-gray-400 text-xs">系列</p>
+          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3">
+            <p className="text-slate-400 text-xs">系列</p>
             <p className="font-medium">
               {car.series === 'regular' ? '常規系列' : `Tomica ${seriesLabel(car.series)}`}
               {genLabel(car) ? `（${genLabel(car)}）` : ''}
             </p>
           </div>
           {car.period && (
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 col-span-2">
-              <p className="text-gray-400 text-xs">販售期間</p>
+            <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 col-span-2">
+              <p className="text-slate-400 text-xs">販售期間</p>
               <p className="font-medium">
                 {car.period}
-                {car.retired && <span className="ml-2 text-xs text-gray-500">（已停售）</span>}
+                {car.retired && <span className="ml-2 text-xs text-slate-500">（已停售）</span>}
               </p>
-              {car.note && <p className="text-xs text-gray-500 mt-1">{car.note}</p>}
+              {car.note && <p className="text-xs text-slate-500 mt-1">{car.note}</p>}
             </div>
           )}
         </div>
@@ -241,7 +252,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
                 className={`flex items-center justify-between p-3 rounded-xl border transition-colors ${
                   isOwned
                     ? 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800'
-                    : 'bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700'
+                    : 'bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700'
                 }`}
               >
                 <div className="flex-1">
@@ -253,14 +264,14 @@ export default function CarDetail({ carKey }: { carKey: string }) {
                       </span>
                     )}
                   </div>
-                  {meta && <p className="text-xs text-gray-400 mt-0.5">{meta}</p>}
+                  {meta && <p className="text-xs text-slate-400 mt-0.5">{meta}</p>}
                 </div>
                 <button
                   onClick={() => toggleVariant(variant.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                     isOwned
                       ? 'bg-blue-500 text-white'
-                      : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                      : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
                   }`}
                 >
                   {isOwned ? '已收藏 ✓' : '加入收藏'}
@@ -269,13 +280,14 @@ export default function CarDetail({ carKey }: { carKey: string }) {
             );
           })}
         </div>
+        </div>
       </div>
       </Collapsible>
 
       {generations.length > 1 && (
-        <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700 mt-4 mb-4">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 mt-4 mb-4">
           <h2 className="font-semibold mb-1">歷代 {label}（{generations.length}）</h2>
-          <p className="text-xs text-gray-400 mb-3">
+          <p className="text-xs text-slate-400 mb-3">
             同一個編號以前出過的車，由新到舊。資料來源：
             {series === 'premium' ? 'トミカの森 プレミアム館' : 'ピクシブ百科事典、こつめBLOG'}。
           </p>
@@ -290,15 +302,15 @@ export default function CarDetail({ carKey }: { carKey: string }) {
                   className={`flex items-center gap-3 p-3 rounded-xl border ${
                     g.id === car.id
                       ? 'border-blue-400 dark:border-blue-600'
-                      : 'border-gray-200 dark:border-gray-700'
-                  } ${owned ? 'bg-blue-50 dark:bg-blue-950' : 'bg-gray-50 dark:bg-gray-900'}`}
+                      : 'border-slate-200 dark:border-slate-700'
+                  } ${owned ? 'bg-blue-50 dark:bg-blue-950' : 'bg-slate-50 dark:bg-slate-900'}`}
                 >
-                  <span className="w-12 shrink-0 text-xs font-bold text-gray-500">
+                  <span className="w-12 shrink-0 text-xs font-bold text-slate-500">
                     {genLabel(g) ?? `No.${number}`}
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{g.name_ja}</p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-xs text-slate-400">
                       {g.retired ? g.period || '已停售' : `現行${g.period ? `・${g.period}` : ''}`}
                     </p>
                   </div>

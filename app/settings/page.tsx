@@ -36,7 +36,12 @@ export default function SettingsPage() {
   const handleExport = async () => {
     const collection = await db.collection.toArray();
     const wishlist = await db.wishlist.toArray();
-    const data = JSON.stringify({ collection, wishlist, exportedAt: new Date().toISOString() }, null, 2);
+    const carImages = await db.carImages.toArray();
+    const data = JSON.stringify(
+      { collection, wishlist, carImages, exportedAt: new Date().toISOString() },
+      null,
+      2
+    );
     setExportData(data);
 
     const blob = new Blob([data], { type: 'application/json' });
@@ -77,6 +82,17 @@ export default function SettingsPage() {
           }))
         );
       }
+      if (data.carImages) {
+        await db.carImages.clear();
+        await db.carImages.bulkPut(
+          data.carImages.map((item: Record<string, unknown>) => ({
+            carId: item.carId,
+            src: item.src,
+            source: item.source,
+            addedAt: new Date(item.addedAt as string),
+          }))
+        );
+      }
       setImportStatus('匯入成功！');
       setImportText('');
       const colCount = await db.collection.count();
@@ -96,12 +112,12 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="px-4 pt-6">
-      <h1 className="text-2xl font-bold mb-6">⚙️ 設定</h1>
+    <div className="px-4 sm:px-6 pt-5 max-w-2xl mx-auto">
+      <h2 className="text-xl font-extrabold mb-5">⚙️ 設定</h2>
 
-      <section className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 mb-4">
+      <section className="bg-white dark:bg-slate-800 rounded-2xl p-5 border shadow-sm border-slate-200 dark:border-slate-700 mb-4">
         <h2 className="font-semibold mb-3">Google Gemini API Key</h2>
-        <p className="text-xs text-gray-400 mb-3">
+        <p className="text-xs text-slate-400 mb-3">
           前往{' '}
           <a
             href="https://aistudio.google.com/apikey"
@@ -118,31 +134,31 @@ export default function SettingsPage() {
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
           placeholder="輸入 API Key..."
-          className="w-full px-3 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm mb-2"
+          className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm mb-2"
         />
         <button
           onClick={saveApiKey}
-          className="w-full py-2 bg-blue-600 text-white rounded-lg text-sm font-medium"
+          className="w-full py-2 tomica-red text-white rounded-xl text-sm font-medium"
         >
           {saved ? '已儲存 ✓' : '儲存'}
         </button>
       </section>
 
-      <section className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 mb-4">
+      <section className="bg-white dark:bg-slate-800 rounded-2xl p-5 border shadow-sm border-slate-200 dark:border-slate-700 mb-4">
         <h2 className="font-semibold mb-3">資料統計</h2>
         <div className="grid grid-cols-2 gap-3 text-sm">
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 text-center">
+          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 text-center">
             <p className="text-2xl font-bold text-blue-600">{stats.collection}</p>
-            <p className="text-xs text-gray-400">收藏數</p>
+            <p className="text-xs text-slate-400">收藏數</p>
           </div>
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-3 text-center">
+          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 text-center">
             <p className="text-2xl font-bold text-amber-500">{stats.wishlist}</p>
-            <p className="text-xs text-gray-400">願望清單</p>
+            <p className="text-xs text-slate-400">願望清單</p>
           </div>
         </div>
       </section>
 
-      <section className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 mb-4">
+      <section className="bg-white dark:bg-slate-800 rounded-2xl p-5 border shadow-sm border-slate-200 dark:border-slate-700 mb-4">
         <h2 className="font-semibold mb-3">匯出 / 匯入</h2>
         <button
           onClick={handleExport}
@@ -156,12 +172,12 @@ export default function SettingsPage() {
           onChange={(e) => setImportText(e.target.value)}
           placeholder="貼上 JSON 資料來匯入..."
           rows={4}
-          className="w-full px-3 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-xs font-mono mb-2"
+          className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-mono mb-2"
         />
         <button
           onClick={handleImport}
           disabled={!importText}
-          className="w-full py-2 bg-blue-600 disabled:bg-gray-400 text-white rounded-lg text-sm font-medium"
+          className="w-full py-2 bg-blue-600 disabled:bg-slate-400 text-white rounded-lg text-sm font-medium"
         >
           匯入
         </button>
@@ -170,7 +186,7 @@ export default function SettingsPage() {
         )}
       </section>
 
-      <section className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-red-200 dark:border-red-800 mb-4">
+      <section className="bg-white dark:bg-slate-800 rounded-2xl p-5 border shadow-sm border-red-200 dark:border-red-800 mb-4">
         <h2 className="font-semibold text-red-600 mb-3">危險區域</h2>
         <button
           onClick={handleClearAll}

@@ -1,77 +1,91 @@
 'use client';
 
 import Link from 'next/link';
-import { genLabel, type TomicaCar } from '@/lib/tomica-data';
+import { genLabel, displayCode, seriesLabel, type TomicaCar } from '@/lib/tomica-data';
+import { seriesStyle } from '@/lib/theme';
 import CarThumb from '@/components/CarThumb';
 
 interface CarCardProps {
   car: TomicaCar;
   isWishlisted: boolean;
   collectedVariants?: string[];
+  // Thumbnail found after scanning, used when the catalog has no image
+  fallbackImage?: string;
 }
 
 export default function CarCard({
   car,
   isWishlisted,
   collectedVariants = [],
+  fallbackImage,
 }: CarCardProps) {
   const isCollected = collectedVariants.length > 0;
   const variantCount = car.variants.length;
+  const style = seriesStyle(car.series);
+  const boxLabel =
+    car.retired && car.series === 'regular' ? genLabel(car) : displayCode(car.code, car.number);
 
   return (
-    <Link href={`/catalog/${car.id}`}>
+    <Link href={`/catalog/${car.id}`} className="block h-full">
       <div
-        className={`relative rounded-xl p-4 border transition-all hover:shadow-md ${
+        className={`card-hover relative h-full flex flex-col overflow-hidden rounded-2xl border shadow-sm ${
           isCollected
-            ? 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800'
-            : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700'
+            ? 'bg-red-50/60 dark:bg-red-950/40 border-red-200 dark:border-red-900'
+            : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800'
         }`}
       >
-        {isCollected && (
-          <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full">
-            已收藏
-          </div>
-        )}
-        {isWishlisted && !isCollected && (
-          <div className="absolute top-2 right-2 bg-amber-500 text-white text-xs px-2 py-0.5 rounded-full">
-            想要
-          </div>
-        )}
-
-        <div className="flex items-center gap-3">
+        <div className="relative p-3 pb-0">
           <CarThumb
-            src={car.image}
+            src={car.image ?? fallbackImage}
             series={car.series}
             number={car.number}
-            code={car.retired && car.series === 'regular' ? genLabel(car) : car.code}
+            code={boxLabel}
+            size="card"
+            hideTag
           />
+          <span
+            className={`absolute top-5 left-5 text-[11px] font-black px-2 py-0.5 rounded-md ${style.badge}`}
+          >
+            {car.series === 'regular' ? 'No.' : `${seriesLabel(car.series)} `}
+            {boxLabel}
+          </span>
+          {isCollected && (
+            <span className="absolute top-5 right-5 bg-red-600 text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow">
+              ✓ 已收藏
+            </span>
+          )}
+          {isWishlisted && !isCollected && (
+            <span className="absolute top-5 right-5 bg-amber-500 text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow">
+              ♥ 想要
+            </span>
+          )}
+        </div>
 
-          <div className="flex-1 min-w-0 pr-14">
-            <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100 line-clamp-2">
-              {car.retired && (
-                <span className="mr-1 text-[10px] font-medium align-middle px-1.5 py-0.5 rounded bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
-                  舊款
+        <div className="p-3.5 flex-1 flex flex-col">
+          <h3 className="font-bold text-sm leading-snug text-slate-900 dark:text-slate-100 line-clamp-2">
+            {car.retired && (
+              <span className="mr-1 text-[10px] font-medium align-middle px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                舊款
+              </span>
+            )}
+            {car.name_ja}
+          </h3>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-auto pt-2 text-xs text-slate-400 dark:text-slate-500">
+            <span>{car.manufacturer}</span>
+            {car.period && (
+              <>
+                <span className="text-slate-300 dark:text-slate-600">|</span>
+                <span>{car.period}</span>
+              </>
+            )}
+            {variantCount > 1 && (
+              <>
+                <span className="text-slate-300 dark:text-slate-600">|</span>
+                <span>
+                  {collectedVariants.length}/{variantCount} 版本
                 </span>
-              )}
-              {car.name_ja}
-            </h3>
-            <div className="flex items-center gap-2 mt-1.5 text-xs text-gray-400 dark:text-gray-500">
-              <span>{car.manufacturer}</span>
-              {car.period && (
-                <>
-                  <span className="text-gray-300 dark:text-gray-600">|</span>
-                  <span>{car.period}</span>
-                </>
-              )}
-              {variantCount > 1 && (
-                <>
-                  <span className="text-gray-300 dark:text-gray-600">|</span>
-                  <span>
-                    {collectedVariants.length}/{variantCount} 版本
-                  </span>
-                </>
-              )}
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>

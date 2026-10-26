@@ -46,7 +46,7 @@ export default function CameraCapture({
       <button
         onClick={() => fileInputRef.current?.click()}
         disabled={disabled}
-        className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white rounded-xl font-semibold text-lg transition-colors flex items-center justify-center gap-2"
+        className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 text-white rounded-xl font-semibold text-lg transition-colors flex items-center justify-center gap-2"
       >
         <span className="text-2xl">📷</span>
         拍照辨識
@@ -64,7 +64,7 @@ export default function CameraCapture({
       <button
         onClick={() => document.getElementById('gallery-input')?.click()}
         disabled={disabled}
-        className="w-full py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 disabled:bg-gray-100 text-gray-700 dark:text-gray-300 rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
+        className="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:bg-slate-100 text-slate-700 dark:text-slate-300 rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
       >
         <span className="text-xl">🖼️</span>
         從相簿選擇
