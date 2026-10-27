@@ -142,9 +142,16 @@ async function looksLikeCar(
   }
 }
 
-export async function findThumbnail(apiKey: string, query: string): Promise<ThumbResult | null> {
+// `exclude` holds sources already shown and rejected, so "try another" moves on
+export async function findThumbnail(
+  apiKey: string,
+  query: string,
+  exclude: string[] = []
+): Promise<ThumbResult | null> {
   const genAI = new GoogleGenerativeAI(apiKey);
+  const skip = new Set(exclude);
   for (const url of await searchCandidates(genAI, query)) {
+    if (skip.has(url)) continue;
     const image = await downloadImage(url);
     if (image && (await looksLikeCar(genAI, query, image))) {
       return { dataUrl: `data:${image.mimeType};base64,${image.base64}`, source: url };

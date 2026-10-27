@@ -21,7 +21,7 @@ function keyFor(code: string): string {
 // Local development without Redis keeps records in memory so the flow can be exercised
 const memory = new Map<string, string | Map<string, string>>();
 
-async function redis(commands: (string | number)[][]): Promise<unknown[]> {
+export async function redis(commands: (string | number)[][]): Promise<unknown[]> {
   if (!URL_ENV || !TOKEN_ENV) return commands.map(runInMemory);
   const res = await fetch(`${URL_ENV}/pipeline`, {
     method: 'POST',
@@ -44,6 +44,10 @@ function runInMemory([cmd, key, ...args]: (string | number)[]): unknown {
     case 'SET':
       memory.set(k, String(args[0]));
       return 'OK';
+    case 'HGET': {
+      const h = memory.get(k);
+      return h instanceof Map ? (h.get(String(args[0])) ?? null) : null;
+    }
     case 'HGETALL': {
       const h = memory.get(k);
       return h instanceof Map ? [...h.entries()].flat() : [];

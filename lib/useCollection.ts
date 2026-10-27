@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, itemQty, type CollectionItem } from '@/lib/db';
 import { getCarByVariantId } from '@/lib/tomica-data';
+import { sharedThumbUrl, useSharedThumbVersions } from '@/lib/thumbs';
 
 const EMPTY: never[] = [];
 
@@ -13,11 +14,14 @@ export function useCollection() {
   const wishlist = useLiveQuery(() => db.wishlist.toArray(), []) ?? EMPTY;
   const carImages = useLiveQuery(() => db.carImages.toArray(), []) ?? EMPTY;
 
-  // carId -> thumbnail found after scanning, for catalog cars without an official image
-  const imageByCar = useMemo(
-    () => new Map(carImages.map((i) => [i.carId, i.src])),
-    [carImages]
-  );
+  const shared = useSharedThumbVersions();
+
+  // carId -> thumbnail for catalog cars without an official image: the garage's own first, then the shared library
+  const imageByCar = useMemo(() => {
+    const map = new Map(Object.entries(shared).map(([id, v]) => [id, sharedThumbUrl(id, v)]));
+    for (const i of carImages) map.set(i.carId, i.src);
+    return map;
+  }, [carImages, shared]);
 
   // carId -> collected catalog variant ids
   const collectedByCar = useMemo(() => {

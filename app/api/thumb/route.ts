@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { findThumbnail } from '@/lib/thumb-search';
+import { badSources } from '@/lib/shared-thumbs';
+import { storeConfigured } from '@/lib/sync-store';
 
 export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
-  const { query, apiKey: clientKey } = await req.json();
+  const { query, apiKey: clientKey, carId, exclude } = await req.json();
   const apiKey = clientKey || process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
@@ -14,6 +16,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ found: false, error: '缺少車款名稱' }, { status: 400 });
   }
 
-  const result = await findThumbnail(apiKey, query.trim());
+  const skip = Array.isArray(exclude) ? exclude.filter((s): s is string => typeof s === 'string') : [];
+  if (typeof carId === 'string' && storeConfigured()) {
+    skip.push(...(await badSources(carId).catch(() => [])));
+  }
+
+  const result = await findThumbnail(apiKey, query.trim(), skip.slice(0, 50));
   return NextResponse.json(result ? { found: true, ...result } : { found: false });
 }

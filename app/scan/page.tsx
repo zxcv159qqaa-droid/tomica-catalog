@@ -15,39 +15,7 @@ import {
 } from '@/lib/tomica-data';
 import { db } from '@/lib/db';
 import { useApiKey } from '@/lib/useApiKey';
-
-function makeThumb(dataUrl: string, maxSide = 240): Promise<string | undefined> {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => {
-      const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
-      const canvas = document.createElement('canvas');
-      canvas.width = Math.round(img.width * scale);
-      canvas.height = Math.round(img.height * scale);
-      canvas.getContext('2d')?.drawImage(img, 0, 0, canvas.width, canvas.height);
-      resolve(canvas.toDataURL('image/jpeg', 0.7));
-    };
-    img.onerror = () => resolve(undefined);
-    img.src = dataUrl;
-  });
-}
-
-async function searchThumbnail(
-  query: string,
-  apiKey: string
-): Promise<{ dataUrl: string; source: string } | null> {
-  try {
-    const res = await fetch('/api/thumb', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, apiKey: apiKey || undefined }),
-    });
-    const data = await res.json();
-    return data.found ? { dataUrl: data.dataUrl, source: data.source } : null;
-  } catch {
-    return null;
-  }
-}
+import { hasSharedThumb, loadSharedThumbs, makeThumb, saveCarThumb, searchThumbnail } from '@/lib/thumbs';
 
 function PhotoScan() {
   const [apiKey] = useApiKey();
@@ -145,23 +113,21 @@ function PhotoScan() {
 
     // Catalog cars with an official image need nothing more
     if (catalogMatch?.image) return;
+    // Someone already filled this car in the shared library
+    if (catalogMatch) {
+      await loadSharedThumbs();
+      if (hasSharedThumb(catalogMatch.id)) return;
+    }
     const name = catalogMatch?.name_ja ?? result.name ?? '';
     const box = `${seriesLabel(series)} ${displayCode(code, number)}`;
     setThumbStatus('searching');
-    const found = await searchThumbnail(`${box} ${name}`, apiKey);
+    const found = await searchThumbnail(`${box} ${name}`, apiKey, { carId: catalogMatch?.id });
     const src = found ? await makeThumb(found.dataUrl) : undefined;
 
     if (catalogMatch) {
       // Fall back to the user's own photo so the catalog card isn't blank
-      const image = src ?? ownPhoto;
-      if (image) {
-        await db.carImages.put({
-          carId: catalogMatch.id,
-          src: image,
-          source: src ? found!.source : 'scan',
-          addedAt: new Date(),
-        });
-      }
+      if (src) await saveCarThumb(catalogMatch.id, src, found!.source);
+      else if (ownPhoto) await saveCarThumb(catalogMatch.id, ownPhoto, 'scan');
     } else if (src && scannedId) {
       await db.collection.update(scannedId, { thumb: src });
     }

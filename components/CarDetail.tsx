@@ -16,6 +16,8 @@ import { db } from '@/lib/db';
 import { addCopy } from '@/lib/collection-actions';
 import CarThumb from '@/components/CarThumb';
 import CopyEditor from '@/components/CopyEditor';
+import ThumbFinder from '@/components/ThumbFinder';
+import { sharedThumbUrl, useSharedThumbVersions } from '@/lib/thumbs';
 
 export default function CarDetail({ carKey }: { carKey: string }) {
   const router = useRouter();
@@ -35,7 +37,10 @@ export default function CarDetail({ carKey }: { carKey: string }) {
 
   const items = data?.items ?? [];
   const isWishlisted = data?.isWishlisted ?? false;
-  const foundImage = data?.foundImage;
+  const shared = useSharedThumbVersions();
+  const sharedVersion = car && !car.image ? shared[car.id] : undefined;
+  const foundImage =
+    data?.foundImage ?? (sharedVersion ? sharedThumbUrl(car!.id, sharedVersion) : undefined);
   const ownedCarIds = new Set(
     items
       .filter((i) => !i.name)
@@ -165,6 +170,8 @@ export default function CarDetail({ carKey }: { carKey: string }) {
             ⭐
           </button>
         </div>
+
+        {!car.image && <ThumbFinder car={car} hasImage={!!foundImage} />}
 
         <div className="grid grid-cols-2 gap-3 text-sm mb-6">
           <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3">
