@@ -59,7 +59,7 @@ export default function ThumbFinder({ car, hasImage }: { car: TomicaCar; hasImag
           </>
         )}
       </div>
-      {status === 'searching' && <p className="mt-2">🔎 正在網路上搜尋並確認圖片…（約 10～30 秒）</p>}
+      {status === 'searching' && <p className="mt-2">🔎 正在網路上搜尋並確認圖片…（約 20～60 秒）</p>}
       {status === 'found' && <p className="mt-2">🖼️ 找到了，已補上並分享到共用圖庫</p>}
       {status === 'notFound' && <p className="mt-2">網路上沒找到確定是這台車的圖片</p>}
     </div>

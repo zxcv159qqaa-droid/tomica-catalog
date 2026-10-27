@@ -9,6 +9,7 @@ const MAX_IMAGE_BYTES = 3_000_000;
 const MIN_IMAGE_BYTES = 3_000;
 const MAX_CANDIDATES = 6;
 const MAX_PAGES = 8;
+const PAGE_IMAGES = 3;
 
 // The SDK only types the Gemini 1.5 retrieval tool; 2.x models take `googleSearch`
 const SEARCH_TOOL = { googleSearch: {} } as unknown as Tool;
@@ -63,21 +64,33 @@ async function readLimited(res: Response, limit: number): Promise<Uint8Array | n
   return buf.byteLength > limit ? null : buf;
 }
 
-async function pageImage(pageUrl: string): Promise<string | null> {
+const NOT_A_PHOTO = /logo|icon|sprite|banner|avatar|spacer|blank|loading|button|badge|\.svg|\.gif/i;
+
+// The page's share picture, then the first photo-looking <img> tags (many shops have no og:image)
+async function pageImages(pageUrl: string): Promise<string[]> {
   const res = await safeFetch(pageUrl, 'text/html');
-  if (!res || !(res.headers.get('content-type') || '').includes('html')) return null;
+  if (!res || !(res.headers.get('content-type') || '').includes('html')) return [];
   const body = await readLimited(res, MAX_PAGE_BYTES);
-  if (!body) return null;
+  if (!body) return [];
   const html = new TextDecoder().decode(body);
-  const m =
+  const found: string[] = [];
+  const og =
     /<meta[^>]+(?:property|name)=["'](?:og:image|twitter:image)["'][^>]+content=["']([^"']+)["']/i.exec(html) ||
     /<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["'](?:og:image|twitter:image)["']/i.exec(html);
-  if (!m) return null;
-  try {
-    return new URL(m[1].replace(/&amp;/g, '&'), res.url || pageUrl).toString();
-  } catch {
-    return null;
+  if (og) found.push(og[1]);
+  for (const m of html.matchAll(/<img[^>]+?(?:data-src|data-original|src)=["']([^"']+\.(?:jpe?g|png|webp)(?:\?[^"']*)?)["']/gi)) {
+    if (found.length >= PAGE_IMAGES) break;
+    if (!NOT_A_PHOTO.test(m[1])) found.push(m[1]);
   }
+  const out: string[] = [];
+  for (const raw of found) {
+    try {
+      out.push(new URL(raw.replace(/&amp;/g, '&'), res.url || pageUrl).toString());
+    } catch {
+      // skip malformed URLs
+    }
+  }
+  return out;
 }
 
 async function downloadImage(url: string): Promise<{ base64: string; mimeType: string } | null> {
@@ -117,12 +130,15 @@ async function searchCandidates(genAI: GoogleGenerativeAI, query: string): Promi
       // Pictures taken from pages the search actually visited come first; image URLs the model
       // writes out itself are often made up (dead YouTube thumbnails and the like)
       const fromPages = await Promise.all(
-        [...new Set([...(parsed.pages ?? []), ...grounded])].slice(0, MAX_PAGES).map(pageImage)
+        [...new Set([...(parsed.pages ?? []), ...grounded])].slice(0, MAX_PAGES).map(pageImages)
       );
-      const images = [...fromPages.filter((u): u is string => !!u), ...(parsed.images ?? [])];
+      // Take each page's best picture before anyone's second one
+      const ranked = [0, 1, 2].flatMap((i) => fromPages.map((p) => p[i]).filter(Boolean));
+      const images = [...ranked, ...(parsed.images ?? [])];
       const out = [...new Set(images.filter(isPublicUrl))].slice(0, MAX_CANDIDATES);
       console.info('[thumb] candidates', name, { parsed: parsed.images?.length ?? 0, pages: parsed.pages?.length ?? 0, grounded: grounded.length, out });
-      return out;
+      // Nothing usable: a different model searches differently, so give the next one a go
+      if (out.length) return out;
     } catch (err) {
       // Model unavailable or quota hit: try the next one
       console.warn('[thumb] search failed', name, (err as Error).message);

@@ -3,7 +3,8 @@ import { findThumbnail } from '@/lib/thumb-search';
 import { badSources } from '@/lib/shared-thumbs';
 import { storeConfigured } from '@/lib/sync-store';
 
-export const maxDuration = 60;
+// A search can fall through to a second model and check several pictures
+export const maxDuration = 120;
 
 export async function POST(req: NextRequest) {
   const { query, apiKey: clientKey, carId, exclude } = await req.json();
