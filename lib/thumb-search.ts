@@ -8,6 +8,7 @@ const MAX_PAGE_BYTES = 1_500_000;
 const MAX_IMAGE_BYTES = 3_000_000;
 const MIN_IMAGE_BYTES = 3_000;
 const MAX_CANDIDATES = 6;
+const MAX_PAGES = 8;
 
 // The SDK only types the Gemini 1.5 retrieval tool; 2.x models take `googleSearch`
 const SEARCH_TOOL = { googleSearch: {} } as unknown as Tool;
@@ -113,11 +114,12 @@ async function searchCandidates(genAI: GoogleGenerativeAI, query: string): Promi
         .map((c) => c.web?.uri)
         .filter(Boolean) as string[];
 
-      const images: string[] = [...(parsed.images ?? [])];
-      for (const page of [...(parsed.pages ?? []), ...grounded].slice(0, MAX_CANDIDATES)) {
-        const img = await pageImage(page);
-        if (img) images.push(img);
-      }
+      // Pictures taken from pages the search actually visited come first; image URLs the model
+      // writes out itself are often made up (dead YouTube thumbnails and the like)
+      const fromPages = await Promise.all(
+        [...new Set([...(parsed.pages ?? []), ...grounded])].slice(0, MAX_PAGES).map(pageImage)
+      );
+      const images = [...fromPages.filter((u): u is string => !!u), ...(parsed.images ?? [])];
       const out = [...new Set(images.filter(isPublicUrl))].slice(0, MAX_CANDIDATES);
       console.info('[thumb] candidates', name, { parsed: parsed.images?.length ?? 0, pages: parsed.pages?.length ?? 0, grounded: grounded.length, out });
       return out;
