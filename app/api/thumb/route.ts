@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { findThumbnail } from '@/lib/thumb-search';
+import { findThumbnail, ThumbSearchBusy } from '@/lib/thumb-search';
 import { badSources } from '@/lib/shared-thumbs';
 import { storeConfigured } from '@/lib/sync-store';
 
@@ -22,6 +22,13 @@ export async function POST(req: NextRequest) {
     skip.push(...(await badSources(carId).catch(() => [])));
   }
 
-  const result = await findThumbnail(apiKey, query.trim(), skip.slice(0, 50));
-  return NextResponse.json(result ? { found: true, ...result } : { found: false });
+  try {
+    const result = await findThumbnail(apiKey, query.trim(), skip.slice(0, 50));
+    return NextResponse.json(result ? { found: true, ...result } : { found: false });
+  } catch (err) {
+    if (err instanceof ThumbSearchBusy) {
+      return NextResponse.json({ found: false, busy: true, error: err.message }, { status: 503 });
+    }
+    throw err;
+  }
 }

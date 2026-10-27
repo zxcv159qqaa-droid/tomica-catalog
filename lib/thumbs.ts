@@ -22,11 +22,12 @@ export function makeThumb(dataUrl: string, maxSide = 240): Promise<string | unde
   });
 }
 
+// `busy`: Gemini refused (quota or overload), so "not found" would be misleading
 export async function searchThumbnail(
   query: string,
   apiKey: string,
   opts: { carId?: string; exclude?: string[] } = {}
-): Promise<{ dataUrl: string; source: string } | null> {
+): Promise<{ found: { dataUrl: string; source: string } | null; busy: boolean }> {
   try {
     const res = await fetch('/api/thumb', {
       method: 'POST',
@@ -34,9 +35,12 @@ export async function searchThumbnail(
       body: JSON.stringify({ query, apiKey: apiKey || undefined, ...opts }),
     });
     const data = await res.json();
-    return data.found ? { dataUrl: data.dataUrl, source: data.source } : null;
+    return {
+      found: data.found ? { dataUrl: data.dataUrl, source: data.source } : null,
+      busy: !!data.busy,
+    };
   } catch {
-    return null;
+    return { found: null, busy: true };
   }
 }
 

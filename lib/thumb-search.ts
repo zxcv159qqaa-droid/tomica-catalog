@@ -118,10 +118,12 @@ async function searchCandidates(genAI: GoogleGenerativeAI, query: string): Promi
 {"images": ["<直接指向這台車照片的圖片網址>"], "pages": ["<介紹這台車、有它照片的網頁網址>"]}
 各最多 5 個，只放確實是這台車的結果，找不到就給空陣列。`;
 
+  let answered = false;
   for (const name of MODELS) {
     try {
       const model = genAI.getGenerativeModel({ model: name, tools: [SEARCH_TOOL] });
       const result = await model.generateContent(prompt);
+      answered = true;
       const parsed = parseJson(result.response.text());
       const grounded = (result.response.candidates?.[0]?.groundingMetadata?.groundingChunks ?? [])
         .map((c) => c.web?.uri)
@@ -144,7 +146,15 @@ async function searchCandidates(genAI: GoogleGenerativeAI, query: string): Promi
       console.warn('[thumb] search failed', name, (err as Error).message);
     }
   }
+  if (!answered) throw new ThumbSearchBusy();
   return [];
+}
+
+// Every model refused (quota used up or overloaded), as opposed to searching and finding nothing
+export class ThumbSearchBusy extends Error {
+  constructor() {
+    super('Gemini 額度用完或忙碌中');
+  }
 }
 
 // Asks the model whether the downloaded picture really shows this car, so site logos are skipped

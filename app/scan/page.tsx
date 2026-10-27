@@ -121,7 +121,7 @@ function PhotoScan() {
     const name = catalogMatch?.name_ja ?? result.name ?? '';
     const box = `${seriesLabel(series)} ${displayCode(code, number)}`;
     setThumbStatus('searching');
-    const found = await searchThumbnail(`${box} ${name}`, apiKey, { carId: catalogMatch?.id });
+    const { found } = await searchThumbnail(`${box} ${name}`, apiKey, { carId: catalogMatch?.id });
     const src = found ? await makeThumb(found.dataUrl) : undefined;
 
     if (catalogMatch) {
