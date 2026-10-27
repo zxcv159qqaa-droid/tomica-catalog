@@ -1,6 +1,8 @@
 import { GoogleGenerativeAI, type Tool } from '@google/generative-ai';
 
-const MODELS = ['gemini-2.5-flash', 'gemini-flash-latest', 'gemini-2.5-flash-lite'];
+const MODELS = ['gemini-2.5-flash', 'gemini-flash-latest', 'gemini-flash-lite-latest'];
+// Cheap yes/no image check; named versions get retired, so the "-latest" aliases come first
+const CHECK_MODELS = ['gemini-flash-lite-latest', 'gemini-3.5-flash-lite', 'gemini-flash-latest', 'gemini-2.5-flash'];
 const FETCH_TIMEOUT = 6000;
 const MAX_PAGE_BYTES = 1_500_000;
 const MAX_IMAGE_BYTES = 3_000_000;
@@ -116,9 +118,12 @@ async function searchCandidates(genAI: GoogleGenerativeAI, query: string): Promi
         const img = await pageImage(page);
         if (img) images.push(img);
       }
-      return [...new Set(images.filter(isPublicUrl))].slice(0, MAX_CANDIDATES);
-    } catch {
+      const out = [...new Set(images.filter(isPublicUrl))].slice(0, MAX_CANDIDATES);
+      console.info('[thumb] candidates', name, { parsed: parsed.images?.length ?? 0, pages: parsed.pages?.length ?? 0, grounded: grounded.length, out });
+      return out;
+    } catch (err) {
       // Model unavailable or quota hit: try the next one
+      console.warn('[thumb] search failed', name, (err as Error).message);
     }
   }
   return [];
@@ -130,16 +135,20 @@ async function looksLikeCar(
   query: string,
   image: { base64: string; mimeType: string }
 ): Promise<boolean> {
-  try {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
-    const result = await model.generateContent([
-      `這張圖是 Tomica 小汽車「${query}」（車本體或包裝盒）的照片嗎？只回答 yes 或 no。`,
-      { inlineData: { mimeType: image.mimeType, data: image.base64 } },
-    ]);
-    return /^\s*yes/i.test(result.response.text());
-  } catch {
-    return false;
+  for (const name of CHECK_MODELS) {
+    try {
+      const model = genAI.getGenerativeModel({ model: name });
+      const result = await model.generateContent([
+        `這張圖是 Tomica 小汽車「${query}」（車本體或包裝盒）的照片嗎？只回答 yes 或 no。`,
+        { inlineData: { mimeType: image.mimeType, data: image.base64 } },
+      ]);
+      return /^\s*yes/i.test(result.response.text());
+    } catch (err) {
+      // Retired model or quota hit: try the next one
+      console.warn('[thumb] check failed', name, (err as Error).message);
+    }
   }
+  return false;
 }
 
 // `exclude` holds sources already shown and rejected, so "try another" moves on
@@ -153,7 +162,9 @@ export async function findThumbnail(
   for (const url of await searchCandidates(genAI, query)) {
     if (skip.has(url)) continue;
     const image = await downloadImage(url);
-    if (image && (await looksLikeCar(genAI, query, image))) {
+    const ok = !!image && (await looksLikeCar(genAI, query, image));
+    console.info('[thumb] candidate', url, image ? (ok ? 'accepted' : 'rejected by check') : 'download failed');
+    if (image && ok) {
       return { dataUrl: `data:${image.mimeType};base64,${image.base64}`, source: url };
     }
   }
