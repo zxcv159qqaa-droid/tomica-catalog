@@ -32,7 +32,7 @@ export default function CatalogPage() {
   const [filter, setFilter] = useState<CatalogFilter>('all');
   const [manufacturer, setManufacturer] = useState('all');
   const [showHistory, setShowHistory] = useState(false);
-  const { collectedByCar, wishlistIds, scannedItems, imageByCar } = useCollection();
+  const { collectedByCar, qtyByCar, wishlistIds, scannedItems, imageByCar } = useCollection();
 
   // Scanned cars of this series that aren't in the current lineup (older releases, reused numbers)
   const seriesScanned = useMemo(
@@ -181,6 +181,7 @@ export default function CatalogPage() {
             isWishlisted={wishlistIds.has(car.id)}
             collectedVariants={collectedByCar.get(car.id)}
             fallbackImage={imageByCar.get(car.id)}
+            qty={qtyByCar.get(car.id)}
           />
         ))}
       </div>

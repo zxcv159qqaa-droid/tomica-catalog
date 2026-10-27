@@ -3,6 +3,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import CameraCapture from '@/components/CameraCapture';
+import QuickLookup from '@/components/QuickLookup';
+import BarcodeScan from '@/components/BarcodeScan';
 import type { ScanResult } from '@/lib/gemini';
 import {
   carId,
@@ -12,6 +14,7 @@ import {
   seriesLabel,
 } from '@/lib/tomica-data';
 import { db } from '@/lib/db';
+import { useApiKey } from '@/lib/useApiKey';
 
 function makeThumb(dataUrl: string, maxSide = 240): Promise<string | undefined> {
   return new Promise((resolve) => {
@@ -46,14 +49,16 @@ async function searchThumbnail(
   }
 }
 
-export default function ScanPage() {
-  const [apiKey, setApiKey] = useState('');
+function PhotoScan() {
+  const [apiKey] = useApiKey();
   const [hasServerKey, setHasServerKey] = useState(false);
   const [scanning, setScanning] = useState(false);
   const [result, setResult] = useState<ScanResult | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [added, setAdded] = useState(false);
-  const [alreadyOwned, setAlreadyOwned] = useState(false);
+  // Ownership check result, tagged with the scan it belongs to so a new scan starts unowned
+  const [ownedCheck, setOwnedCheck] = useState<{ scan: ScanResult; owned: boolean } | null>(null);
+  const alreadyOwned = !!result && ownedCheck?.scan === result && ownedCheck.owned;
   const [thumbStatus, setThumbStatus] = useState<'idle' | 'searching' | 'found' | 'notFound'>('idle');
 
   const series = result?.series || 'regular';
@@ -70,22 +75,16 @@ export default function ScanPage() {
   const scanId = scanVariantId(number, `${code ?? ''}${result?.name ?? ''}`, series);
 
   useEffect(() => {
-    setAlreadyOwned(false);
     if (!result?.success) return;
     const ids = catalogMatch ? catalogMatch.variants.map((v) => v.id) : [scanId];
     db.collection
       .where('variantId')
       .anyOf(ids)
       .count()
-      .then((n) => setAlreadyOwned(n > 0));
+      .then((n) => setOwnedCheck({ scan: result, owned: n > 0 }));
   }, [result, catalogMatch, scanId]);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('gemini-api-key');
-      if (stored) setApiKey(stored);
-    } catch {}
-
     fetch('/api/scan', { method: 'HEAD' })
       .then((res) => {
         if (res.ok || res.status === 405) setHasServerKey(true);
@@ -173,8 +172,7 @@ export default function ScanPage() {
 
   if (!canScan) {
     return (
-      <div className="px-4 sm:px-6 pt-5 max-w-2xl mx-auto">
-        <h2 className="text-xl font-extrabold mb-4">📷 拍照辨識</h2>
+      <div>
         <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
           <p className="text-sm text-amber-800 dark:text-amber-200 mb-3">
             需要設定 Google Gemini API Key 才能使用拍照辨識功能
@@ -191,8 +189,7 @@ export default function ScanPage() {
   }
 
   return (
-    <div className="px-4 sm:px-6 pt-5 max-w-2xl mx-auto">
-      <h2 className="text-xl font-extrabold mb-4">📷 拍照辨識</h2>
+    <div>
       <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
         拍攝 Tomica 包裝盒正面或車體，AI 會幫你辨識車款編號和版本
       </p>
@@ -201,6 +198,7 @@ export default function ScanPage() {
 
       {previewUrl && (
         <div className="mt-6">
+          {/* eslint-disable-next-line @next/next/no-img-element -- local data URL preview */}
           <img
             src={previewUrl}
             alt="拍攝的照片"
@@ -326,6 +324,43 @@ export default function ScanPage() {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+const MODES = [
+  { key: 'lookup', label: '🔢 編號速查' },
+  { key: 'barcode', label: '▦ 條碼掃描' },
+  { key: 'photo', label: '📷 拍照辨識' },
+] as const;
+type Mode = (typeof MODES)[number]['key'];
+
+export default function ScanPage() {
+  const [mode, setMode] = useState<Mode>('lookup');
+
+  return (
+    <div className="px-4 sm:px-6 pt-5 max-w-2xl mx-auto">
+      <div className="flex items-center justify-between gap-2 mb-4">
+        <h2 className="text-xl font-extrabold">掃描確認</h2>
+      </div>
+      <div className="inline-flex w-full rounded-xl bg-slate-100 dark:bg-slate-800 p-1 mb-4">
+        {MODES.map((m) => (
+          <button
+            key={m.key}
+            onClick={() => setMode(m.key)}
+            className={`flex-1 px-2 py-2 rounded-lg text-xs sm:text-sm font-bold transition ${
+              mode === m.key
+                ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
+                : 'text-slate-500 dark:text-slate-400'
+            }`}
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
+      {mode === 'lookup' && <QuickLookup />}
+      {mode === 'barcode' && <BarcodeScan />}
+      {mode === 'photo' && <PhotoScan />}
     </div>
   );
 }

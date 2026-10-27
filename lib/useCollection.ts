@@ -1,25 +1,17 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
-import { db, type CarImage, type CollectionItem, type WishlistItem } from '@/lib/db';
+import { useMemo } from 'react';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db, itemQty, type CollectionItem } from '@/lib/db';
 import { getCarByVariantId } from '@/lib/tomica-data';
 
-export function useCollection() {
-  const [collection, setCollection] = useState<CollectionItem[]>([]);
-  const [wishlist, setWishlist] = useState<WishlistItem[]>([]);
-  const [carImages, setCarImages] = useState<CarImage[]>([]);
+const EMPTY: never[] = [];
 
-  useEffect(() => {
-    Promise.all([
-      db.collection.toArray(),
-      db.wishlist.toArray(),
-      db.carImages.toArray(),
-    ]).then(([col, wish, imgs]) => {
-      setCollection(col);
-      setWishlist(wish);
-      setCarImages(imgs);
-    });
-  }, []);
+// Live view of the collection; re-renders whenever the tables change (edits, imports, cloud sync)
+export function useCollection() {
+  const collection = useLiveQuery(() => db.collection.toArray(), []) ?? EMPTY;
+  const wishlist = useLiveQuery(() => db.wishlist.toArray(), []) ?? EMPTY;
+  const carImages = useLiveQuery(() => db.carImages.toArray(), []) ?? EMPTY;
 
   // carId -> thumbnail found after scanning, for catalog cars without an official image
   const imageByCar = useMemo(
@@ -39,8 +31,19 @@ export function useCollection() {
     return map;
   }, [collection]);
 
+  // carId -> total copies owned across variants
+  const qtyByCar = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const item of collection) {
+      if (item.name) continue;
+      const car = getCarByVariantId(item.variantId);
+      if (car) map.set(car.id, (map.get(car.id) ?? 0) + itemQty(item));
+    }
+    return map;
+  }, [collection]);
+
   const scannedItems = useMemo(
-    () => collection.filter((c) => c.name),
+    () => collection.filter((c): c is CollectionItem & { name: string } => !!c.name),
     [collection]
   );
 
@@ -49,9 +52,15 @@ export function useCollection() {
     [wishlist]
   );
 
-  const ownedCount =
-    scannedItems.length +
-    Array.from(collectedByCar.values()).reduce((n, v) => n + v.length, 0);
+  const ownedCount = collection.reduce((n, item) => n + itemQty(item), 0);
 
-  return { collectedByCar, scannedItems, wishlistIds, ownedCount, imageByCar };
+  return {
+    collection,
+    collectedByCar,
+    qtyByCar,
+    scannedItems,
+    wishlistIds,
+    ownedCount,
+    imageByCar,
+  };
 }

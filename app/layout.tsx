@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import AppHeader from '@/components/AppHeader';
 import BottomNav from '@/components/BottomNav';
 import PersistStorage from '@/components/PersistStorage';
+import SyncManager from '@/components/SyncManager';
 import './globals.css';
 
 const geistSans = Geist({
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
   title: 'Tomica 圖鑑',
   description: 'Tomica 小汽車收藏管理 — 拍照辨識、防止重複購買',
   manifest: '/manifest.json',
+  icons: { icon: '/icon.svg', apple: '/icon.svg' },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -53,6 +55,7 @@ export default function RootLayout({
           <BottomNav />
         </Suspense>
         <PersistStorage />
+        <SyncManager />
       </body>
     </html>
   );

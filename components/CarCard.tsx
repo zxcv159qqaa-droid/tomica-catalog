@@ -11,6 +11,8 @@ interface CarCardProps {
   collectedVariants?: string[];
   // Thumbnail found after scanning, used when the catalog has no image
   fallbackImage?: string;
+  // Copies owned across variants
+  qty?: number;
 }
 
 export default function CarCard({
@@ -18,6 +20,7 @@ export default function CarCard({
   isWishlisted,
   collectedVariants = [],
   fallbackImage,
+  qty = 0,
 }: CarCardProps) {
   const isCollected = collectedVariants.length > 0;
   const variantCount = car.variants.length;
@@ -51,7 +54,7 @@ export default function CarCard({
           </span>
           {isCollected && (
             <span className="absolute top-5 right-5 bg-red-600 text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow">
-              ✓ 已收藏
+              ✓ 已收藏{qty > 1 ? ` ×${qty}` : ''}
             </span>
           )}
           {isWishlisted && !isCollected && (

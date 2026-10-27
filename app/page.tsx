@@ -6,6 +6,7 @@ import ScannedCard from '@/components/ScannedCard';
 import { useCollection } from '@/lib/useCollection';
 import CarCard from '@/components/CarCard';
 import SearchBar from '@/components/SearchBar';
+import NewReleases from '@/components/NewReleases';
 
 type FilterMode = 'collected' | 'wishlist' | 'missing';
 
@@ -16,7 +17,7 @@ export default function HomePage() {
   const [filter, setFilter] = useState<FilterMode>('collected');
   const allCars = useMemo(() => getAllCars(), []);
   const currentCars = useMemo(() => getCurrentCars(), []);
-  const { collectedByCar, scannedItems, wishlistIds, ownedCount, imageByCar } =
+  const { collectedByCar, qtyByCar, scannedItems, wishlistIds, ownedCount, imageByCar } =
     useCollection();
   const collectedCurrent = currentCars.filter((c) => collectedByCar.has(c.id)).length;
   const percent = (collectedCurrent / currentCars.length) * 100;
@@ -76,6 +77,8 @@ export default function HomePage() {
           />
         </div>
       </section>
+
+      <NewReleases />
 
       <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 space-y-3">
         <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
@@ -142,6 +145,7 @@ export default function HomePage() {
               isWishlisted={wishlistIds.has(car.id)}
               collectedVariants={collectedByCar.get(car.id)}
               fallbackImage={imageByCar.get(car.id)}
+              qty={qtyByCar.get(car.id)}
             />
           ))}
         </div>

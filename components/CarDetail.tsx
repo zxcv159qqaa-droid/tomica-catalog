@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useLiveQuery } from 'dexie-react-hooks';
 import {
   getCar,
   getCarById,
@@ -12,8 +12,10 @@ import {
   parseCarId,
   seriesLabel,
 } from '@/lib/tomica-data';
-import { db, type CollectionItem } from '@/lib/db';
+import { db } from '@/lib/db';
+import { addCopy } from '@/lib/collection-actions';
 import CarThumb from '@/components/CarThumb';
+import CopyEditor from '@/components/CopyEditor';
 
 export default function CarDetail({ carKey }: { carKey: string }) {
   const router = useRouter();
@@ -22,54 +24,31 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   const series = car?.series ?? parsed.series;
   const number = car?.number ?? parsed.number;
   const label = `${series === 'regular' ? '' : seriesLabel(series) + ' '}${car?.code ?? `No.${number}`}`;
-
-  const [collectedVariants, setCollectedVariants] = useState<Set<string>>(
-    new Set()
-  );
-  const [scanned, setScanned] = useState<CollectionItem[]>([]);
-  const [isWishlisted, setIsWishlisted] = useState(false);
-  const [foundImage, setFoundImage] = useState<string>();
-  const [loaded, setLoaded] = useState(false);
-  const [ownedCarIds, setOwnedCarIds] = useState<Set<string>>(new Set());
   const generations = car && !car.code ? getGenerations(series, number) : [];
 
-  useEffect(() => {
-    const load = async () => {
-      const items = await db.collection
-        .where('tomicaNumber')
-        .equals(number)
-        .toArray();
-      setOwnedCarIds(
-        new Set(
-          items
-            .filter((i) => !i.name)
-            .map((i) => getCarByVariantId(i.variantId)?.id)
-            .filter(Boolean) as string[]
-        )
-      );
-      const variantIds = new Set(car?.variants.map((v) => v.id));
-      setCollectedVariants(
-        new Set(
-          items
-            .filter((i) => !i.name && variantIds.has(i.variantId))
-            .map((i) => i.variantId)
-        )
-      );
-      // SP/RD cars don't own a unique number, so scanned cars can't be tied to them
-      setScanned(
-        car?.code || car?.retired
-          ? []
-          : items.filter((i) => i.name && (i.series || 'regular') === series)
-      );
-      if (car) {
-        const wish = await db.wishlist.where('variantId').equals(car.id).count();
-        setIsWishlisted(wish > 0);
-        if (!car.image) setFoundImage((await db.carImages.get(car.id))?.src);
-      }
-      setLoaded(true);
-    };
-    load();
-  }, [car, number, series]);
+  const data = useLiveQuery(async () => {
+    const items = await db.collection.where('tomicaNumber').equals(number).toArray();
+    const wish = car ? await db.wishlist.where('variantId').equals(car.id).count() : 0;
+    const found = car && !car.image ? (await db.carImages.get(car.id))?.src : undefined;
+    return { items, isWishlisted: wish > 0, foundImage: found };
+  }, [car, number]);
+
+  const items = data?.items ?? [];
+  const isWishlisted = data?.isWishlisted ?? false;
+  const foundImage = data?.foundImage;
+  const ownedCarIds = new Set(
+    items
+      .filter((i) => !i.name)
+      .map((i) => getCarByVariantId(i.variantId)?.id)
+      .filter(Boolean) as string[]
+  );
+  const itemByVariant = new Map(items.filter((i) => !i.name).map((i) => [i.variantId, i]));
+  const ownsThisCar = !!car?.variants.some((v) => itemByVariant.has(v.id));
+  // SP/RD cars don't own a unique number, so scanned cars can't be tied to them
+  const scanned =
+    car?.code || car?.retired
+      ? []
+      : items.filter((i) => i.name && (i.series || 'regular') === series);
 
   const backButton = (
     <button
@@ -80,11 +59,6 @@ export default function CarDetail({ carKey }: { carKey: string }) {
     </button>
   );
 
-  const removeScanned = async (id: number) => {
-    await db.collection.delete(id);
-    setScanned((prev) => prev.filter((i) => i.id !== id));
-  };
-
   const scannedSection = scanned.length > 0 && (
     <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 mb-4">
       <h2 className="font-semibold mb-3">已收藏的 {label}</h2>
@@ -92,7 +66,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         {scanned.map((item) => (
           <div
             key={item.id}
-            className="flex items-center justify-between gap-3 p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
+            className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
           >
             <CarThumb src={item.thumb} series={item.series} number={item.tomicaNumber} code={item.code} />
             <div className="flex-1 min-w-0">
@@ -101,19 +75,14 @@ export default function CarDetail({ carKey }: { carKey: string }) {
                 <p className="text-xs text-slate-400 mt-0.5">{item.variantName}</p>
               )}
             </div>
-            <button
-              onClick={() => item.id && removeScanned(item.id)}
-              className="px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
-            >
-              移除
-            </button>
+            <CopyEditor item={item} onAdd={() => {}} />
           </div>
         ))}
       </div>
     </div>
   );
 
-  if (!loaded) {
+  if (!data) {
     return <div className="px-4 sm:px-6 pt-5 max-w-3xl mx-auto">{backButton}</div>;
   }
 
@@ -131,25 +100,6 @@ export default function CarDetail({ carKey }: { carKey: string }) {
     );
   }
 
-  const toggleVariant = async (variantId: string) => {
-    if (collectedVariants.has(variantId)) {
-      await db.collection.where('variantId').equals(variantId).delete();
-      setCollectedVariants((prev) => {
-        const next = new Set(prev);
-        next.delete(variantId);
-        return next;
-      });
-    } else {
-      await db.collection.add({
-        tomicaNumber: car.number,
-        variantId,
-        series: car.series,
-        addedAt: new Date(),
-      });
-      setCollectedVariants((prev) => new Set(prev).add(variantId));
-    }
-  };
-
   const toggleWishlist = async () => {
     if (isWishlisted) {
       await db.wishlist.where('variantId').equals(car.id).delete();
@@ -160,7 +110,6 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         addedAt: new Date(),
       });
     }
-    setIsWishlisted(!isWishlisted);
   };
 
   return (
@@ -244,13 +193,13 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         <h2 className="font-semibold mb-3">版本一覽（{car.variants.length}）</h2>
         <div className="space-y-2">
           {car.variants.map((variant) => {
-            const isOwned = collectedVariants.has(variant.id);
+            const owned = itemByVariant.get(variant.id);
             const meta = [variant.color, variant.release_year].filter(Boolean).join(' · ');
             return (
               <div
                 key={variant.id}
-                className={`flex items-center justify-between p-3 rounded-xl border transition-colors ${
-                  isOwned
+                className={`flex flex-wrap items-center justify-between p-3 rounded-xl border transition-colors ${
+                  owned
                     ? 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800'
                     : 'bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700'
                 }`}
@@ -266,16 +215,10 @@ export default function CarDetail({ carKey }: { carKey: string }) {
                   </div>
                   {meta && <p className="text-xs text-slate-400 mt-0.5">{meta}</p>}
                 </div>
-                <button
-                  onClick={() => toggleVariant(variant.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    isOwned
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
-                  }`}
-                >
-                  {isOwned ? '已收藏 ✓' : '加入收藏'}
-                </button>
+                {owned ? (
+                  <span className="text-xs font-bold text-blue-600">已收藏 ✓</span>
+                ) : null}
+                <CopyEditor item={owned} onAdd={() => addCopy(car, variant.id)} />
               </div>
             );
           })}
@@ -294,7 +237,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
           <div className="space-y-2">
             {generations.map((g) => {
               const owned =
-                ownedCarIds.has(g.id) || (g.id === car.id && collectedVariants.size > 0);
+                ownedCarIds.has(g.id) || (g.id === car.id && ownsThisCar);
               return (
                 <Link
                   key={g.id}

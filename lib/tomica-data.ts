@@ -107,6 +107,19 @@ export function getGenerations(series: string, number: number): TomicaCar[] {
     .sort((a, b) => Number(!!a.retired) - Number(!!b.retired) || (b.gen ?? 0) - (a.gen ?? 0));
 }
 
+// Quick lookup by what's printed on the box: a number (all generations) or a code like "SP" / "RD-01"
+export function lookupCars(series: string, input: string): TomicaCar[] {
+  const q = normalizeCode(input);
+  if (!q) return [];
+  if (/^\d+$/.test(q)) {
+    const n = parseInt(q, 10);
+    const gens = getGenerations(series, n);
+    // Series like Dream mix plain numbers into codes ("151"), so fall back to the code match
+    return gens.length ? gens : catalog.filter((c) => c.series === series && normalizeCode(c.code) === q);
+  }
+  return catalog.filter((c) => c.series === series && normalizeCode(c.code) === q);
+}
+
 export function getCar(series: string, number: number): TomicaCar | undefined {
   return byId.get(carId(series, number));
 }
