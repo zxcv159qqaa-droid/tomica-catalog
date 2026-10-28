@@ -55,11 +55,20 @@ export interface CarImage {
   addedAt: Date;
 }
 
+// Owned record for a Tomica World building/playset (item data lives in data/tomica-world.json)
+export interface WorldOwned {
+  id: string;
+  qty?: number;
+  notes?: string;
+  addedAt: Date;
+}
+
 const db = new Dexie('TomicaCatalogDB') as Dexie & {
   collection: EntityTable<CollectionItem, 'id'>;
   wishlist: EntityTable<WishlistItem, 'id'>;
   carImages: EntityTable<CarImage, 'carId'>;
   janCodes: EntityTable<JanCode, 'jan'>;
+  worldItems: EntityTable<WorldOwned, 'id'>;
 };
 
 db.version(1).stores({
@@ -73,6 +82,10 @@ db.version(2).stores({
 
 db.version(3).stores({
   janCodes: 'jan, carId, variantId',
+});
+
+db.version(4).stores({
+  worldItems: 'id',
 });
 
 export { db };

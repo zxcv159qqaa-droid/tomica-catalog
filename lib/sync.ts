@@ -87,7 +87,7 @@ let hooked = false;
 export function installSyncHooks() {
   if (hooked) return;
   hooked = true;
-  for (const table of [db.collection, db.wishlist, db.carImages, db.janCodes]) {
+  for (const table of [db.collection, db.wishlist, db.carImages, db.janCodes, db.worldItems]) {
     table.hook('creating', markChanged);
     table.hook('updating', markChanged);
     table.hook('deleting', markChanged);
@@ -145,6 +145,8 @@ function merge(remote: Backup, local: Backup): Backup {
     wishlist: unionBy(remote.wishlist, local.wishlist, 'variantId'),
     carImages: unionBy(remote.carImages, local.carImages, 'carId'),
     janCodes: unionBy(remote.janCodes, local.janCodes, 'jan'),
+    // Older sync documents have no worldItems; unionBy treats a missing side as empty
+    worldItems: unionBy(remote.worldItems, local.worldItems, 'id'),
     exportedAt: new Date().toISOString(),
   };
 }
