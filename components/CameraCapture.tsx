@@ -1,6 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import CropDialog from '@/components/CropDialog';
 
 interface CameraCaptureProps {
   onCapture: (base64: string, mimeType: string) => void;
@@ -12,26 +13,28 @@ export default function CameraCapture({
   disabled,
 }: CameraCaptureProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [picked, setPicked] = useState<File | null>(null);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result as string;
-      const base64 = result.split(',')[1];
-      onCapture(base64, file.type);
-    };
-    reader.readAsDataURL(file);
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
+    setPicked(file);
+    e.target.value = '';
   };
 
   return (
     <div className="flex flex-col gap-3">
+      {picked && (
+        <CropDialog
+          file={picked}
+          onCancel={() => setPicked(null)}
+          onDone={(base64, mimeType) => {
+            setPicked(null);
+            onCapture(base64, mimeType);
+          }}
+        />
+      )}
       <input
         ref={fileInputRef}
         type="file"
