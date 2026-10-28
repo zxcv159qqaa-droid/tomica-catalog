@@ -41,16 +41,24 @@ function PhotoScan() {
     [result, series, number, code]
   );
   const scanId = scanVariantId(number, `${code ?? ''}${result?.name ?? ''}`, series);
+  // Normal and first-edition boxes share a number: pick the one the scan read
+  const scanVariant = useMemo(() => {
+    if (!catalogMatch) return undefined;
+    const first = /初回|first/i.test(result?.variant ?? '');
+    return (
+      catalogMatch.variants.find((v) => !!v.is_first_edition === first) ?? catalogMatch.variants[0]
+    );
+  }, [catalogMatch, result]);
 
   useEffect(() => {
     if (!result?.success) return;
-    const ids = catalogMatch ? catalogMatch.variants.map((v) => v.id) : [scanId];
+    const ids = scanVariant ? [scanVariant.id] : [scanId];
     db.collection
       .where('variantId')
       .anyOf(ids)
       .count()
       .then((n) => setOwnedCheck({ scan: result, owned: n > 0 }));
-  }, [result, catalogMatch, scanId]);
+  }, [result, scanVariant, scanId]);
 
   useEffect(() => {
     fetch('/api/scan', { method: 'HEAD' })
@@ -90,10 +98,10 @@ function PhotoScan() {
 
     const ownPhoto = previewUrl ? await makeThumb(previewUrl) : undefined;
     let scannedId: number | undefined;
-    if (catalogMatch) {
+    if (catalogMatch && scanVariant) {
       await db.collection.add({
         tomicaNumber: catalogMatch.number,
-        variantId: catalogMatch.variants[0].id,
+        variantId: scanVariant.id,
         series,
         addedAt: new Date(),
       });

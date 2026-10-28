@@ -530,6 +530,12 @@
       {
         "id": "r34",
         "name": "通常版"
+      },
+      {
+        "id": "r34f",
+        "name": "初回特別仕様（赤）",
+        "color": "赤",
+        "is_first_edition": true
       }
     ],
     "image": "https://www.takaratomy.co.jp/products/tomica/lineup/regular/images/pic_034_01.webp",
