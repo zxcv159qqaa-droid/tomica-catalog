@@ -82,7 +82,13 @@ export default function QuickLookup() {
             setInput(e.target.value.toUpperCase().slice(0, 8));
           }}
           inputMode="numeric"
-          placeholder={series === 'dream' ? '編號或代號，例如 151、SP、RD-01' : '盒子上的編號，例如 46'}
+          placeholder={
+            series === 'dream'
+              ? '編號或代號，例如 151、SP、RD-01'
+              : series === 'disney'
+                ? '盒子上的編號，例如 2 或 DM-02'
+                : '盒子上的編號，例如 46'
+          }
           className="w-full px-4 py-3 text-xl font-black tracking-wide bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-red-600 focus:bg-white"
         />
         <div className="grid grid-cols-3 gap-2">

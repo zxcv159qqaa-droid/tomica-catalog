@@ -34,7 +34,7 @@ const byVariantId = new Map(
   catalog.flatMap((car) => car.variants.map((v) => [v.id, car] as const))
 );
 
-export const CATALOG_SERIES = ['regular', 'premium', 'unlimited', 'dream'] as const;
+export const CATALOG_SERIES = ['regular', 'premium', 'unlimited', 'dream', 'disney'] as const;
 
 // Regular boxes print the generation as a sub-number (46-8); other series have no such marking
 export function genLabel(car: TomicaCar): string | undefined {
@@ -76,16 +76,17 @@ export function findCatalogMatch(
       match = car;
     }
   }
-  return { match, holder: candidates[0] };
+  return { match, holder: candidates.find((c) => !c.retired) ?? candidates[0] };
 }
 
 export function carId(series: string, number: number): string {
   return `${series}-${number}`;
 }
 
-// Accepts "premium-5" or a bare number (regular series, used by older links)
+// Accepts "premium-5", coded ids like "dream-rd-1" / "disney-dm-01-2" (number = first digits after the
+// series), or a bare number (regular series, used by older links)
 export function parseCarId(id: string): { series: string; number: number } {
-  const m = /^([a-z]+)-(\d+)$/.exec(id);
+  const m = /^([a-z]+)-(?:[a-z]+-?)*(\d+)(?:-\d+)?$/.exec(id);
   if (m) return { series: m[1], number: parseInt(m[2], 10) };
   return { series: 'regular', number: parseInt(id, 10) };
 }
@@ -107,10 +108,28 @@ export function getGenerations(series: string, number: number): TomicaCar[] {
     .sort((a, b) => Number(!!a.retired) - Number(!!b.retired) || (b.gen ?? 0) - (a.gen ?? 0));
 }
 
+// Every car that has used a printed code (Disney Motors reuses DM-01 … for new cars over the years),
+// current one first, then newest to oldest
+export function getCodeGenerations(series: string, code: string): TomicaCar[] {
+  const q = normalizeCode(code);
+  return catalog
+    .map((c, i) => [c, i] as const)
+    .filter(([c]) => c.series === series && normalizeCode(c.code) === q)
+    .sort(([a, i], [b, j]) => Number(!!a.retired) - Number(!!b.retired) || j - i)
+    .map(([c]) => c);
+}
+
 // Quick lookup by what's printed on the box: a number (all generations) or a code like "SP" / "RD-01"
 export function lookupCars(series: string, input: string): TomicaCar[] {
-  const q = normalizeCode(input);
+  let q = normalizeCode(input);
   if (!q) return [];
+  // Disney Motors boxes are all coded: "2", "DM2", "DM-02" and "dm-02" all mean DM-02
+  if (series === 'disney') {
+    const d = /^(?:DM-?)?(\d{1,2})$/.exec(q);
+    if (d) q = `DM-${d[1].padStart(2, '0')}`;
+    else if (/^DM-?EX\d+$/.test(q)) q = `DM-EX${q.replace(/\D/g, '').padStart(2, '0')}`;
+    return getCodeGenerations(series, q);
+  }
   if (/^\d+$/.test(q)) {
     const n = parseInt(q, 10);
     const gens = getGenerations(series, n);

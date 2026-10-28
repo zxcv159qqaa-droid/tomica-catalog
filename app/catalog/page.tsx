@@ -65,6 +65,7 @@ export default function CatalogPage() {
           (a, b) =>
             (a.code ? 1 : 0) - (b.code ? 1 : 0) ||
             a.number - b.number ||
+            (a.code ?? '').localeCompare(b.code ?? '', undefined, { numeric: true }) ||
             Number(!!a.retired) - Number(!!b.retired) ||
             (b.gen ?? 0) - (a.gen ?? 0)
         ),
@@ -113,7 +114,7 @@ export default function CatalogPage() {
               onChange={(e) => setManufacturer(e.target.value)}
               className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2.5 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-red-500"
             >
-              <option value="all">{series === 'dream' ? '所有主題' : '所有製造商'}</option>
+              <option value="all">{series === 'dream' ? '所有主題' : series === 'disney' ? '所有角色' : '所有製造商'}</option>
               {manufacturers.map((m) => (
                 <option key={m} value={m}>
                   {m}
@@ -155,7 +156,9 @@ export default function CatalogPage() {
           {showHistory &&
             (series === 'premium'
               ? '；歷代舊款：トミカの森 プレミアム館'
-              : '；歷代舊款：ピクシブ百科事典、こつめBLOG')}
+              : series === 'disney'
+                ? '；同代號歷代車款：ディズニーモータース官網'
+                : '；歷代舊款：ピクシブ百科事典、こつめBLOG')}
         </p>
       </section>
 

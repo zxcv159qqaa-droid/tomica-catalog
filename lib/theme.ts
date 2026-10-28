@@ -26,6 +26,11 @@ const SERIES_STYLES: Record<string, SeriesStyle> = {
     badge: 'bg-gradient-to-br from-blue-600 to-violet-600 text-white',
     pillActive: 'bg-indigo-600 text-white',
   },
+  disney: {
+    dot: 'bg-sky-500',
+    badge: 'bg-gradient-to-br from-sky-500 to-blue-700 text-white',
+    pillActive: 'bg-sky-600 text-white',
+  },
 };
 
 const FALLBACK: SeriesStyle = {

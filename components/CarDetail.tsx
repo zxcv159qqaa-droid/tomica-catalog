@@ -8,6 +8,7 @@ import {
   getCarById,
   getCarByVariantId,
   genLabel,
+  getCodeGenerations,
   getGenerations,
   parseCarId,
   seriesLabel,
@@ -26,7 +27,14 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   const series = car?.series ?? parsed.series;
   const number = car?.number ?? parsed.number;
   const label = `${series === 'regular' ? '' : seriesLabel(series) + ' '}${car?.code ?? `No.${number}`}`;
-  const generations = car && !car.code ? getGenerations(series, number) : [];
+  // Disney Motors reuses its DM-xx codes for new cars, so coded cars list their code's history too
+  const generations = !car
+    ? []
+    : car.code
+      ? series === 'disney'
+        ? getCodeGenerations(series, car.code)
+        : []
+      : getGenerations(series, number);
 
   const data = useLiveQuery(async () => {
     const items = await db.collection.where('tomicaNumber').equals(number).toArray();
@@ -175,7 +183,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
 
         <div className="grid grid-cols-2 gap-3 text-sm mb-6">
           <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3">
-            <p className="text-slate-400 text-xs">{car.series === 'dream' ? '主題' : '製造商'}</p>
+            <p className="text-slate-400 text-xs">{car.series === 'dream' ? '主題' : car.series === 'disney' ? '角色' : '製造商'}</p>
             <p className="font-medium">{car.manufacturer}</p>
           </div>
           <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3">
@@ -239,7 +247,12 @@ export default function CarDetail({ carKey }: { carKey: string }) {
           <h2 className="font-semibold mb-1">歷代 {label}（{generations.length}）</h2>
           <p className="text-xs text-slate-400 mb-3">
             同一個編號以前出過的車，由新到舊。資料來源：
-            {series === 'premium' ? 'トミカの森 プレミアム館' : 'ピクシブ百科事典、こつめBLOG'}。
+            {series === 'premium'
+              ? 'トミカの森 プレミアム館'
+              : series === 'disney'
+                ? 'タカラトミー ディズニーモータース公式'
+                : 'ピクシブ百科事典、こつめBLOG'}
+            。
           </p>
           <div className="space-y-2">
             {generations.map((g) => {
@@ -256,7 +269,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
                   } ${owned ? 'bg-blue-50 dark:bg-blue-950' : 'bg-slate-50 dark:bg-slate-900'}`}
                 >
                   <span className="w-12 shrink-0 text-xs font-bold text-slate-500">
-                    {genLabel(g) ?? `No.${number}`}
+                    {genLabel(g) ?? g.code ?? `No.${number}`}
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{g.name_ja}</p>
