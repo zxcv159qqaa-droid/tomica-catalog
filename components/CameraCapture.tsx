@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import CropDialog from '@/components/CropDialog';
+import { ImageIcon, ScanIcon } from '@/components/icons';
 
 interface CameraCaptureProps {
   onCapture: (base64: string, mimeType: string) => void;
@@ -49,9 +50,9 @@ export default function CameraCapture({
       <button
         onClick={() => fileInputRef.current?.click()}
         disabled={disabled}
-        className="w-full py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 text-white rounded-xl font-semibold text-lg transition-colors flex items-center justify-center gap-2"
+        className="press flex h-14 w-full items-center justify-center gap-2 rounded-[10px] bg-[#e50012] text-lg font-medium text-white disabled:opacity-50"
       >
-        <span className="text-2xl">📷</span>
+        <ScanIcon size={24} />
         拍照辨識
       </button>
 
@@ -67,9 +68,9 @@ export default function CameraCapture({
       <button
         onClick={() => document.getElementById('gallery-input')?.click()}
         disabled={disabled}
-        className="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 disabled:bg-slate-100 text-slate-700 dark:text-slate-300 rounded-xl font-medium transition-colors flex items-center justify-center gap-2"
+        className="press flex h-12 w-full items-center justify-center gap-2 rounded-[10px] border border-line bg-surface font-medium disabled:opacity-50"
       >
-        <span className="text-xl">🖼️</span>
+        <ImageIcon size={20} />
         從相簿選擇
       </button>
     </div>

@@ -9,6 +9,7 @@ import { addCopy } from '@/lib/collection-actions';
 import { useCollection } from '@/lib/useCollection';
 import CarThumb from '@/components/CarThumb';
 import SearchBar from '@/components/SearchBar';
+import { BarcodeIcon, CheckIcon, PlusIcon } from '@/components/icons';
 
 interface Detector {
   detect(source: CanvasImageSource | ImageBitmap): Promise<{ rawValue: string }[]>;
@@ -94,33 +95,33 @@ export default function BarcodeScan() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 space-y-3">
-        <p className="text-xs text-slate-500">
+    <div className="space-y-5">
+      <section className="space-y-3">
+        <p className="text-sm text-muted">
           掃盒底的 JAN 條碼（4904810 開頭的 13 碼）。第一次掃到的條碼要選一次是哪台車，之後就能秒查。
         </p>
-        <div className="relative rounded-xl overflow-hidden bg-slate-950 aspect-video">
+        <div className="relative aspect-video overflow-hidden rounded-2xl bg-[#14161a]">
           <video ref={videoRef} playsInline muted className={`w-full h-full object-cover ${scanning ? '' : 'hidden'}`} />
           {scanning ? (
-            <div className="absolute left-[8%] right-[8%] top-1/2 h-0.5 bg-red-600 shadow-[0_0_12px_#e60012] animate-pulse" />
+            <div className="absolute left-[8%] right-[8%] top-1/2 h-0.5 bg-[#e50012] shadow-[0_0_12px_#e50012] motion-safe:animate-pulse" />
           ) : (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-slate-300 text-sm">
-              <span className="text-3xl mb-2">▦</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 text-[#aeb4be] text-sm">
+              <BarcodeIcon size={36} className="mb-2" />
               將盒底條碼對準鏡頭
             </div>
           )}
         </div>
         <div className="flex gap-2">
           {scanning ? (
-            <button onClick={stop} className="flex-1 py-2.5 rounded-xl bg-rose-600 text-white text-sm font-bold">
+            <button onClick={stop} className="press h-11 flex-1 rounded-[10px] bg-[#24272c] text-sm font-medium text-white dark:bg-[#eef0f3] dark:text-[#14161a]">
               停止相機
             </button>
           ) : (
-            <button onClick={start} className="flex-1 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-bold">
+            <button onClick={start} className="press h-11 flex-1 rounded-[10px] bg-[#e50012] text-sm font-medium text-white">
               啟動相機掃描
             </button>
           )}
-          <label className="cursor-pointer py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-semibold">
+          <label className="press flex h-11 cursor-pointer items-center rounded-[10px] border border-line bg-surface px-4 text-sm font-medium">
             上傳照片
             <input
               type="file"
@@ -141,12 +142,14 @@ export default function BarcodeScan() {
             onChange={(e) => setManual(e.target.value.replace(/\D/g, '').slice(0, 13))}
             inputMode="numeric"
             placeholder="或手動輸入 13 碼條碼"
-            className="flex-1 px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-mono"
+            className="tnum h-11 min-w-0 flex-1 rounded-[10px] border border-line bg-surface px-3 text-[15px] focus:border-[#e50012] focus:outline-none focus:ring-2 focus:ring-[#e50012]/30"
           />
-          <button className="px-4 rounded-xl bg-slate-800 text-white text-sm font-bold">查詢</button>
+          <button className="press h-11 rounded-[10px] bg-[#24272c] px-4 text-sm font-medium text-white dark:bg-[#eef0f3] dark:text-[#14161a]">
+            查詢
+          </button>
         </form>
-        {error && <p className="text-xs text-rose-600">{error}</p>}
-      </div>
+        {error && <p className="text-sm text-brand-text">{error}</p>}
+      </section>
 
       {jan && <JanResult key={jan} jan={jan} />}
     </div>
@@ -172,10 +175,10 @@ function JanResult({ jan }: { jan: string }) {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-      <div className="px-4 py-2 text-xs font-mono text-slate-500 border-b border-slate-100 dark:border-slate-800 flex justify-between">
+    <div className="overflow-hidden rounded-2xl border border-line bg-surface">
+      <div className="tnum flex justify-between gap-3 border-b border-line px-4 py-2 text-sm text-muted">
         <span>JAN {jan}</span>
-        {!isTakaraTomyJan(jan) && <span className="text-amber-600 font-sans">不像 Tomica 的條碼</span>}
+        {!isTakaraTomyJan(jan) && <span className="text-[#9a5b00] dark:text-[#ffc400]">不像 Tomica 的條碼</span>}
       </div>
 
       {linked && car && (
@@ -190,8 +193,8 @@ function JanResult({ jan }: { jan: string }) {
               size="lg"
             />
             <Link href={`/catalog/${car.id}`} className="flex-1 min-w-0">
-              <p className="font-bold">{car.name_ja}</p>
-              <p className="text-xs text-slate-400">{car.manufacturer}</p>
+              <p className="font-medium">{car.name_ja}</p>
+              <p className="text-[13px] text-muted">{car.manufacturer}</p>
             </Link>
           </div>
           <div className="px-4 pb-4 flex gap-2">
@@ -200,11 +203,12 @@ function JanResult({ jan }: { jan: string }) {
                 await addCopy(car);
                 setAdded(true);
               }}
-              className="flex-1 py-2 rounded-xl tomica-red text-white text-sm font-bold"
+              className="press flex h-11 flex-1 items-center justify-center gap-1.5 rounded-[10px] bg-[#e50012] text-sm font-medium text-white"
             >
-              {added ? '✓ 已加入 1 台' : '買了，加入收藏 +1'}
+              {added ? <CheckIcon size={16} className="stamp-in" /> : <PlusIcon size={16} />}
+              {added ? '已加入 1 台' : '買了，加入收藏 +1'}
             </button>
-            <button onClick={() => setRelinking(true)} className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs">
+            <button onClick={() => setRelinking(true)} className="press h-11 rounded-[10px] border border-line px-3 text-sm">
               對錯車？
             </button>
           </div>
@@ -216,8 +220,8 @@ function JanResult({ jan }: { jan: string }) {
           <OwnedBanner qty={itemQty(scanned)} />
           <div className="p-4 flex items-center gap-3">
             <CarThumb src={scanned.thumb} series={scanned.series} number={scanned.tomicaNumber} code={scanned.code} size="lg" />
-            <p className="flex-1 font-bold">{scanned.name}</p>
-            <button onClick={() => setRelinking(true)} className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs">
+            <p className="flex-1 font-medium">{scanned.name}</p>
+            <button onClick={() => setRelinking(true)} className="press h-11 rounded-[10px] border border-line px-3 text-sm">
               對錯車？
             </button>
           </div>
@@ -231,8 +235,11 @@ function JanResult({ jan }: { jan: string }) {
 
 function OwnedBanner({ qty }: { qty: number }) {
   return (
-    <div className={`p-4 text-white ${qty > 0 ? 'bg-emerald-600' : 'tomica-red'}`}>
-      <p className="text-lg font-black">{qty > 0 ? `✓ 已經有了（${qty} 台）` : '✗ 車庫裡還沒有'}</p>
+    <div className={`p-4 ${qty > 0 ? 'bg-[#e50012] text-white' : 'border-b border-line'}`}>
+      <p className="flex items-center gap-2 text-xl font-medium">
+        {qty > 0 && <CheckIcon size={22} />}
+        {qty > 0 ? `已經有了（${qty} 台）` : '車庫裡還沒有'}
+      </p>
     </div>
   );
 }
@@ -248,12 +255,12 @@ function LinkPicker({ onPick }: { onPick: (t: { carId?: string; variantId?: stri
 
   return (
     <div className="p-4 space-y-3">
-      <p className="text-sm font-bold">這個條碼還沒對應到車款，是哪一台？</p>
+      <p className="text-base font-medium">這個條碼還沒對應到車款，是哪一台？</p>
       <SearchBar value={query} onChange={setQuery} placeholder="輸入編號或車名，例如 46 或 キャスト" />
-      <ul className="divide-y divide-slate-100 dark:divide-slate-800 max-h-80 overflow-y-auto">
+      <ul className="divide-y divide-line max-h-80 overflow-y-auto">
         {results.map((car) => (
           <li key={car.id}>
-            <button onClick={() => onPick({ carId: car.id })} className="w-full flex items-center gap-3 py-2 text-left">
+            <button onClick={() => onPick({ carId: car.id })} className="flex min-h-14 w-full items-center gap-3 py-2 text-left">
               <CarThumb
                 src={car.image}
                 series={car.series}
@@ -261,7 +268,7 @@ function LinkPicker({ onPick }: { onPick: (t: { carId?: string; variantId?: stri
                 code={car.retired && car.series === 'regular' ? genLabel(car) : car.code}
               />
               <span className="text-sm">
-                {car.retired && <span className="text-[10px] mr-1 px-1 rounded bg-slate-200 dark:bg-slate-700">舊款</span>}
+                {car.retired && <span className="mr-1.5 rounded bg-line px-1.5 py-0.5 text-xs text-muted">舊款</span>}
                 {car.name_ja}
               </span>
             </button>
@@ -270,7 +277,7 @@ function LinkPicker({ onPick }: { onPick: (t: { carId?: string; variantId?: stri
         {!query &&
           scannedItems.map((s) => (
             <li key={s.id}>
-              <button onClick={() => onPick({ variantId: s.variantId })} className="w-full flex items-center gap-3 py-2 text-left">
+              <button onClick={() => onPick({ variantId: s.variantId })} className="flex min-h-14 w-full items-center gap-3 py-2 text-left">
                 <CarThumb src={s.thumb} series={s.series} number={s.tomicaNumber} code={s.code} />
                 <span className="text-sm">{s.name}（掃描加入）</span>
               </button>

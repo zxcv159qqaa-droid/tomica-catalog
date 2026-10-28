@@ -5,6 +5,9 @@ import Link from 'next/link';
 import CameraCapture from '@/components/CameraCapture';
 import QuickLookup from '@/components/QuickLookup';
 import BarcodeScan from '@/components/BarcodeScan';
+import Segmented from '@/components/Segmented';
+import { NumberTab } from '@/components/CardParts';
+import { BarcodeIcon, CheckIcon, PlusIcon, ScanIcon, SearchIcon, WarningIcon } from '@/components/icons';
 import type { ScanResult } from '@/lib/gemini';
 import {
   carId,
@@ -146,25 +149,30 @@ function PhotoScan() {
 
   if (!canScan) {
     return (
-      <div>
-        <div className="bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
-          <p className="text-sm text-amber-800 dark:text-amber-200 mb-3">
-            需要設定 Google Gemini API Key 才能使用拍照辨識功能
-          </p>
-          <Link
-            href="/settings"
-            className="inline-block px-4 py-2 bg-amber-500 text-white rounded-lg text-sm font-medium"
-          >
-            前往設定
-          </Link>
-        </div>
+      <div className="rounded-2xl border border-line bg-surface p-4">
+        <p className="mb-3 flex items-start gap-2 text-sm">
+          <WarningIcon size={18} className="mt-0.5 shrink-0 text-brand-text" />
+          需要設定 Google Gemini API Key 才能使用拍照辨識功能
+        </p>
+        <Link
+          href="/settings"
+          className="press inline-flex h-11 items-center rounded-[10px] bg-[#24272c] px-4 text-sm font-medium text-white dark:bg-[#eef0f3] dark:text-[#14161a]"
+        >
+          前往設定
+        </Link>
       </div>
     );
   }
 
+  const confidenceText =
+    result?.confidence === 'high' ? '高' : result?.confidence === 'medium' ? '中' : '低';
+  const confidenceLevel = result?.confidence === 'high' ? 3 : result?.confidence === 'medium' ? 2 : 1;
+  const secondaryBtn =
+    'press inline-flex h-11 flex-1 items-center justify-center rounded-[10px] border border-line bg-surface px-4 text-sm font-medium';
+
   return (
     <div>
-      <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
+      <p className="mb-5 text-sm text-muted">
         拍攝 Tomica 包裝盒正面或車體，AI 會幫你辨識車款編號和版本
       </p>
 
@@ -173,80 +181,96 @@ function PhotoScan() {
       {previewUrl && (
         <div className="mt-6">
           {/* eslint-disable-next-line @next/next/no-img-element -- local data URL preview */}
-          <img
-            src={previewUrl}
-            alt="拍攝的照片"
-            className="w-full rounded-xl border border-slate-200 dark:border-slate-700"
-          />
+          <img src={previewUrl} alt="拍攝的照片" className="w-full rounded-2xl border border-line" />
         </div>
       )}
 
       {scanning && (
-        <div className="mt-6 text-center py-8">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-500 border-t-transparent" />
-          <p className="mt-3 text-sm text-slate-500">辨識中...</p>
+        <div className="mt-6 py-8 text-center" role="status">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-[#e50012] border-t-transparent motion-reduce:animate-none" />
+          <p className="mt-3 text-sm text-muted">辨識中...</p>
         </div>
       )}
 
       {result && !scanning && (
         <div className="mt-6">
           {result.success ? (
-            <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 rounded-xl p-4">
-              <h3 className="font-semibold text-green-800 dark:text-green-200 mb-2">
-                辨識結果
-              </h3>
-              <div className="space-y-1 text-sm">
-                <p>
-                  <span className="text-slate-500">編號：</span>
-                  <strong>
-                    {seriesLabel(series)} {displayCode(code, number)}
-                  </strong>
-                </p>
-                <p>
-                  <span className="text-slate-500">車名：</span>
-                  {result.name}
-                </p>
-                {result.variant && (
-                  <p>
-                    <span className="text-slate-500">版本：</span>
-                    {result.variant}
-                  </p>
-                )}
-                <p>
-                  <span className="text-slate-500">信心度：</span>
-                  {result.confidence === 'high'
-                    ? '⭐⭐⭐ 高'
-                    : result.confidence === 'medium'
-                      ? '⭐⭐ 中'
-                      : '⭐ 低'}
-                </p>
+            <div>
+              {/* The main message: owned or not */}
+              <div
+                className={`flex items-center gap-3 rounded-2xl p-4 ${
+                  alreadyOwned && !added
+                    ? 'bg-[#ffc400] text-[#24272c]'
+                    : 'border border-line bg-surface'
+                }`}
+              >
+                <NumberTab series={series} label={displayCode(code, number)} />
+                <div className="min-w-0 flex-1">
+                  {alreadyOwned && !added ? (
+                    <p className="flex items-center gap-1.5 text-lg font-medium">
+                      <WarningIcon size={20} className="shrink-0" />
+                      你已經有這台了，不用再買！
+                    </p>
+                  ) : added ? (
+                    <p className="flex items-center gap-1.5 text-lg font-medium">
+                      <CheckIcon size={18} className="shrink-0 text-brand-text" />
+                      已加入收藏
+                    </p>
+                  ) : (
+                    <p className="text-lg font-medium">辨識結果</p>
+                  )}
+                </div>
               </div>
 
-              {alreadyOwned && !added && (
-                <p className="mt-3 p-2 rounded-lg bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-sm font-medium">
-                  ⚠️ 你已經有這台了，不用再買！
-                </p>
-              )}
+              <dl className="mt-3 divide-y divide-line border-y border-line text-[15px]">
+                <div className="flex justify-between gap-4 py-3">
+                  <dt className="text-sm text-muted">編號</dt>
+                  <dd className="tnum text-right">
+                    {seriesLabel(series)} {displayCode(code, number)}
+                  </dd>
+                </div>
+                <div className="flex justify-between gap-4 py-3">
+                  <dt className="text-sm text-muted">車名</dt>
+                  <dd className="text-right">{result.name}</dd>
+                </div>
+                {result.variant && (
+                  <div className="flex justify-between gap-4 py-3">
+                    <dt className="text-sm text-muted">版本</dt>
+                    <dd className="text-right">{result.variant}</dd>
+                  </div>
+                )}
+                <div className="flex items-center justify-between gap-4 py-3">
+                  <dt className="text-sm text-muted">信心度</dt>
+                  <dd className="flex items-center gap-2">
+                    <span className="flex gap-0.5" aria-hidden="true">
+                      {[1, 2, 3].map((n) => (
+                        <span
+                          key={n}
+                          className={`h-2 w-4 rounded-sm ${n <= confidenceLevel ? 'bg-[#e50012]' : 'bg-line'}`}
+                        />
+                      ))}
+                    </span>
+                    {confidenceText}
+                  </dd>
+                </div>
+              </dl>
+
               {catalogMatch ? (
-                <p className="mt-3 text-xs text-slate-500">
-                  已對應到圖鑑：「{catalogMatch.name_ja}」
-                </p>
+                <p className="mt-3 text-sm text-muted">已對應到圖鑑：「{catalogMatch.name_ja}」</p>
               ) : numberHolder && !code ? (
-                <p className="mt-3 text-xs text-slate-500">
+                <p className="mt-3 text-sm text-muted">
                   圖鑑中目前的 {seriesLabel(series)} {displayCode(code, number)} 是「{numberHolder.name_ja}」，與辨識結果不同（可能是舊款），會以辨識結果另外加入收藏。
                 </p>
               ) : (
-                <p className="mt-3 text-xs text-slate-500">
-                  圖鑑中沒有這台（可能已停售），會以辨識結果加入收藏。
-                </p>
+                <p className="mt-3 text-sm text-muted">圖鑑中沒有這台（可能已停售），會以辨識結果加入收藏。</p>
               )}
 
               {thumbStatus !== 'idle' && (
-                <p className="mt-3 text-xs text-slate-500">
+                <p className="mt-3 text-sm text-muted">
                   {thumbStatus === 'searching'
-                    ? '🔎 圖鑑沒有這台的縮圖，正在網路上搜尋…'
+                    ? '圖鑑沒有這台的縮圖，正在網路上搜尋…'
                     : thumbStatus === 'found'
-                      ? '🖼️ 已從網路找到縮圖並補上'
+                      ? '已從網路找到縮圖並補上'
                       : catalogMatch
                         ? '網路上沒找到合適的縮圖，先用你拍的照片當縮圖'
                         : '網路上沒找到合適的縮圖，保留你拍的照片'}
@@ -255,25 +279,27 @@ function PhotoScan() {
 
               <div className="mt-4 flex gap-2">
                 {alreadyOwned && !added ? (
-                  <span className="flex-1 py-2 bg-slate-200 dark:bg-slate-700 text-center rounded-lg text-sm text-slate-500">
+                  <span className="flex h-11 flex-1 items-center justify-center rounded-[10px] bg-line text-sm text-muted">
                     已收藏
                   </span>
                 ) : !added ? (
                   <button
                     onClick={handleAddToCollection}
-                    className="flex-1 py-2 tomica-red text-white rounded-xl text-sm font-medium"
+                    className="press flex h-12 flex-1 items-center justify-center gap-1.5 rounded-[10px] bg-[#e50012] text-sm font-medium text-white"
                   >
+                    <PlusIcon size={18} />
                     加入收藏
                   </button>
                 ) : (
-                  <span className="flex-1 py-2 bg-slate-200 dark:bg-slate-700 text-center rounded-lg text-sm text-slate-500">
-                    已加入收藏 ✓
+                  <span className="stamp-in flex h-11 flex-1 items-center justify-center gap-1.5 rounded-[10px] bg-line text-sm text-muted">
+                    <CheckIcon size={16} />
+                    已加入收藏
                   </span>
                 )}
                 {(catalogMatch || added) && (
                   <Link
                     href={`/catalog/${catalogMatch ? catalogMatch.id : carId(series, number)}`}
-                    className="flex-1 py-2 bg-slate-200 dark:bg-slate-700 text-center rounded-lg text-sm font-medium"
+                    className={secondaryBtn}
                   >
                     查看詳情
                   </Link>
@@ -281,17 +307,13 @@ function PhotoScan() {
               </div>
             </div>
           ) : (
-            <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded-xl p-4">
-              <h3 className="font-semibold text-red-800 dark:text-red-200 mb-2">
+            <div className="rounded-2xl border border-[#e50012]/40 bg-surface p-4">
+              <h3 className="mb-1 flex items-center gap-2 font-medium">
+                <WarningIcon size={18} className="text-brand-text" />
                 辨識失敗
               </h3>
-              <p className="text-sm text-red-600 dark:text-red-300">
-                {result.error}
-              </p>
-              <Link
-                href="/catalog"
-                className="inline-block mt-3 px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg text-sm font-medium"
-              >
+              <p className="text-sm text-muted">{result.error}</p>
+              <Link href="/catalog" className={`${secondaryBtn} mt-3 w-fit flex-none`}>
                 手動搜尋
               </Link>
             </div>
@@ -303,9 +325,33 @@ function PhotoScan() {
 }
 
 const MODES = [
-  { key: 'lookup', label: '🔢 編號速查' },
-  { key: 'barcode', label: '▦ 條碼掃描' },
-  { key: 'photo', label: '📷 拍照辨識' },
+  {
+    key: 'lookup',
+    label: (
+      <>
+        <SearchIcon size={16} />
+        編號速查
+      </>
+    ),
+  },
+  {
+    key: 'barcode',
+    label: (
+      <>
+        <BarcodeIcon size={16} />
+        條碼掃描
+      </>
+    ),
+  },
+  {
+    key: 'photo',
+    label: (
+      <>
+        <ScanIcon size={16} />
+        拍照辨識
+      </>
+    ),
+  },
 ] as const;
 type Mode = (typeof MODES)[number]['key'];
 
@@ -313,24 +359,10 @@ export default function ScanPage() {
   const [mode, setMode] = useState<Mode>('lookup');
 
   return (
-    <div className="px-4 sm:px-6 pt-5 max-w-2xl mx-auto">
-      <div className="flex items-center justify-between gap-2 mb-4">
-        <h2 className="text-xl font-extrabold">掃描確認</h2>
-      </div>
-      <div className="inline-flex w-full rounded-xl bg-slate-100 dark:bg-slate-800 p-1 mb-4">
-        {MODES.map((m) => (
-          <button
-            key={m.key}
-            onClick={() => setMode(m.key)}
-            className={`flex-1 px-2 py-2 rounded-lg text-xs sm:text-sm font-bold transition ${
-              mode === m.key
-                ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
-                : 'text-slate-500 dark:text-slate-400'
-            }`}
-          >
-            {m.label}
-          </button>
-        ))}
+    <div className="mx-auto max-w-2xl px-4 pt-6 sm:px-6">
+      <h1 className="mb-4 text-2xl font-medium">掃描確認</h1>
+      <div className="mb-5">
+        <Segmented fill label="辨識方式" options={MODES} value={mode} onChange={setMode} />
       </div>
       {mode === 'lookup' && <QuickLookup />}
       {mode === 'barcode' && <BarcodeScan />}

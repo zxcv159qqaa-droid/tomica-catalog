@@ -6,9 +6,13 @@ import { db } from '@/lib/db';
 import { exportBackup, importBackup } from '@/lib/backup';
 import { useApiKey } from '@/lib/useApiKey';
 import CloudSyncSection from '@/components/CloudSyncSection';
+import { CheckIcon, DownloadIcon, TrashIcon, UploadIcon } from '@/components/icons';
 
-const card =
-  'bg-white dark:bg-slate-800 rounded-2xl p-5 border shadow-sm border-slate-200 dark:border-slate-700 mb-4';
+const section = 'border-t border-line py-6';
+const field =
+  'h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] text-ink placeholder:text-muted focus:border-[#e50012] focus:outline-none focus:ring-2 focus:ring-[#e50012]/30';
+const primary = 'press h-11 w-full rounded-[10px] bg-[#e50012] text-sm font-medium text-white disabled:opacity-40';
+const secondary = 'press h-11 w-full rounded-[10px] border border-line bg-surface text-sm font-medium disabled:opacity-40';
 
 export default function SettingsPage() {
   const [storedKey, saveKey] = useApiKey();
@@ -58,20 +62,20 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="px-4 sm:px-6 pt-5 max-w-2xl mx-auto">
-      <h2 className="text-xl font-extrabold mb-5">⚙️ 設定</h2>
+    <div className="mx-auto max-w-2xl px-4 pt-6 sm:px-6">
+      <h1 className="mb-5 text-2xl font-medium">設定</h1>
 
-      <CloudSyncSection className={card} />
+      <CloudSyncSection className={section} />
 
-      <section className={card}>
-        <h2 className="font-semibold mb-3">Google Gemini API Key</h2>
-        <p className="text-xs text-slate-400 mb-3">
+      <section className={section}>
+        <h2 className="mb-1 text-base font-medium">Google Gemini API Key</h2>
+        <p className="mb-3 text-sm text-muted">
           前往{' '}
           <a
             href="https://aistudio.google.com/apikey"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 underline"
+            className="text-brand-text underline"
           >
             Google AI Studio
           </a>{' '}
@@ -82,36 +86,38 @@ export default function SettingsPage() {
           value={draftKey ?? storedKey}
           onChange={(e) => setDraftKey(e.target.value)}
           placeholder="輸入 API Key..."
-          className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-sm mb-2"
+          aria-label="Google Gemini API Key"
+          className={`${field} mb-2`}
         />
-        <button
-          onClick={saveApiKey}
-          className="w-full py-2 tomica-red text-white rounded-xl text-sm font-medium"
-        >
-          {saved ? '已儲存 ✓' : '儲存'}
+        <button onClick={saveApiKey} className={primary}>
+          {saved ? (
+            <span className="inline-flex items-center justify-center gap-1.5">
+              已儲存 <CheckIcon size={16} className="stamp-in" />
+            </span>
+          ) : (
+            '儲存'
+          )}
         </button>
       </section>
 
-      <section className={card}>
-        <h2 className="font-semibold mb-3">資料統計</h2>
-        <div className="grid grid-cols-2 gap-3 text-sm">
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-blue-600">{stats.collection}</p>
-            <p className="text-xs text-slate-400">收藏筆數</p>
+      <section className={section}>
+        <h2 className="mb-3 text-base font-medium">資料統計</h2>
+        <dl className="tnum flex gap-10">
+          <div className="flex flex-col">
+            <dt className="order-2 mt-1 text-sm text-muted">收藏筆數</dt>
+            <dd className="font-display text-5xl font-medium leading-none">{stats.collection}</dd>
           </div>
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 text-center">
-            <p className="text-2xl font-bold text-amber-500">{stats.wishlist}</p>
-            <p className="text-xs text-slate-400">願望清單</p>
+          <div className="flex flex-col">
+            <dt className="order-2 mt-1 text-sm text-muted">願望清單</dt>
+            <dd className="font-display text-5xl font-medium leading-none">{stats.wishlist}</dd>
           </div>
-        </div>
+        </dl>
       </section>
 
-      <section className={card}>
-        <h2 className="font-semibold mb-3">匯出 / 匯入</h2>
-        <button
-          onClick={handleExport}
-          className="w-full py-2 bg-green-600 text-white rounded-lg text-sm font-medium mb-3"
-        >
+      <section className={section}>
+        <h2 className="mb-3 text-base font-medium">匯出 / 匯入</h2>
+        <button onClick={handleExport} className={`${secondary} mb-4 flex items-center justify-center gap-1.5`}>
+          <DownloadIcon size={18} />
           匯出收藏資料 (JSON)
         </button>
 
@@ -119,27 +125,32 @@ export default function SettingsPage() {
           value={importText}
           onChange={(e) => setImportText(e.target.value)}
           placeholder="貼上 JSON 資料來匯入..."
+          aria-label="要匯入的 JSON 資料"
           rows={4}
-          className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-mono mb-2"
+          className="mb-2 w-full rounded-[10px] border border-line bg-surface px-3 py-2 font-mono text-xs text-ink placeholder:text-muted focus:border-[#e50012] focus:outline-none focus:ring-2 focus:ring-[#e50012]/30"
         />
         <button
           onClick={handleImport}
           disabled={!importText}
-          className="w-full py-2 bg-blue-600 disabled:bg-slate-400 text-white rounded-lg text-sm font-medium"
+          className={`${primary} flex items-center justify-center gap-1.5`}
         >
+          <UploadIcon size={18} />
           匯入
         </button>
         {importStatus && (
-          <p className="text-sm mt-2 text-center">{importStatus}</p>
+          <p className="mt-2 text-center text-sm" role="status">
+            {importStatus}
+          </p>
         )}
       </section>
 
-      <section className="bg-white dark:bg-slate-800 rounded-2xl p-5 border shadow-sm border-red-200 dark:border-red-800 mb-4">
-        <h2 className="font-semibold text-red-600 mb-3">危險區域</h2>
+      <section className={section}>
+        <h2 className="mb-3 text-base font-medium text-brand-text">危險區域</h2>
         <button
           onClick={handleClearAll}
-          className="w-full py-2 bg-red-600 text-white rounded-lg text-sm font-medium"
+          className="press flex h-11 w-full items-center justify-center gap-1.5 rounded-[10px] border border-brand-text text-sm font-medium text-brand-text"
         >
+          <TrashIcon size={18} />
           清除所有收藏資料
         </button>
       </section>

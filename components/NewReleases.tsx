@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { findCatalogMatch, normalizeName, seriesLabel } from '@/lib/tomica-data';
 import { useCollection } from '@/lib/useCollection';
+import { ChevronDownIcon } from '@/components/icons';
 import type { NewRelease } from '@/app/api/new-releases/route';
 
 // Upcoming official releases with whether the garage already has each one
@@ -33,19 +34,19 @@ export default function NewReleases() {
   const missing = releases.filter((r) => !owned(r)).length;
 
   return (
-    <details className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-      <summary className="list-none cursor-pointer p-4 flex items-center justify-between gap-3">
-        <div>
-          <span className="text-[11px] font-bold tracking-wider text-amber-700 bg-amber-100 dark:bg-amber-950 dark:text-amber-300 px-2.5 py-0.5 rounded-full">
+    <details className="group rounded-2xl border border-line bg-surface">
+      <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 [&::-webkit-details-marker]:hidden">
+        <span className="flex min-w-0 items-center gap-3">
+          <span className="shrink-0 rounded-full bg-[#ffc400] px-2.5 py-0.5 text-xs font-semibold text-[#24272c]">
             近期新車
           </span>
-          <p className="font-bold mt-1.5">
+          <span className="text-sm font-medium">
             官網公布 {releases.length} 台新車，你還沒有 {missing} 台
-          </p>
-        </div>
-        <span className="text-slate-400 group-open:rotate-180 transition">▾</span>
+          </span>
+        </span>
+        <ChevronDownIcon size={20} className="shrink-0 text-muted transition-transform group-open:rotate-180" />
       </summary>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 px-4 pb-4">
+      <ul className="grid grid-cols-1 gap-2 px-3 pb-3 sm:grid-cols-2 lg:grid-cols-3">
         {releases.map((r) => {
           const has = owned(r);
           return (
@@ -54,27 +55,31 @@ export default function NewReleases() {
                 href={r.page}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 p-2 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="press flex min-h-16 items-center gap-3 rounded-xl p-2 hover:bg-paper"
               >
                 {r.image && (
-                  // eslint-disable-next-line @next/next/no-img-element -- remote official product image
-                  <img
-                    src={r.image}
-                    alt=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    className="w-20 h-14 object-contain rounded-lg bg-white shrink-0"
-                  />
+                  <div className="stage h-14 w-20 shrink-0 rounded-[10px]">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- remote official product image */}
+                    <img
+                      src={r.image}
+                      alt=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
                 )}
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-bold truncate">
+                  <p className="truncate text-sm font-medium">
                     {r.series === 'regular' ? `No.${r.number}` : `${seriesLabel(r.series)} ${r.number}`} {r.name}
                   </p>
-                  <p className="text-xs text-slate-400 truncate">{r.release}</p>
+                  <p className="truncate text-[13px] text-muted">{r.release}</p>
                 </div>
                 <span
-                  className={`text-[11px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
-                    has ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'
+                  className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                    has
+                      ? 'bg-[#e50012] text-white'
+                      : 'border border-line text-muted'
                   }`}
                 >
                   {has ? '已有' : '還沒有'}

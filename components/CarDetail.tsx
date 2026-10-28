@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useLiveQuery } from 'dexie-react-hooks';
@@ -13,15 +14,19 @@ import {
   parseCarId,
   seriesLabel,
 } from '@/lib/tomica-data';
-import { db } from '@/lib/db';
+import { db, itemQty } from '@/lib/db';
 import { addCopy } from '@/lib/collection-actions';
 import CarThumb from '@/components/CarThumb';
 import CopyEditor from '@/components/CopyEditor';
 import ThumbFinder from '@/components/ThumbFinder';
+import { NumberTab, OwnedStamp } from '@/components/CardParts';
+import { ArrowLeftIcon, CarIcon, CheckIcon, HeartIcon, WarningIcon } from '@/components/icons';
 import { sharedThumbUrl, useSharedThumbVersions } from '@/lib/thumbs';
 
 export default function CarDetail({ carKey }: { carKey: string }) {
   const router = useRouter();
+  // Set when the user adds a copy here, so the owned stamp plays its "stamp" only for that action
+  const [justAdded, setJustAdded] = useState(false);
   const parsed = parseCarId(carKey);
   const car = getCarById(carKey) ?? getCar(parsed.series, parsed.number);
   const series = car?.series ?? parsed.series;
@@ -66,47 +71,43 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   const backButton = (
     <button
       onClick={() => router.back()}
-      className="text-sm text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-1"
+      className="press -ml-2 mb-2 flex h-11 items-center gap-1.5 rounded-[10px] px-2 text-sm text-muted hover:text-ink"
     >
-      ← 返回
+      <ArrowLeftIcon size={18} />
+      返回
     </button>
   );
 
   const scannedSection = scanned.length > 0 && (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 mb-4">
-      <h2 className="font-semibold mb-3">已收藏的 {label}</h2>
-      <div className="space-y-2">
+    <section className="mb-6">
+      <h2 className="mb-1 text-base font-medium">已收藏的 {label}</h2>
+      <ul className="divide-y divide-line border-y border-line">
         {scanned.map((item) => (
-          <div
-            key={item.id}
-            className="flex flex-wrap items-center justify-between gap-3 p-3 rounded-xl border bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800"
-          >
+          <li key={item.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
             <CarThumb src={item.thumb} series={item.series} number={item.tomicaNumber} code={item.code} />
-            <div className="flex-1 min-w-0">
-              <p className="font-medium text-sm">{item.name}</p>
-              {item.variantName && (
-                <p className="text-xs text-slate-400 mt-0.5">{item.variantName}</p>
-              )}
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-medium">{item.name}</p>
+              {item.variantName && <p className="mt-0.5 text-[13px] text-muted">{item.variantName}</p>}
             </div>
             <CopyEditor item={item} onAdd={() => {}} />
-          </div>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </section>
   );
 
   if (!data) {
-    return <div className="px-4 sm:px-6 pt-5 max-w-3xl mx-auto">{backButton}</div>;
+    return <div className="mx-auto max-w-3xl px-4 pt-4 sm:px-6">{backButton}</div>;
   }
 
   if (!car) {
     return (
-      <div className="px-4 sm:px-6 pt-5 max-w-3xl mx-auto">
+      <div className="mx-auto max-w-3xl px-4 pt-4 sm:px-6">
         {backButton}
         {scannedSection || (
-          <div className="text-center">
-            <p className="text-4xl mb-3">❓</p>
-            <p>圖鑑中沒有 {label} 的資料</p>
+          <div className="flex flex-col items-center py-12 text-center">
+            <CarIcon size={110} strokeWidth={1} className="text-muted/60" />
+            <p className="mt-3">圖鑑中沒有 {label} 的資料</p>
           </div>
         )}
       </div>
@@ -125,8 +126,30 @@ export default function CarDetail({ carKey }: { carKey: string }) {
     }
   };
 
+  const tabLabel = (car.retired && car.series === 'regular' ? genLabel(car) : undefined) ?? car.code ?? String(car.number);
+  const totalQty = car.variants.reduce((n, v) => {
+    const it = itemByVariant.get(v.id);
+    return n + (it ? itemQty(it) : 0);
+  }, 0);
+  const seriesName = car.series === 'regular' ? '常規系列' : `Tomica ${seriesLabel(car.series)}`;
+  const rows: { k: string; v: React.ReactNode }[] = [
+    { k: car.series === 'dream' ? '主題' : car.series === 'disney' ? '角色' : '製造商', v: car.manufacturer },
+    { k: '系列', v: `${seriesName}${genLabel(car) ? `（${genLabel(car)}）` : ''}` },
+  ];
+  if (car.period) {
+    rows.push({
+      k: '販售期間',
+      v: (
+        <>
+          {car.period}
+          {car.retired && <span className="ml-2 text-[13px] text-muted">（已停售）</span>}
+        </>
+      ),
+    });
+  }
+
   return (
-    <div className="px-4 sm:px-6 pt-5 max-w-3xl mx-auto">
+    <div className="mx-auto max-w-3xl px-4 pt-4 sm:px-6">
       {backButton}
 
       {scannedSection}
@@ -135,117 +158,124 @@ export default function CarDetail({ carKey }: { carKey: string }) {
         collapsed={scanned.length > 0}
         summary={
           <>
-            ⚠️ 編號已輪替：官網目前的 {label} 是另一台車「{car.name_ja}」，跟你收藏的不同。
-            <span className="underline ml-1">查看</span>
+            <WarningIcon size={16} className="mr-1.5 inline -mt-0.5" />
+            編號已輪替：官網目前的 {label} 是另一台車「{car.name_ja}」，跟你收藏的不同。
+            <span className="ml-1 underline">查看</span>
           </>
         }
       >
-      <div className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm">
-        <div className={`px-5 py-3 flex items-center gap-2 text-white ${car.series === 'regular' ? 'tomica-red' : 'bg-slate-900'}`}>
-          <span className="px-2.5 py-0.5 rounded-md bg-white text-red-600 font-black text-xs">
-            {label}
-          </span>
-          <span className="text-xs font-semibold bg-black/25 px-2 py-0.5 rounded-full">
-            {car.series === 'regular' ? '常規系列' : `Tomica ${seriesLabel(car.series)}`}
-          </span>
-        </div>
-        <div className="p-5">
-        <div className="flex items-start justify-between gap-3 mb-4">
-          <div className="flex items-center gap-3 min-w-0">
+        <article>
+          {/* Hero stage with the box number tab */}
+          <div className="relative overflow-hidden rounded-2xl border border-line">
             <CarThumb
               src={car.image ?? foundImage}
               series={car.series}
               number={car.number}
-              code={car.retired && car.series === 'regular' ? genLabel(car) : car.code}
-              size="lg"
+              code={tabLabel}
+              size="hero"
+              hideTag
             />
-            <div className="min-w-0">
-              {car.retired && (
-                <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
-                  舊款
-                </span>
-              )}
-              <h2 className="text-lg font-bold">{car.name_ja}</h2>
-              {car.name_en && (
-                <p className="text-sm text-slate-500">{car.name_en}</p>
-              )}
+            <div className="absolute left-0 top-0 z-[3]">
+              <NumberTab series={car.series} label={tabLabel} large />
             </div>
+            <button
+              onClick={toggleWishlist}
+              aria-pressed={isWishlisted}
+              aria-label="想要清單"
+              className={`press absolute right-2 top-2 z-[3] flex h-11 w-11 items-center justify-center rounded-full bg-white/90 shadow-sm ${
+                isWishlisted ? 'text-[#e50012]' : 'text-[#6a707a]'
+              }`}
+            >
+              <HeartIcon size={22} fill={isWishlisted ? 'currentColor' : 'none'} />
+            </button>
+            {ownsThisCar && (
+              <div className="absolute bottom-3 right-3 z-[3]">
+                <OwnedStamp qty={totalQty} animate={justAdded} />
+              </div>
+            )}
           </div>
-          <button
-            onClick={toggleWishlist}
-            className={`text-2xl transition-transform hover:scale-110 ${isWishlisted ? '' : 'grayscale opacity-30'}`}
-          >
-            ⭐
-          </button>
-        </div>
 
-        {!car.image && <ThumbFinder car={car} hasImage={!!foundImage} />}
+          <header className="mt-4">
+            {car.retired && (
+              <span className="mr-1.5 rounded bg-[color-mix(in_srgb,var(--line)_80%,transparent)] px-1.5 py-0.5 align-middle text-xs text-muted">
+                舊款
+              </span>
+            )}
+            <h1 className="inline text-2xl font-medium leading-snug">{car.name_ja}</h1>
+            {car.name_en && <p className="mt-0.5 text-sm text-muted">{car.name_en}</p>}
+          </header>
 
-        <div className="grid grid-cols-2 gap-3 text-sm mb-6">
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3">
-            <p className="text-slate-400 text-xs">{car.series === 'dream' ? '主題' : car.series === 'disney' ? '角色' : '製造商'}</p>
-            <p className="font-medium">{car.manufacturer}</p>
-          </div>
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3">
-            <p className="text-slate-400 text-xs">系列</p>
-            <p className="font-medium">
-              {car.series === 'regular' ? '常規系列' : `Tomica ${seriesLabel(car.series)}`}
-              {genLabel(car) ? `（${genLabel(car)}）` : ''}
-            </p>
-          </div>
-          {car.period && (
-            <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 col-span-2">
-              <p className="text-slate-400 text-xs">販售期間</p>
-              <p className="font-medium">
-                {car.period}
-                {car.retired && <span className="ml-2 text-xs text-slate-500">（已停售）</span>}
-              </p>
-              {car.note && <p className="text-xs text-slate-500 mt-1">{car.note}</p>}
+          {!car.image && (
+            <div className="mt-4">
+              <ThumbFinder car={car} hasImage={!!foundImage} />
             </div>
           )}
-        </div>
 
-        <h2 className="font-semibold mb-3">版本一覽（{car.variants.length}）</h2>
-        <div className="space-y-2">
-          {car.variants.map((variant) => {
-            const owned = itemByVariant.get(variant.id);
-            const meta = [variant.color, variant.release_year].filter(Boolean).join(' · ');
-            return (
-              <div
-                key={variant.id}
-                className={`flex flex-wrap items-center justify-between p-3 rounded-xl border transition-colors ${
-                  owned
-                    ? 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800'
-                    : 'bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700'
-                }`}
-              >
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <p className="font-medium text-sm">{variant.name}</p>
-                    {variant.is_first_edition && (
-                      <span className="text-xs bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300 px-1.5 py-0.5 rounded">
-                        初回
+          <dl className="tnum mt-4 divide-y divide-line border-y border-line text-[15px]">
+            {rows.map((r) => (
+              <div key={r.k} className="flex items-baseline justify-between gap-4 py-3">
+                <dt className="shrink-0 text-sm text-muted">{r.k}</dt>
+                <dd className="text-right">{r.v}</dd>
+              </div>
+            ))}
+          </dl>
+          {car.note && <p className="mt-2 text-[13px] text-muted">{car.note}</p>}
+
+          <section className="mt-8">
+            <h2 className="mb-1 text-base font-medium">版本一覽（{car.variants.length}）</h2>
+            <ul className="divide-y divide-line border-y border-line">
+              {car.variants.map((variant) => {
+                const owned = itemByVariant.get(variant.id);
+                const meta = [variant.color, variant.release_year].filter(Boolean);
+                return (
+                  <li
+                    key={variant.id}
+                    className={`flex flex-wrap items-center justify-between gap-x-3 py-3 pl-3 ${
+                      owned ? 'border-l-[3px] border-l-[#e50012]' : 'border-l-[3px] border-l-transparent'
+                    }`}
+                  >
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="text-[15px] font-medium">{variant.name}</p>
+                        {variant.is_first_edition && (
+                          <span className="rounded bg-[#ffc400] px-1.5 py-0.5 text-xs font-medium text-[#24272c]">
+                            初回
+                          </span>
+                        )}
+                      </div>
+                      {meta.length > 0 && (
+                        <p className="tnum mt-0.5 flex flex-wrap gap-x-3 text-[13px] text-muted">
+                          {meta.map((m, i) => (
+                            <span key={i}>{m}</span>
+                          ))}
+                        </p>
+                      )}
+                    </div>
+                    {owned && (
+                      <span className="flex items-center gap-1 text-sm font-medium text-brand-text">
+                        <CheckIcon size={14} />
+                        已收藏
                       </span>
                     )}
-                  </div>
-                  {meta && <p className="text-xs text-slate-400 mt-0.5">{meta}</p>}
-                </div>
-                {owned ? (
-                  <span className="text-xs font-bold text-blue-600">已收藏 ✓</span>
-                ) : null}
-                <CopyEditor item={owned} onAdd={() => addCopy(car, variant.id)} />
-              </div>
-            );
-          })}
-        </div>
-        </div>
-      </div>
+                    <CopyEditor
+                      item={owned}
+                      onAdd={() => {
+                        setJustAdded(true);
+                        return addCopy(car, variant.id);
+                      }}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
+        </article>
       </Collapsible>
 
       {generations.length > 1 && (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-5 border border-slate-200 dark:border-slate-700 mt-4 mb-4">
-          <h2 className="font-semibold mb-1">歷代 {label}（{generations.length}）</h2>
-          <p className="text-xs text-slate-400 mb-3">
+        <section className="mb-4 mt-8">
+          <h2 className="mb-1 text-base font-medium">歷代 {label}（{generations.length}）</h2>
+          <p className="mb-2 text-[13px] text-muted">
             同一個編號以前出過的車，由新到舊。資料來源：
             {series === 'premium'
               ? 'トミカの森 プレミアム館'
@@ -253,42 +283,44 @@ export default function CarDetail({ carKey }: { carKey: string }) {
                 ? 'タカラトミー ディズニーモータース公式'
                 : series === 'asia'
                   ? 'Takara Tomy Asia 官網'
-                : 'ピクシブ百科事典、こつめBLOG'}
+                  : 'ピクシブ百科事典、こつめBLOG'}
             。
           </p>
-          <div className="space-y-2">
+          <ul className="divide-y divide-line border-y border-line">
             {generations.map((g) => {
-              const owned =
-                ownedCarIds.has(g.id) || (g.id === car.id && ownsThisCar);
+              const owned = ownedCarIds.has(g.id) || (g.id === car.id && ownsThisCar);
               return (
-                <Link
-                  key={g.id}
-                  href={`/catalog/${g.id}`}
-                  className={`flex items-center gap-3 p-3 rounded-xl border ${
-                    g.id === car.id
-                      ? 'border-blue-400 dark:border-blue-600'
-                      : 'border-slate-200 dark:border-slate-700'
-                  } ${owned ? 'bg-blue-50 dark:bg-blue-950' : 'bg-slate-50 dark:bg-slate-900'}`}
-                >
-                  <span className="w-12 shrink-0 text-xs font-bold text-slate-500">
-                    {genLabel(g) ?? g.code ?? `No.${number}`}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{g.name_ja}</p>
-                    <p className="text-xs text-slate-400">
-                      {g.retired ? g.period || '已停售' : `現行${g.period ? `・${g.period}` : ''}`}
-                    </p>
-                  </div>
-                  {owned && (
-                    <span className="text-xs bg-blue-500 text-white px-2 py-0.5 rounded-full shrink-0">
-                      已收藏
+                <li key={g.id}>
+                  <Link
+                    href={`/catalog/${g.id}`}
+                    aria-current={g.id === car.id ? 'page' : undefined}
+                    className={`press flex min-h-14 items-center gap-3 py-2 pl-3 ${
+                      g.id === car.id
+                        ? 'border-l-[3px] border-l-ink'
+                        : 'border-l-[3px] border-l-transparent'
+                    }`}
+                  >
+                    <span className="tnum w-14 shrink-0 text-sm font-medium text-muted">
+                      {genLabel(g) ?? g.code ?? `No.${number}`}
                     </span>
-                  )}
-                </Link>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[15px] font-medium">{g.name_ja}</p>
+                      <p className="tnum text-[13px] text-muted">
+                        {g.retired ? g.period || '已停售' : `現行${g.period ? `　${g.period}` : ''}`}
+                      </p>
+                    </div>
+                    {owned && (
+                      <span className="flex shrink-0 items-center gap-1 text-sm text-brand-text">
+                        <CheckIcon size={14} />
+                        已收藏
+                      </span>
+                    )}
+                  </Link>
+                </li>
               );
             })}
-          </div>
-        </div>
+          </ul>
+        </section>
       )}
     </div>
   );
@@ -306,7 +338,7 @@ function Collapsible({
   if (!collapsed) return <>{children}</>;
   return (
     <details className="group">
-      <summary className="list-none cursor-pointer text-xs text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950 border border-amber-200 dark:border-amber-800 rounded-xl p-3 mb-3">
+      <summary className="mb-3 min-h-11 cursor-pointer list-none rounded-[10px] bg-[#ffc400]/25 p-3 text-sm text-ink">
         {summary}
       </summary>
       {children}

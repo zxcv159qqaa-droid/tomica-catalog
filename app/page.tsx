@@ -1,16 +1,33 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useMemo } from 'react';
-import { getAllCars, getCurrentCars, searchCars, normalizeName } from '@/lib/tomica-data';
+import {
+  getAllCars,
+  getCurrentCars,
+  searchCars,
+  normalizeName,
+  CATALOG_SERIES,
+} from '@/lib/tomica-data';
 import ScannedCard from '@/components/ScannedCard';
 import { useCollection } from '@/lib/useCollection';
 import CarCard from '@/components/CarCard';
 import SearchBar from '@/components/SearchBar';
 import NewReleases from '@/components/NewReleases';
+import Segmented from '@/components/Segmented';
+import SeriesBar from '@/components/SeriesBar';
+import EmptyState from '@/components/EmptyState';
+import { BookIcon, ScanIcon } from '@/components/icons';
 
 type FilterMode = 'collected' | 'wishlist' | 'missing';
 
 const GRID = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4';
+
+const FILTERS = [
+  { key: 'collected', label: '已收藏' },
+  { key: 'wishlist', label: '想要' },
+  { key: 'missing', label: '未收藏' },
+] as const;
 
 export default function HomePage() {
   const [search, setSearch] = useState('');
@@ -20,7 +37,17 @@ export default function HomePage() {
   const { collectedByCar, qtyByCar, scannedItems, wishlistIds, ownedCount, imageByCar } =
     useCollection();
   const collectedCurrent = currentCars.filter((c) => collectedByCar.has(c.id)).length;
-  const percent = (collectedCurrent / currentCars.length) * 100;
+
+  // Progress split by series so each series keeps its own colour
+  const segments = useMemo(
+    () =>
+      CATALOG_SERIES.map((s) => {
+        const cars = currentCars.filter((c) => c.series === s);
+        const have = cars.filter((c) => collectedByCar.has(c.id)).length;
+        return { series: s, total: cars.length, have };
+      }).filter((g) => g.total > 0),
+    [currentCars, collectedByCar]
+  );
 
   const visibleScanned = useMemo(() => {
     const q = normalizeName(search);
@@ -50,106 +77,90 @@ export default function HomePage() {
   const resultCount = filteredCars.length + (showScanned ? visibleScanned.length : 0);
 
   return (
-    <div className="px-4 sm:px-6 pt-5 space-y-5">
-      <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 sm:p-5">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <span className="text-[11px] font-bold tracking-wider text-red-600 bg-red-50 dark:bg-red-950 px-2.5 py-0.5 rounded-full">
-              我的車庫
-            </span>
-            <h2 className="text-xl font-extrabold mt-1.5">Tomica 收藏進度</h2>
-          </div>
-          <div className="flex items-baseline gap-5 text-sm">
-            <div>
-              <span className="text-2xl font-black">{collectedCurrent}</span>
-              <span className="text-slate-400"> / {currentCars.length} 款現行</span>
-            </div>
-            <div>
-              <span className="text-2xl font-black text-red-600">{ownedCount}</span>
-              <span className="text-slate-400"> 台在庫</span>
-            </div>
-          </div>
+    <div className="px-4 pt-6 sm:px-6">
+      {/* Hero: plain on the page, not a card */}
+      <h1 className="sr-only">我的車庫</h1>
+      <section aria-labelledby="progress-title">
+        <h2 id="progress-title" className="text-sm text-muted">
+          Tomica 收藏進度
+        </h2>
+        <div className="mt-1 flex items-end justify-between gap-6">
+          <p className="flex items-baseline gap-2">
+            <span className="tnum font-display text-[88px] font-medium leading-[0.85] sm:text-[112px]">{collectedCurrent}</span>
+            <span className="tnum text-lg text-muted">/ {currentCars.length} 款現行</span>
+          </p>
+          <p className="flex shrink-0 flex-col items-end pb-1 text-right">
+            <span className="tnum font-display text-[44px] font-medium leading-none text-brand-text">{ownedCount}</span>
+            <span className="text-sm text-muted">台在庫</span>
+          </p>
         </div>
-        <div className="mt-3 w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
-          <div
-            className="bg-red-600 h-full rounded-full transition-all duration-500"
-            style={{ width: `${percent}%` }}
+
+        <div className="mt-5">
+          <SeriesBar
+            animate
+            segments={segments}
+            label={`現行車款已收 ${collectedCurrent} / ${currentCars.length}`}
           />
         </div>
       </section>
 
-      <NewReleases />
+      <div className="mt-6">
+        <NewReleases />
+      </div>
 
-      <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 space-y-3">
-        <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-          <div className="flex gap-1.5">
-            {(
-              [
-                { key: 'collected', label: '已收藏' },
-                { key: 'wishlist', label: '想要' },
-                { key: 'missing', label: '未收藏' },
-              ] as const
-            ).map(({ key, label }) => (
-              <button
-                key={key}
-                onClick={() => setFilter(key)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
-                  filter === key
-                    ? 'bg-red-600 text-white shadow-sm'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+      <section className="mt-6 space-y-3" aria-label="篩選">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <Segmented options={FILTERS} value={filter} onChange={setFilter} label="收藏狀態" />
           <div className="sm:w-80">
             <SearchBar value={search} onChange={setSearch} />
           </div>
         </div>
-        <p className="pt-3 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500">
-          顯示 {resultCount} 款車型
-        </p>
+        <p className="tnum text-sm text-muted">顯示 {resultCount} 款車型</p>
       </section>
 
-      {resultCount === 0 ? (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-12 text-center space-y-2 text-slate-400">
-          {search ? (
-            <p>找不到符合「{search}」的結果</p>
+      <div className="mt-3">
+        {resultCount === 0 ? (
+          search ? (
+            <EmptyState title={`找不到符合「${search}」的結果`} />
           ) : filter === 'collected' ? (
-            <>
-              <p className="text-4xl">📦</p>
-              <p className="font-bold text-slate-700 dark:text-slate-200">還沒有收藏任何車款</p>
-              <p className="text-sm">到「圖鑑」或「掃描」開始加入吧！</p>
-            </>
+            <EmptyState title="還沒有收藏任何車款" hint="到「圖鑑」或「掃描」開始加入吧！">
+              <Link
+                href="/scan"
+                className="press inline-flex h-11 items-center gap-1.5 rounded-[10px] bg-[#e50012] px-4 text-sm font-medium text-white"
+              >
+                <ScanIcon size={18} />
+                掃描
+              </Link>
+              <Link
+                href="/catalog"
+                className="press inline-flex h-11 items-center gap-1.5 rounded-[10px] border border-line bg-surface px-4 text-sm font-medium"
+              >
+                <BookIcon size={18} />
+                圖鑑
+              </Link>
+            </EmptyState>
           ) : filter === 'wishlist' ? (
-            <>
-              <p className="text-4xl">⭐</p>
-              <p>願望清單是空的</p>
-            </>
+            <EmptyState title="願望清單是空的" />
           ) : (
-            <>
-              <p className="text-4xl">🎉</p>
-              <p>你已經收集所有車款了！</p>
-            </>
-          )}
-        </div>
-      ) : (
-        <div className={GRID}>
-          {showScanned &&
-            visibleScanned.map((item) => <ScannedCard key={item.id} item={item} />)}
-          {filteredCars.map((car) => (
-            <CarCard
-              key={car.id}
-              car={car}
-              isWishlisted={wishlistIds.has(car.id)}
-              collectedVariants={collectedByCar.get(car.id)}
-              fallbackImage={imageByCar.get(car.id)}
-              qty={qtyByCar.get(car.id)}
-            />
-          ))}
-        </div>
-      )}
+            <EmptyState title="你已經收集所有車款了！" />
+          )
+        ) : (
+          <div className={GRID}>
+            {showScanned &&
+              visibleScanned.map((item) => <ScannedCard key={item.id} item={item} />)}
+            {filteredCars.map((car) => (
+              <CarCard
+                key={car.id}
+                car={car}
+                isWishlisted={wishlistIds.has(car.id)}
+                collectedVariants={collectedByCar.get(car.id)}
+                fallbackImage={imageByCar.get(car.id)}
+                qty={qtyByCar.get(car.id)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,18 +1,62 @@
 @import "tailwindcss";
 
+/* ---------- Design tokens: showroom floor + asphalt ---------- */
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --red: #e50012;
+  --red-deep: #b5000e;
+  --ink: #24272c;
+  --paper: #eceef1;
+  --surface: #ffffff;
+  --line: #d9dde3;
+  --muted: #596069;
+  --red-text: #b5000e;
+  color-scheme: light;
+  --signal: #ffc400;
+  --shadow: rgba(20, 24, 32, 0.07);
+  --shadow-strong: rgba(20, 24, 32, 0.16);
+  --stage-top: #ffffff;
+  --stage-bottom: #e6e9ee;
+
+  --radius-card: 16px;
+  --radius-control: 10px;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14161a;
+    --surface: #1d2025;
+    --line: #2c3037;
+    --ink: #eef0f3;
+    --muted: #9aa1ab;
+    --red-text: #ff5a66;
+    color-scheme: dark;
+    --shadow: rgba(0, 0, 0, 0.35);
+    --shadow-strong: rgba(0, 0, 0, 0.55);
+    --stage-top: #f1f3f6;
+    --stage-bottom: #d3d8df;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: var(--red);
+  --color-brand-deep: var(--red-deep);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-signal: var(--signal);
+  --color-brand-text: var(--red-text);
+  --font-sans: var(--font-archivo), "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-/* Tomica Garage palette: the app's accent ("blue-*" utilities) is the Tomica red */
+/* The app's accent ("blue-*" utilities used by the not-yet-redesigned pages) is the Tomica red */
 @theme {
   --color-blue-50: #fef2f2;
   --color-blue-100: #fee2e2;
@@ -20,42 +64,175 @@
   --color-blue-300: #fca5a5;
   --color-blue-400: #f87171;
   --color-blue-500: #ef4444;
-  --color-blue-600: #e60012;
-  --color-blue-700: #b8000e;
+  --color-blue-600: #e50012;
+  --color-blue-700: #b5000e;
   --color-blue-800: #991b1b;
   --color-blue-900: #7f1d1d;
   --color-blue-950: #450a0a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #020617;
-    --foreground: #f1f5f9;
-  }
+html {
+  background: var(--paper);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-archivo), "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
   -webkit-tap-highlight-color: transparent;
+  overflow-x: clip;
 }
 
 input[type="file"] {
   display: none;
 }
 
-.tomica-red {
-  background: linear-gradient(135deg, #e60012 0%, #b8000e 100%);
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+.on-red :focus-visible,
+.on-ink :focus-visible {
+  outline-color: #fff;
 }
 
-.card-hover {
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+/* ---------- Type helpers ---------- */
+/* Condensed face for the wordmark and large numerals */
+.font-display {
+  font-family: var(--font-archivo), "Noto Sans TC", sans-serif;
+  font-variation-settings: "wdth" 70;
+  letter-spacing: -0.01em;
 }
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.14);
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- The single stripe under the header ---------- */
+.box-stripe {
+  height: 6px;
+  background:
+    linear-gradient(#fff, #fff) 0 0 / 100% 2px no-repeat,
+    linear-gradient(#fff, #fff) 0 5px / 100% 1px no-repeat;
+  opacity: 0.9;
+}
+
+.tomica-red {
+  background: linear-gradient(135deg, #e50012 0%, #b5000e 100%);
+}
+
+/* ---------- Car stage: lit showroom floor ---------- */
+.stage {
+  position: relative;
+  background: linear-gradient(180deg, var(--stage-top) 0%, var(--stage-bottom) 100%);
+  overflow: hidden;
+}
+.stage::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 9%;
+  height: 9%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(20, 24, 32, 0.2), rgba(20, 24, 32, 0) 70%);
+  pointer-events: none;
+}
+.stage > img {
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Box number tab: the one loud element ---------- */
+.num-tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  max-width: 100%;
+  padding: 3px 10px 5px 8px;
+  border-radius: 0 0 10px 0;
+  color: #fff;
+  background: var(--red);
+  box-shadow: 0 2px 6px var(--shadow-strong);
+}
+/* Width is bounded by the stepped font sizes below; a % max-width would resolve against the
+   shrink-wrapped absolute wrapper and squash the numeral into the marks */
+.num-tab .tab-marks,
+.num-tab b {
+  flex-shrink: 0;
+}
+.num-tab .tab-marks {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  line-height: 1.05;
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.95;
+  min-width: 0;
+}
+.num-tab b {
+  font-family: var(--font-archivo), sans-serif;
+  font-variation-settings: "wdth" 62;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.num-tab[data-len="3"] b { font-size: 27px; }
+.num-tab[data-len="4"] b { font-size: 22px; }
+.num-tab[data-len="5"] b,
+.num-tab[data-len="6"] b { font-size: 18px; }
+.num-tab-lg {
+  max-width: none;
+  padding: 6px 16px 8px 12px;
+  border-radius: 0 0 16px 0;
+}
+.num-tab-lg .tab-marks { font-size: 12px; }
+.num-tab-lg b { font-size: 64px !important; }
+
+/* ---------- Surfaces ---------- */
+.card-surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: 0 1px 2px var(--shadow);
+}
+
+/* Segmented control, sits directly on the page */
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--line) 70%, transparent);
+  max-width: 100%;
+}
+.segmented button:focus-visible {
+  outline-offset: -2px;
+}
+/* Edge fade so a scrollable row shows there is more to the side */
+.segmented-scroll {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+}
+
+/* Ruler ticks under the progress bar */
+.ruler {
+  height: 6px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--muted) 0,
+    var(--muted) 1px,
+    transparent 1px,
+    transparent 10%
+  );
+  background-size: 100% 6px;
+  background-repeat: no-repeat;
+  opacity: 0.5;
 }
 
 .no-scrollbar {
@@ -63,4 +240,45 @@ input[type="file"] {
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ---------- Motion (opt-in only) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes grow-x {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes stamp {
+    0% {
+      transform: scale(1.8) rotate(-12deg);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(0.94) rotate(2deg);
+      opacity: 1;
+    }
+    100% {
+      transform: none;
+    }
+  }
+  /* Home page only (SeriesBar animate): the progress fill on load */
+  .grow-x {
+    transform-origin: left center;
+    animation: grow-x 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: 150ms;
+  }
+  .stamp-in {
+    animation: stamp 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .press {
+    transition: transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      background-color 160ms, color 160ms;
+  }
+  .press:active {
+    transform: scale(0.97);
+  }
 }

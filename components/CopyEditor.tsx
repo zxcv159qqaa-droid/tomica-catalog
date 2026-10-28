@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import { CONDITIONS, db, itemQty, type CollectionItem, type Condition } from '@/lib/db';
 import { removeCopy } from '@/lib/collection-actions';
+import { ChevronDownIcon, MinusIcon, PlusIcon } from '@/components/icons';
 
 const field =
-  'w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-red-500';
+  'mt-1 h-11 w-full rounded-[10px] border border-line bg-surface px-3 text-[15px] text-ink focus:border-[#e50012] focus:outline-none focus:ring-2 focus:ring-[#e50012]/30';
 
 // Quantity stepper plus the per-copy details (condition, price, location, notes) for one owned variant
 export default function CopyEditor({ item, onAdd }: { item?: CollectionItem; onAdd: () => void }) {
@@ -15,8 +16,9 @@ export default function CopyEditor({ item, onAdd }: { item?: CollectionItem; onA
     return (
       <button
         onClick={onAdd}
-        className="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
+        className="press inline-flex h-11 items-center gap-1.5 rounded-[10px] border border-ink/25 px-4 text-sm font-medium text-ink hover:bg-paper"
       >
+        <PlusIcon size={16} />
         加入收藏
       </button>
     );
@@ -25,36 +27,37 @@ export default function CopyEditor({ item, onAdd }: { item?: CollectionItem; onA
   const save = (patch: Partial<CollectionItem>) => item.id && db.collection.update(item.id, patch);
   const summary = [item.condition, item.price ? `NT$${item.price}` : '', item.location]
     .filter(Boolean)
-    .join('・');
+    .join('　');
 
   return (
-    <div className="w-full mt-3 pt-3 border-t border-red-200/60 dark:border-red-900/60 space-y-3">
+    <div className="mt-2 w-full space-y-3">
       <div className="flex items-center justify-between gap-2">
-        <button onClick={() => setOpen(!open)} className="text-xs text-slate-500 text-left min-w-0 truncate">
-          {open ? '▾ 收起細節' : `▸ ${summary || '盒況、價格、收納位置'}`}
+        <button onClick={() => setOpen(!open)} className="flex min-h-11 min-w-0 items-center gap-1 text-left text-sm text-muted">
+          <ChevronDownIcon size={16} className={`shrink-0 transition-transform ${open ? 'rotate-180' : '-rotate-90'}`} />
+          <span className="truncate">{open ? '收起細節' : summary || '盒況、價格、收納位置'}</span>
         </button>
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => removeCopy(item)}
             aria-label="減少一台"
-            className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 font-bold"
+            className="press flex h-11 w-11 items-center justify-center rounded-[10px] border border-line bg-surface"
           >
-            −
+            <MinusIcon size={18} />
           </button>
-          <span className="w-6 text-center font-black">{itemQty(item)}</span>
+          <span className="tnum min-w-6 text-center text-lg font-medium">{itemQty(item)}</span>
           <button
             onClick={() => save({ qty: itemQty(item) + 1 })}
             aria-label="增加一台"
-            className="w-8 h-8 rounded-lg bg-red-600 text-white font-bold"
+            className="press flex h-11 w-11 items-center justify-center rounded-[10px] bg-[#e50012] text-white"
           >
-            +
+            <PlusIcon size={18} />
           </button>
         </div>
       </div>
 
       {open && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <label className="text-xs text-slate-500">
+          <label className="text-sm text-muted">
             盒況
             <select
               value={item.condition ?? ''}
@@ -69,7 +72,7 @@ export default function CopyEditor({ item, onAdd }: { item?: CollectionItem; onA
               ))}
             </select>
           </label>
-          <label className="text-xs text-slate-500">
+          <label className="text-sm text-muted">
             購入單價 (NT$)
             <input
               type="number"
@@ -80,7 +83,7 @@ export default function CopyEditor({ item, onAdd }: { item?: CollectionItem; onA
               className={field}
             />
           </label>
-          <label className="text-xs text-slate-500">
+          <label className="text-sm text-muted">
             收納位置
             <input
               defaultValue={item.location ?? ''}
@@ -89,7 +92,7 @@ export default function CopyEditor({ item, onAdd }: { item?: CollectionItem; onA
               className={field}
             />
           </label>
-          <label className="text-xs text-slate-500">
+          <label className="text-sm text-muted">
             備註
             <input
               defaultValue={item.notes ?? ''}

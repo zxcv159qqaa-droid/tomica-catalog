@@ -1,15 +1,19 @@
 import type { Metadata, Viewport } from 'next';
 import { Suspense } from 'react';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Archivo, Geist_Mono } from 'next/font/google';
 import AppHeader from '@/components/AppHeader';
 import BottomNav from '@/components/BottomNav';
 import PersistStorage from '@/components/PersistStorage';
 import SyncManager from '@/components/SyncManager';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+// Display + body Latin face; the wdth axis gives the condensed numerals/wordmark
+const archivo = Archivo({
+  variable: '--font-archivo',
   subsets: ['latin'],
+  axes: ['wdth'],
+  style: ['normal', 'italic'],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
@@ -30,10 +34,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#e60012',
+  themeColor: '#e50012',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -44,11 +47,11 @@ export default function RootLayout({
   return (
     <html
       lang="zh-Hant"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${archivo.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <AppHeader />
-        <main className="flex-1 pb-20 md:pb-8 max-w-7xl mx-auto w-full">
+        <main className="flex-1 pb-[calc(7.5rem+env(safe-area-inset-bottom))] md:pb-8 max-w-7xl mx-auto w-full">
           {children}
         </main>
         <Suspense>

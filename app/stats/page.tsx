@@ -6,16 +6,7 @@ import { CATALOG_SERIES, getAllCars, getCarByVariantId, seriesLabel } from '@/li
 import { seriesStyle } from '@/lib/theme';
 import { itemQty } from '@/lib/db';
 import { useCollection } from '@/lib/useCollection';
-
-const card = 'bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm';
-const BAR: Record<string, string> = {
-  regular: 'bg-red-600',
-  premium: 'bg-amber-500',
-  unlimited: 'bg-slate-500',
-  dream: 'bg-indigo-600',
-  disney: 'bg-sky-500',
-  asia: 'bg-emerald-500',
-};
+import SeriesBar from '@/components/SeriesBar';
 
 export default function StatsPage() {
   const { collection, qtyByCar, scannedItems } = useCollection();
@@ -63,72 +54,93 @@ export default function StatsPage() {
   }, [collection]);
   const topMaker = makers[0]?.[1] ?? 1;
 
+  const ownedTotal = perSeries.reduce((n, s) => n + s.owned, 0);
+  const currentTotal = perSeries.reduce((n, s) => n + s.total, 0);
+
   return (
-    <div className="px-4 sm:px-6 pt-5 space-y-5">
-      <h2 className="text-xl font-extrabold">📊 收藏統計</h2>
+    <div className="px-4 pt-6 sm:px-6">
+      <h1 className="text-sm text-muted">收藏統計</h1>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {perSeries.map((s) => (
-          <div key={s.series} className={`${card} p-4`}>
-            <div className="flex items-center gap-1.5 text-xs text-slate-500">
-              <span className={`w-2 h-2 rounded-full ${seriesStyle(s.series).dot}`} />
-              {seriesLabel(s.series)} 現行
-            </div>
-            <div className="mt-2 flex items-baseline gap-1.5">
-              <span className="text-2xl font-black">{s.owned}</span>
-              <span className="text-xs text-slate-400">/ {s.total} 款</span>
-            </div>
-            <div className="mt-2 w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
-              <div
-                className={`${BAR[s.series]} h-full rounded-full transition-all duration-500`}
-                style={{ width: `${s.total ? (s.owned / s.total) * 100 : 0}%` }}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-2 gap-3 sm:gap-4">
-        <div className={`${card} p-4`}>
-          <p className="text-xs text-slate-500">實體車在庫</p>
-          <p className="mt-1 text-2xl font-black">
-            {copies} <span className="text-xs font-normal text-slate-400">台</span>
-          </p>
+      {/* Hero: plain on the page */}
+      <section className="mt-1">
+        <p className="flex items-baseline gap-2">
+          <span className="tnum font-display text-[88px] font-medium leading-[0.85] sm:text-[112px]">{ownedTotal}</span>
+          <span className="tnum text-lg text-muted">/ {currentTotal} 款現行</span>
+        </p>
+        <div className="mt-5">
+          <SeriesBar
+            segments={perSeries.filter((p) => p.total > 0).map((p) => ({ series: p.series, total: p.total, have: p.owned }))}
+            label={`現行車款已收 ${ownedTotal} / ${currentTotal}`}
+            legend={false}
+          />
         </div>
-        <div className={`${card} p-4`}>
-          <p className="text-xs text-slate-500">累計購入金額</p>
-          <p className="mt-1 text-2xl font-black">
-            <span className="text-xs font-bold text-slate-400">NT$ </span>
-            {spent.toLocaleString()}
-          </p>
-          <p className="text-[11px] text-slate-400 mt-1">有填價格的 {priced} 筆</p>
-        </div>
-      </div>
-
-      <section className={`${card} p-4 sm:p-5 space-y-3`}>
-        <div className="flex flex-wrap items-end justify-between gap-2">
+        <dl className="tnum mt-5 flex flex-wrap gap-x-10 gap-y-3">
           <div>
-            <h3 className="font-extrabold">常規 No.1 – No.{wall.length} 百格牆</h3>
-            <p className="text-xs text-slate-500">點格子看那個編號的車</p>
+            <dt className="text-sm text-muted">實體車在庫</dt>
+            <dd className="text-3xl font-medium">
+              {copies} <span className="text-sm font-normal text-muted">台</span>
+            </dd>
           </div>
-          <div className="flex items-center gap-3 text-xs">
-            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-600" /> 有現行款</span>
-            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-amber-400" /> 只有舊款</span>
-            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-slate-100 border border-slate-300" /> 沒有</span>
+          <div>
+            <dt className="text-sm text-muted">累計購入金額</dt>
+            <dd className="text-3xl font-medium">
+              <span className="text-sm font-normal text-muted">NT$ </span>
+              {spent.toLocaleString()}
+            </dd>
+            <dd className="text-[13px] text-muted">有填價格的 {priced} 筆</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section className="mt-8">
+        <h3 className="mb-1 text-base font-medium">各系列現行款</h3>
+        <ul className="tnum divide-y divide-line border-y border-line">
+          {perSeries.map((s) => (
+            <li key={s.series} className="flex items-center gap-3 py-3">
+              <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${seriesStyle(s.series).dot}`} aria-hidden="true" />
+              <span className="w-28 shrink-0 truncate text-[15px]">{seriesLabel(s.series)}</span>
+              <div className="h-2 min-w-0 flex-1 overflow-hidden rounded-full bg-line">
+                <div
+                  className="h-full rounded-full"
+                  style={{
+                    width: s.owned > 0 ? `max(4px, ${(s.owned / s.total) * 100}%)` : 0,
+                    background: seriesStyle(s.series).accent,
+                  }}
+                />
+              </div>
+              <span className="w-20 shrink-0 text-right text-sm text-muted">
+                <span className="font-medium text-ink">{s.owned}</span> / {s.total} 款
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-8">
+        <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
+          <div>
+            <h3 className="text-base font-medium">常規 No.1 – No.{wall.length} 百格牆</h3>
+            <p className="text-sm text-muted">點格子看那個編號的車</p>
+          </div>
+          <div className="flex items-center gap-4 text-sm text-muted">
+            <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] bg-[#e50012]" />有現行款</span>
+            <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] bg-[#ffc400]" />只有舊款</span>
+            <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] border border-line bg-surface" />沒有</span>
           </div>
         </div>
-        <div className="grid grid-cols-8 sm:grid-cols-10 lg:grid-cols-12 gap-1.5">
+        <div className="mt-3 grid grid-cols-7 gap-1 sm:grid-cols-10 sm:gap-1.5 lg:grid-cols-14">
           {wall.map(({ n, car, state }) => (
             <Link
               key={n}
               href={`/catalog/regular-${n}`}
               title={car?.name_ja ?? `No.${n}`}
-              className={`aspect-square rounded-lg flex items-center justify-center text-xs font-bold transition hover:scale-110 ${
+              aria-label={`No.${n}${state === 'current' ? '，有現行款' : state === 'older' ? '，只有舊款' : '，沒有'}`}
+              className={`press tnum flex aspect-square min-h-11 items-center justify-center rounded-[6px] text-sm font-medium ${
                 state === 'current'
-                  ? 'bg-red-600 text-white'
+                  ? 'bg-[#e50012] text-white'
                   : state === 'older'
-                    ? 'bg-amber-400 text-amber-950'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-400 border border-slate-200 dark:border-slate-700'
+                    ? 'bg-[#ffc400] text-[#24272c]'
+                    : 'border border-line bg-surface text-muted'
               }`}
             >
               {n}
@@ -138,16 +150,16 @@ export default function StatsPage() {
       </section>
 
       {makers.length > 0 && (
-        <section className={`${card} p-4 sm:p-5`}>
-          <h3 className="font-extrabold mb-3">收藏最多的廠牌</h3>
-          <ul className="space-y-2">
+        <section className="mt-8">
+          <h3 className="mb-1 text-base font-medium">收藏最多的廠牌</h3>
+          <ul className="tnum divide-y divide-line border-y border-line">
             {makers.map(([maker, count]) => (
-              <li key={maker} className="flex items-center gap-3 text-sm">
+              <li key={maker} className="flex items-center gap-3 py-2.5 text-[15px]">
                 <span className="w-28 shrink-0 truncate">{maker}</span>
-                <div className="flex-1 bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                  <div className="bg-red-600 h-full rounded-full" style={{ width: `${(count / topMaker) * 100}%` }} />
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-line">
+                  <div className="h-full rounded-full bg-ink" style={{ width: `${(count / topMaker) * 100}%` }} />
                 </div>
-                <span className="w-10 text-right text-xs text-slate-500">{count} 台</span>
+                <span className="w-12 shrink-0 text-right text-sm text-muted">{count} 台</span>
               </li>
             ))}
           </ul>

@@ -10,11 +10,12 @@ import {
   seriesLabel,
   type TomicaCar,
 } from '@/lib/tomica-data';
-import { seriesStyle } from '@/lib/theme';
 import { useCollection } from '@/lib/useCollection';
 import { addCopy } from '@/lib/collection-actions';
 import { itemQty } from '@/lib/db';
 import CarThumb from '@/components/CarThumb';
+import Segmented from '@/components/Segmented';
+import { BackspaceIcon, CheckIcon, PlusIcon } from '@/components/icons';
 
 const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'CLEAR', '0', 'BACK'];
 
@@ -54,95 +55,94 @@ export default function QuickLookup() {
     setJustAdded(car.id);
   };
 
+  const seriesOptions = CATALOG_SERIES.map((s) => ({ key: s as string, label: seriesLabel(s) }));
+  const placeholder =
+    series === 'dream'
+      ? '編號或代號，例如 151、SP、RD-01'
+      : series === 'disney'
+        ? '盒子上的編號，例如 2 或 DM-02'
+        : series === 'asia'
+          ? '盒子上的編號，例如 6 或 AO-06'
+          : '盒子上的編號，例如 46';
+
   return (
-    <div className="space-y-4">
-      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 space-y-3">
-        <p className="text-xs text-slate-500">
+    <div className="space-y-5">
+      <section className="space-y-3">
+        <p className="text-sm text-muted">
           在店裡看到想買的車？輸入盒子上的編號，馬上知道車庫裡有沒有（含歷代舊款）。
         </p>
-        <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
-          {CATALOG_SERIES.map((s) => (
-            <button
-              key={s}
-              onClick={() => setSeries(s)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition ${
-                series === s
-                  ? seriesStyle(s).pillActive
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
-              }`}
-            >
-              {seriesLabel(s)}
-            </button>
-          ))}
+        <Segmented scroll label="系列" options={seriesOptions} value={series} onChange={setSeries} />
+
+        {/* Keypad display styled like the box number tab */}
+        <div className="flex items-center gap-3 on-red rounded-2xl rounded-tl-none bg-[#e50012] px-4 py-2 text-white shadow-[0_2px_6px_var(--shadow-strong)] focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-ink">
+          <span className="shrink-0 text-xs font-semibold opacity-90">
+            {series === 'regular' ? 'No.' : seriesLabel(series)}
+          </span>
+          <input
+            value={input}
+            onChange={(e) => {
+              setJustAdded(undefined);
+              setInput(e.target.value.toUpperCase().slice(0, 8));
+            }}
+            inputMode="numeric"
+            aria-label="盒子上的編號"
+            placeholder="—"
+            className="font-display tnum min-w-0 flex-1 bg-transparent text-[64px] font-black italic leading-[1.05] tracking-tight text-white placeholder:text-white/40 focus:outline-none"
+            style={{ fontVariationSettings: '"wdth" 62' }}
+          />
         </div>
-        <input
-          value={input}
-          onChange={(e) => {
-            setJustAdded(undefined);
-            setInput(e.target.value.toUpperCase().slice(0, 8));
-          }}
-          inputMode="numeric"
-          placeholder={
-            series === 'dream'
-              ? '編號或代號，例如 151、SP、RD-01'
-              : series === 'disney'
-                ? '盒子上的編號，例如 2 或 DM-02'
-                : series === 'asia'
-                  ? '盒子上的編號，例如 6 或 AO-06'
-                  : '盒子上的編號，例如 46'
-          }
-          className="w-full px-4 py-3 text-xl font-black tracking-wide bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-red-600 focus:bg-white"
-        />
+        <p className="text-[13px] text-muted">{placeholder}</p>
+
         <div className="grid grid-cols-3 gap-2">
           {KEYS.map((k) => (
             <button
               key={k}
               onClick={() => press(k)}
-              className={`py-3 rounded-xl font-bold transition active:scale-95 ${
-                k === 'CLEAR'
-                  ? 'bg-rose-50 text-rose-600 text-xs dark:bg-rose-950'
-                  : k === 'BACK'
-                    ? 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-lg'
+              aria-label={k === 'CLEAR' ? '清空' : k === 'BACK' ? '刪除一位' : k}
+              className={`press flex h-14 items-center justify-center rounded-[10px] border border-line ${
+                k === 'CLEAR' || k === 'BACK' ? 'bg-transparent text-sm text-muted' : 'bg-surface text-2xl font-medium'
               }`}
             >
-              {k === 'CLEAR' ? '清空' : k === 'BACK' ? '⌫' : k}
+              {k === 'CLEAR' ? '清空' : k === 'BACK' ? <BackspaceIcon size={22} /> : <span className="tnum">{k}</span>}
             </button>
           ))}
         </div>
-      </div>
+      </section>
 
       {input && (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+        <section aria-live="polite">
           {cars.length === 0 && scannedHere.length === 0 ? (
-            <p className="p-5 text-sm text-slate-500">
+            <p className="py-4 text-sm text-muted">
               圖鑑裡找不到 {seriesLabel(series)} {input}。可以改用拍照辨識加入。
             </p>
           ) : (
             <>
               {current && (
                 <div
-                  className={`p-4 text-white ${currentQty > 0 ? 'bg-emerald-600' : 'tomica-red'}`}
+                  className={`rounded-2xl p-4 ${
+                    currentQty > 0 ? 'bg-[#e50012] text-white' : 'border-2 border-ink/80 bg-surface'
+                  }`}
                 >
-                  <p className="text-lg font-black">
-                    {currentQty > 0 ? `✓ 已經有了（${currentQty} 台）` : '✗ 車庫裡還沒有'}
+                  <p className="flex items-center gap-2 text-xl font-medium">
+                    {currentQty > 0 && <CheckIcon size={22} />}
+                    {currentQty > 0 ? `已經有了（${currentQty} 台）` : '車庫裡還沒有'}
                   </p>
-                  <p className="text-xs opacity-90">
+                  <p className={`mt-0.5 text-sm ${currentQty > 0 ? 'text-white/85' : 'text-muted'}`}>
                     現行的 {seriesLabel(series)} {displayCode(current.code, current.number)} 是「{current.name_ja}」
                   </p>
                 </div>
               )}
               {!current && ownedOlder > 0 && (
-                <div className="p-4 bg-amber-500 text-white">
-                  <p className="text-lg font-black">這個編號你有 {ownedOlder} 台舊款</p>
+                <div className="rounded-2xl bg-[#ffc400] p-4 text-[#24272c]">
+                  <p className="text-xl font-medium">這個編號你有 {ownedOlder} 台舊款</p>
                 </div>
               )}
-              <ul className="divide-y divide-slate-100 dark:divide-slate-800">
+              <ul className="mt-2 divide-y divide-line">
                 {cars.map((car) => {
                   const qty = qtyByCar.get(car.id) ?? 0;
                   return (
-                    <li key={car.id} className="flex items-center gap-3 p-3">
-                      <Link href={`/catalog/${car.id}`} className="flex items-center gap-3 flex-1 min-w-0">
+                    <li key={car.id} className="flex items-center gap-3 py-3">
+                      <Link href={`/catalog/${car.id}`} className="flex min-w-0 flex-1 items-center gap-3">
                         <CarThumb
                           src={car.image ?? imageByCar.get(car.id)}
                           series={car.series}
@@ -150,45 +150,57 @@ export default function QuickLookup() {
                           code={car.retired && car.series === 'regular' ? genLabel(car) : car.code}
                         />
                         <div className="min-w-0">
-                          <p className="text-sm font-bold truncate">
+                          <p className="truncate text-[15px] font-medium">
                             {car.retired && (
-                              <span className="mr-1 text-[10px] font-medium px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                              <span className="mr-1.5 rounded bg-[color-mix(in_srgb,var(--line)_80%,transparent)] px-1.5 py-0.5 align-middle text-xs font-normal text-muted">
                                 舊款
                               </span>
                             )}
                             {car.name_ja}
                           </p>
-                          <p className="text-xs text-slate-400">{car.period ?? car.manufacturer}</p>
+                          <p className="tnum text-[13px] text-muted">{car.period ?? car.manufacturer}</p>
                         </div>
                       </Link>
-                      {qty > 0 ? (
-                        <span className="text-xs font-bold text-emerald-600 shrink-0">有 {qty} 台</span>
-                      ) : (
-                        <span className="text-xs text-slate-400 shrink-0">沒有</span>
-                      )}
+                      <span
+                        className={`shrink-0 text-sm ${qty > 0 ? 'font-medium text-brand-text' : 'text-muted'}`}
+                      >
+                        {qty > 0 ? `有 ${qty} 台` : '沒有'}
+                      </span>
                       <button
                         onClick={() => add(car)}
-                        className="shrink-0 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-red-600 text-white active:scale-95"
+                        aria-label={`加入 1 台：${car.name_ja}`}
+                        className="press flex h-11 min-w-11 shrink-0 items-center justify-center gap-1 rounded-[10px] border border-ink/25 px-3 text-sm font-medium"
                       >
-                        {justAdded === car.id ? '✓ 已加' : '+1'}
+                        {justAdded === car.id ? (
+                          <>
+                            <CheckIcon size={14} className="stamp-in" />
+                            已加
+                          </>
+                        ) : (
+                          <>
+                            <PlusIcon size={14} />1
+                          </>
+                        )}
                       </button>
                     </li>
                   );
                 })}
                 {scannedHere.map((item) => (
-                  <li key={item.id} className="flex items-center gap-3 p-3">
+                  <li key={item.id} className="flex items-center gap-3 py-3">
                     <CarThumb src={item.thumb} series={item.series} number={item.tomicaNumber} code={item.code} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold truncate">{item.name}</p>
-                      <p className="text-xs text-slate-400">掃描加入</p>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[15px] font-medium">{item.name}</p>
+                      <p className="text-[13px] text-muted">掃描加入</p>
                     </div>
-                    <span className="text-xs font-bold text-emerald-600 shrink-0">有 {itemQty(item)} 台</span>
+                    <span className="shrink-0 text-sm font-medium text-brand-text">
+                      有 {itemQty(item)} 台
+                    </span>
                   </li>
                 ))}
               </ul>
             </>
           )}
-        </div>
+        </section>
       )}
     </div>
   );

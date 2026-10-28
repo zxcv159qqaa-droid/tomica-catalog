@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { TomicaCar } from '@/lib/tomica-data';
 import { useApiKey } from '@/lib/useApiKey';
 import { makeThumb, rejectCarThumb, saveCarThumb, searchThumbnail, thumbQuery } from '@/lib/thumbs';
+import { CloseIcon, ImageIcon, RefreshIcon, SearchIcon } from '@/components/icons';
 
 type Status = 'idle' | 'searching' | 'found' | 'notFound' | 'busy';
 
@@ -35,35 +36,48 @@ export default function ThumbFinder({ car, hasImage }: { car: TomicaCar; hasImag
 
   const busy = status === 'searching';
   const btn =
-    'text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-50';
+    'press inline-flex h-11 items-center gap-1.5 rounded-[10px] border border-line bg-surface px-3.5 text-sm font-medium hover:bg-paper disabled:opacity-50';
 
   return (
-    <div className="mb-4 rounded-xl bg-slate-50 dark:bg-slate-900 p-3 text-xs text-slate-500">
+    <div className="text-sm text-muted">
       <div className="flex flex-wrap items-center gap-2">
         {hasImage ? (
           <>
             <span className="mr-auto">縮圖由網路搜尋補上，可能不準確</span>
             <button className={btn} disabled={busy} onClick={() => search(true)}>
-              🔄 換一張
+              <RefreshIcon size={16} />
+              換一張
             </button>
             <button className={btn} disabled={busy} onClick={remove}>
-              ✕ 圖不對，移除
+              <CloseIcon size={16} />
+              圖不對，移除
             </button>
           </>
         ) : (
           <>
             <span className="mr-auto">圖鑑還沒有這台的縮圖</span>
             <button className={btn} disabled={busy} onClick={() => search(false)}>
-              🔍 搜尋縮圖
+              <SearchIcon size={16} />
+              搜尋縮圖
             </button>
           </>
         )}
       </div>
-      {status === 'searching' && <p className="mt-2">🔎 正在網路上搜尋並確認圖片…（約 20～60 秒）</p>}
-      {status === 'found' && <p className="mt-2">🖼️ 找到了，已補上並分享到共用圖庫</p>}
+      {status === 'searching' && (
+        <p className="mt-2 flex items-center gap-1.5">
+          <SearchIcon size={16} />
+          正在網路上搜尋並確認圖片…（約 20～60 秒）
+        </p>
+      )}
+      {status === 'found' && (
+        <p className="mt-2 flex items-center gap-1.5">
+          <ImageIcon size={16} />
+          找到了，已補上並分享到共用圖庫
+        </p>
+      )}
       {status === 'notFound' && <p className="mt-2">網路上沒找到確定是這台車的圖片</p>}
       {status === 'busy' && (
-        <p className="mt-2 text-amber-600 dark:text-amber-400">
+        <p className="mt-2 text-[#9a5b00] dark:text-[#ffc400]">
           Gemini 額度暫時用完或忙碌中，過一陣子（或明天）再試；在設定填入自己的 API Key 也可以
         </p>
       )}

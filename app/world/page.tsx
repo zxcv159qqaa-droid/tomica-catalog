@@ -6,17 +6,14 @@ import { db } from '@/lib/db';
 import { getAllWorldItems, getWorldLines, type WorldItem } from '@/lib/world-data';
 import { normalizeName } from '@/lib/tomica-data';
 import SearchBar from '@/components/SearchBar';
+import Segmented from '@/components/Segmented';
+import EmptyState from '@/components/EmptyState';
+import { OwnedStamp } from '@/components/CardParts';
+import { CheckIcon, PlusIcon } from '@/components/icons';
 
 type OwnFilter = 'all' | 'owned' | 'unowned';
 
 const GRID = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4';
-
-const pill = (active: boolean) =>
-  `px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 ${
-    active
-      ? 'bg-red-600 text-white shadow-sm'
-      : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-  }`;
 
 const ALL = getAllWorldItems();
 const LINES = getWorldLines();
@@ -27,50 +24,49 @@ async function toggleOwned(id: string, owned: boolean) {
 }
 
 function WorldCard({ item, owned }: { item: WorldItem; owned: boolean }) {
+  // The stamp plays only when the user marks it owned here, not on page load
+  const [justMarked, setJustMarked] = useState(false);
   return (
     <div
-      className={`card-hover relative h-full flex flex-col overflow-hidden rounded-2xl border shadow-sm ${
-        owned
-          ? 'bg-red-50/60 dark:bg-red-950/40 border-red-200 dark:border-red-900'
-          : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800'
+      className={`relative flex h-full flex-col overflow-hidden rounded-2xl border bg-surface shadow-[0_1px_2px_var(--shadow)] ${
+        owned ? 'border-[#e50012]/50' : 'border-line'
       }`}
     >
-      <div className="relative p-3 pb-0">
-        <div className="aspect-[4/3] rounded-lg overflow-hidden bg-white border border-gray-100 dark:border-gray-700 flex items-center justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={item.image}
-            alt={item.name}
-            loading="lazy"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-contain"
-          />
-        </div>
+      <div className="stage aspect-[4/3]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={item.image}
+          alt={item.name}
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          className="h-full w-full object-contain"
+        />
         {owned && (
-          <span className="absolute top-5 right-5 bg-red-600 text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow">
-            ✓ 已收藏
-          </span>
+          <div className="absolute bottom-2 right-2 z-[3]">
+            <OwnedStamp animate={justMarked} />
+          </div>
         )}
       </div>
-      <div className="p-3.5 flex-1 flex flex-col gap-1">
-        <h3 className="font-bold text-sm leading-snug text-slate-900 dark:text-slate-100 line-clamp-3">
-          {item.name}
-        </h3>
-        <div className="text-xs text-slate-400 dark:text-slate-500">
-          {item.line}
-          {item.price !== undefined && ` ・ ¥${item.price.toLocaleString()}`}
+      <div className="flex flex-1 flex-col gap-1 p-3.5">
+        <h3 className="line-clamp-3 text-[15px] font-medium leading-snug">{item.name}</h3>
+        <div className="tnum flex flex-wrap gap-x-3 text-[13px] text-muted">
+          <span>{item.line}</span>
+          {item.price !== undefined && <span>¥{item.price.toLocaleString()}</span>}
         </div>
-        {item.note && (
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 line-clamp-2">{item.note}</p>
-        )}
+        {item.note && <p className="line-clamp-2 text-[13px] text-muted">{item.note}</p>}
         <button
-          onClick={() => void toggleOwned(item.id, owned)}
-          className={`mt-auto w-full rounded-xl py-2 text-xs font-bold transition ${
+          onClick={() => {
+            setJustMarked(!owned);
+            void toggleOwned(item.id, owned);
+          }}
+          aria-pressed={owned}
+          className={`press mt-auto flex h-11 w-full items-center justify-center gap-1.5 rounded-[10px] text-sm font-medium ${
             owned
-              ? 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-600'
-              : 'bg-red-600 text-white hover:bg-red-700'
+              ? 'border border-line text-muted hover:text-ink'
+              : 'border border-ink/25 text-ink hover:bg-paper'
           }`}
         >
+          {owned ? <CheckIcon size={14} /> : <PlusIcon size={14} />}
           {owned ? '取消已收' : '標記已收'}
         </button>
       </div>
@@ -97,53 +93,43 @@ export default function WorldPage() {
     );
   }, [search, line, filter, ownedIds]);
 
+  const lineOptions = [{ key: 'all', label: '全部' }, ...LINES.map((l) => ({ key: l, label: l }))];
+  const filterOptions = [
+    { key: 'all', label: '全部' },
+    { key: 'owned', label: `已收 (${ownedTotal})` },
+    { key: 'unowned', label: `未收 (${ALL.length - ownedTotal})` },
+  ] as const;
+
   return (
-    <div className="px-4 sm:px-6 pt-5 space-y-5">
-      <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 space-y-4">
-        <div className="flex flex-col lg:flex-row gap-3 lg:items-center lg:justify-between">
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 lg:pb-0">
-            <button onClick={() => setLine('all')} className={pill(line === 'all')}>
-              全部
-            </button>
-            {LINES.map((l) => (
-              <button key={l} onClick={() => setLine(l)} className={pill(line === l)}>
-                {l}
-              </button>
-            ))}
-          </div>
-          <div className="sm:w-72">
+    <div className="px-4 pt-6 sm:px-6">
+      <section aria-label="篩選" className="space-y-3">
+        <h1 className="sr-only">建物圖鑑</h1>
+        <p className="tnum flex items-baseline gap-2">
+          <span className="font-display text-[64px] font-medium leading-[0.85]">{ownedTotal}</span>
+          <span className="text-lg text-muted">/ {ALL.length} 項已收</span>
+        </p>
+        <Segmented scroll label="系列" options={lineOptions} value={line} onChange={setLine} />
+        <div className="flex flex-col gap-3 md:flex-row md:items-center">
+          <div className="w-full md:w-80">
             <SearchBar value={search} onChange={setSearch} placeholder="搜尋建物名稱..." />
           </div>
+          <Segmented scroll label="收藏狀態" options={filterOptions} value={filter} onChange={setFilter} />
         </div>
-
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
-          <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
-            {(
-              [
-                { key: 'all', label: '全部' },
-                { key: 'owned', label: `已收 (${ownedTotal})` },
-                { key: 'unowned', label: `未收 (${ALL.length - ownedTotal})` },
-              ] as const
-            ).map(({ key, label }) => (
-              <button key={key} onClick={() => setFilter(key)} className={pill(filter === key)}>
-                {label}
-              </button>
-            ))}
-          </div>
-          <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
-            已收 {ownedTotal} / {ALL.length}
-          </span>
-        </div>
-
-        <p className="text-xs text-slate-400">
-          顯示 {filtered.length} 項・資料來源：タカラトミー官網 トミカワールド商品一覽
+        <p className="tnum text-sm text-muted">
+          顯示 {filtered.length} 項　資料來源：タカラトミー官網 トミカワールド商品一覽
         </p>
       </section>
 
-      <div className={GRID}>
-        {filtered.map((item) => (
-          <WorldCard key={item.id} item={item} owned={ownedIds.has(item.id)} />
-        ))}
+      <div className="mt-3">
+        {filtered.length === 0 ? (
+          <EmptyState title="找不到符合條件的建物" />
+        ) : (
+          <div className={GRID}>
+            {filtered.map((item) => (
+              <WorldCard key={item.id} item={item} owned={ownedIds.has(item.id)} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

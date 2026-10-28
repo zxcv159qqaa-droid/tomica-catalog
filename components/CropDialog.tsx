@@ -102,16 +102,16 @@ export default function CropDialog({
   const handle = (kind: Drag, pos: string) => (
     <div
       onPointerDown={(e) => begin(kind, e)}
-      className={`absolute ${pos} w-8 h-8 flex items-center justify-center touch-none`}
+      className={`absolute ${pos} w-11 h-11 flex items-center justify-center touch-none`}
     >
-      <div className="w-4 h-4 rounded-full bg-white border-2 border-red-600 shadow" />
+      <div className="w-4 h-4 rounded-full bg-white border-2 border-[#e50012] shadow" />
     </div>
   );
 
   const pct = (v: number) => `${v * 100}%`;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black flex flex-col">
+    <div className="on-ink fixed inset-0 z-50 bg-[#14161a] flex flex-col">
       <p className="text-center text-white/80 text-sm py-3">拖曳方框或四個角，框住要辨識的車或包裝</p>
       <div className="flex-1 min-h-0 flex items-center justify-center px-4">
         {url && (
@@ -140,22 +140,22 @@ export default function CropDialog({
                 boxShadow: '0 0 0 9999px rgba(0,0,0,0.55)',
               }}
             >
-              {handle('nw', '-left-4 -top-4')}
-              {handle('ne', '-right-4 -top-4')}
-              {handle('sw', '-left-4 -bottom-4')}
-              {handle('se', '-right-4 -bottom-4')}
+              {handle('nw', '-left-5 -top-5')}
+              {handle('ne', '-right-5 -top-5')}
+              {handle('sw', '-left-5 -bottom-5')}
+              {handle('se', '-right-5 -bottom-5')}
             </div>
           </div>
         )}
       </div>
-      <div className="flex gap-2 p-4">
-        <button onClick={onCancel} className="flex-1 py-3 rounded-xl bg-slate-700 text-white font-medium">
+      <div className="flex gap-2 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+        <button onClick={onCancel} className="press flex-1 min-h-12 rounded-[10px] bg-white/10 text-white font-medium">
           取消
         </button>
-        <button onClick={() => confirm(FULL)} className="flex-1 py-3 rounded-xl bg-slate-200 text-slate-800 font-medium">
+        <button onClick={() => confirm(FULL)} className="press flex-1 min-h-12 rounded-[10px] bg-white text-[#24272c] font-medium">
           用整張
         </button>
-        <button onClick={() => confirm(box)} className="flex-[1.5] py-3 rounded-xl tomica-red text-white font-bold">
+        <button onClick={() => confirm(box)} className="press flex-[1.5] min-h-12 rounded-[10px] bg-[#e50012] text-white font-medium">
           裁剪並辨識
         </button>
       </div>

@@ -1,5 +1,7 @@
 'use client';
 
+import { CloseIcon, SearchIcon } from '@/components/icons';
+
 interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
@@ -13,22 +15,26 @@ export default function SearchBar({
 }: SearchBarProps) {
   return (
     <div className="relative">
-      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">
-        🔍
-      </span>
+      <SearchIcon
+        size={18}
+        className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted"
+      />
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full pl-10 pr-9 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white dark:text-slate-100 placeholder-slate-400 transition"
+        aria-label="搜尋"
+        className="h-11 w-full rounded-[10px] border border-line bg-surface pl-10 pr-11 text-[15px] text-ink placeholder:text-muted focus:border-[#e50012] focus:outline-none focus:ring-2 focus:ring-[#e50012]/30"
       />
       {value && (
         <button
+          type="button"
           onClick={() => onChange('')}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+          aria-label="清除搜尋"
+          className="absolute right-0 top-0 flex h-11 w-11 items-center justify-center text-muted hover:text-ink"
         >
-          ✕
+          <CloseIcon size={16} />
         </button>
       )}
     </div>
