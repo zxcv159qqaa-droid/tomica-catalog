@@ -31,7 +31,7 @@ export default function CarDetail({ carKey }: { carKey: string }) {
   const generations = !car
     ? []
     : car.code
-      ? series === 'disney'
+      ? series === 'disney' || series === 'asia'
         ? getCodeGenerations(series, car.code)
         : []
       : getGenerations(series, number);
@@ -251,6 +251,8 @@ export default function CarDetail({ carKey }: { carKey: string }) {
               ? 'トミカの森 プレミアム館'
               : series === 'disney'
                 ? 'タカラトミー ディズニーモータース公式'
+                : series === 'asia'
+                  ? 'Takara Tomy Asia 官網'
                 : 'ピクシブ百科事典、こつめBLOG'}
             。
           </p>

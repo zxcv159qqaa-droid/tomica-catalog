@@ -31,7 +31,7 @@ export default function AppHeader() {
               </span>
             </div>
             <p className="text-xs text-red-100 mt-0.5 truncate">
-              常規 ・ Premium ・ Unlimited ・ Dream ・ Disney Motors 完整收錄
+              常規 ・ Premium ・ Unlimited ・ Dream ・ Disney Motors ・ Asia Original 完整收錄
             </p>
           </div>
         </Link>

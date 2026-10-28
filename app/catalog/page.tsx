@@ -158,6 +158,8 @@ export default function CatalogPage() {
               ? '；歷代舊款：トミカの森 プレミアム館'
               : series === 'disney'
                 ? '；同代號歷代車款：ディズニーモータース官網'
+                : series === 'asia'
+                  ? '；資料來源：Takara Tomy Asia 官網'
                 : '；歷代舊款：ピクシブ百科事典、こつめBLOG')}
         </p>
       </section>

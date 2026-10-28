@@ -24517,5 +24517,157 @@
     ],
     "period": "2010年・販売終了",
     "note": "ディズニーストア特別仕様車／販売店特別仕様車"
+  },
+  {
+    "id": "asia-ao-01",
+    "number": 1,
+    "code": "AO-01",
+    "series": "asia",
+    "name_ja": "Lamborghini Veneno",
+    "name_en": "Lamborghini Veneno",
+    "manufacturer": "Lamborghini",
+    "image": "https://www.takaratomyasia.com/media/4dsjrzwf/903956-image-001.webp",
+    "variants": [
+      {
+        "id": "ao-01",
+        "name": "通常版",
+        "release_year": 2023
+      }
+    ],
+    "period": "2023年",
+    "note": "Asia Original・2023年"
+  },
+  {
+    "id": "asia-ao-02",
+    "number": 2,
+    "code": "AO-02",
+    "series": "asia",
+    "name_ja": "Isuzu ELF Vehicle Transporter",
+    "name_en": "Isuzu ELF Vehicle Transporter",
+    "manufacturer": "Isuzu",
+    "image": "https://www.takaratomyasia.com/media/zkrdimf1/903963-image-001.webp",
+    "variants": [
+      {
+        "id": "ao-02",
+        "name": "通常版",
+        "release_year": 2023
+      }
+    ],
+    "period": "2023年",
+    "note": "Asia Original・2023年"
+  },
+  {
+    "id": "asia-ao-03",
+    "number": 3,
+    "code": "AO-03",
+    "series": "asia",
+    "name_ja": "Lamborghini Aventador LP 700-4",
+    "name_en": "Lamborghini Aventador LP 700-4",
+    "manufacturer": "Lamborghini",
+    "image": "https://www.takaratomyasia.com/media/zthptrfh/903970-image-001.webp",
+    "variants": [
+      {
+        "id": "ao-03",
+        "name": "通常版",
+        "release_year": 2023
+      }
+    ],
+    "period": "2023年",
+    "note": "Asia Original・2023年"
+  },
+  {
+    "id": "asia-ao-04",
+    "number": 4,
+    "code": "AO-04",
+    "series": "asia",
+    "name_ja": "Chevrolet Camaro",
+    "name_en": "Chevrolet Camaro",
+    "manufacturer": "Chevrolet",
+    "image": "https://www.takaratomyasia.com/media/sk4jtoun/903987-image-001.webp",
+    "variants": [
+      {
+        "id": "ao-04",
+        "name": "通常版",
+        "release_year": 2023
+      }
+    ],
+    "period": "2023年",
+    "note": "Asia Original・2023年"
+  },
+  {
+    "id": "asia-ao-05",
+    "number": 5,
+    "code": "AO-05",
+    "series": "asia",
+    "name_ja": "Mini John Cooper Works",
+    "name_en": "Mini John Cooper Works",
+    "manufacturer": "MINI",
+    "image": "https://www.takaratomyasia.com/media/hujpruin/903994-image-001.webp",
+    "variants": [
+      {
+        "id": "ao-05",
+        "name": "通常版",
+        "release_year": 2023
+      }
+    ],
+    "period": "2023年",
+    "note": "Asia Original・2023年"
+  },
+  {
+    "id": "asia-ao-06",
+    "number": 6,
+    "code": "AO-06",
+    "series": "asia",
+    "name_ja": "Chevrolet Corvette ZR1",
+    "name_en": "Chevrolet Corvette ZR1",
+    "manufacturer": "Chevrolet",
+    "image": "https://www.takaratomyasia.com/media/0kqe50p3/904007-image-001.webp",
+    "variants": [
+      {
+        "id": "ao-06",
+        "name": "通常版",
+        "release_year": 2023
+      }
+    ],
+    "period": "2023年",
+    "note": "Asia Original・2023年"
+  },
+  {
+    "id": "asia-ao-07",
+    "number": 7,
+    "code": "AO-07",
+    "series": "asia",
+    "name_ja": "Honda Civic Type R",
+    "name_en": "Honda Civic Type R",
+    "manufacturer": "Honda",
+    "image": "https://www.takaratomyasia.com/media/2ebpudmh/904014-image-001.webp",
+    "variants": [
+      {
+        "id": "ao-07",
+        "name": "通常版",
+        "release_year": 2023
+      }
+    ],
+    "period": "2023年",
+    "note": "Asia Original・2023年"
+  },
+  {
+    "id": "asia-ao-08",
+    "number": 8,
+    "code": "AO-08",
+    "series": "asia",
+    "name_ja": "Lamborghini Reventón",
+    "name_en": "Lamborghini Reventón",
+    "manufacturer": "Lamborghini",
+    "image": "https://www.takaratomyasia.com/media/5vddlfuo/904021-image-001.webp",
+    "variants": [
+      {
+        "id": "ao-08",
+        "name": "通常版",
+        "release_year": 2023
+      }
+    ],
+    "period": "2023年",
+    "note": "Asia Original・2023年"
   }
 ]

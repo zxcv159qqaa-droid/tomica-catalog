@@ -14,6 +14,7 @@ const BAR: Record<string, string> = {
   unlimited: 'bg-slate-500',
   dream: 'bg-indigo-600',
   disney: 'bg-sky-500',
+  asia: 'bg-emerald-500',
 };
 
 export default function StatsPage() {

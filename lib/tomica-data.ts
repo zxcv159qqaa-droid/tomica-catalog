@@ -34,7 +34,7 @@ const byVariantId = new Map(
   catalog.flatMap((car) => car.variants.map((v) => [v.id, car] as const))
 );
 
-export const CATALOG_SERIES = ['regular', 'premium', 'unlimited', 'dream', 'disney'] as const;
+export const CATALOG_SERIES = ['regular', 'premium', 'unlimited', 'dream', 'disney', 'asia'] as const;
 
 // Regular boxes print the generation as a sub-number (46-8); other series have no such marking
 export function genLabel(car: TomicaCar): string | undefined {
@@ -128,6 +128,12 @@ export function lookupCars(series: string, input: string): TomicaCar[] {
     const d = /^(?:DM-?)?(\d{1,2})$/.exec(q);
     if (d) q = `DM-${d[1].padStart(2, '0')}`;
     else if (/^DM-?EX\d+$/.test(q)) q = `DM-EX${q.replace(/\D/g, '').padStart(2, '0')}`;
+    return getCodeGenerations(series, q);
+  }
+  // Asia Original boxes are coded too: "1", "AO1", "AO-01" and "A0-01" (misread) all mean AO-01
+  if (series === 'asia') {
+    const a = /^(?:A[O0]-?)?(\d{1,2})$/.exec(q);
+    if (a) q = `AO-${a[1].padStart(2, '0')}`;
     return getCodeGenerations(series, q);
   }
   if (/^\d+$/.test(q)) {
