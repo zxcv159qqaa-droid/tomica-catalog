@@ -189,6 +189,7 @@ const SERIES_LABELS: Record<string, string> = {
   dream: 'Dream',
   disney: 'Disney Motors',
   asia: 'Asia Original',
+  event: '活動限定',
   other: '其他',
 };
 

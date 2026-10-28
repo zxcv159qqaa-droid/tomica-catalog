@@ -13,7 +13,7 @@ const PROMPT = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomi
 
 請回傳以下 JSON 格式（不要加 markdown 標記）：
 {
-  "series": "<regular/premium/unlimited/dream/disney/asia/other>",
+  "series": "<regular/premium/unlimited/dream/disney/asia/event/other>",
   "code": "<包裝上的編號文字原樣，例如 46、04、151、SP、RD-01、DM-13、AO-03>",
   "number": <編號中的數字部分，沒有數字（例如 SP）就填 null>,
   "name": "<包裝上的日文名稱（片假名／漢字那行），不要用英文那行>",
@@ -36,6 +36,7 @@ const PROMPT = `你是 Tomica 小汽車專家。請辨識這張圖片中的 Tomi
   - 盒上有「ドリームトミカ」或「Dream TOMICA」車輪標誌 → dream（編號如 151、SP、RD-01）
   - 盒上有「DISNEY MOTORS / ディズニーモータース」且編號是 DM-xx → disney
   - 盒上有「Asia Original」且編號是 AO-xx（或 A0-xx）→ asia，code 統一寫成 AO-xx
+  - 盒上有圓形「TEM」標誌與「TOMICA EVENT MODEL / トミカイベントモデル」字樣（白底紅框盒，編號如 No.30）→ event（活動限定款，編號自成一套，不要當成 regular）
   - 其他系列填 other
 - 各系列編號各自獨立（例如 unlimited 的 04 → code "04"、number 4；DM-13 → code "DM-13"、number 13）
 - 注意包裝盒上的編號
