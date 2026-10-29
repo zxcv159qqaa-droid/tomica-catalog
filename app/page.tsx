@@ -16,12 +16,15 @@ import SearchBar from '@/components/SearchBar';
 import NewReleases from '@/components/NewReleases';
 import Segmented from '@/components/Segmented';
 import SeriesBar from '@/components/SeriesBar';
+import { SERIES_OPTIONS } from '@/components/seriesOptions';
 import EmptyState from '@/components/EmptyState';
 import { BookIcon, ScanIcon } from '@/components/icons';
 
 type FilterMode = 'collected' | 'wishlist' | 'missing';
 
 const GRID = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4';
+
+const HOME_SERIES_OPTIONS = [{ key: 'all', label: '全部' }, ...SERIES_OPTIONS];
 
 const FILTERS = [
   { key: 'collected', label: '已收藏' },
@@ -32,6 +35,7 @@ const FILTERS = [
 export default function HomePage() {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState<FilterMode>('collected');
+  const [series, setSeries] = useState<string>('all');
   const allCars = useMemo(() => getAllCars(), []);
   const currentCars = useMemo(() => getCurrentCars(), []);
   const { collectedByCar, qtyByCar, scannedItems, wishlistIds, ownedCount, imageByCar } =
@@ -54,15 +58,18 @@ export default function HomePage() {
     return scannedItems
       .filter(
         (c) =>
-          !q ||
-          c.tomicaNumber.toString() === q ||
-          normalizeName(c.name!).includes(q)
+          (series === 'all' || (c.series || 'regular') === series) &&
+          (!q ||
+            c.tomicaNumber.toString() === q ||
+            normalizeName(c.name!).includes(q))
       )
       .sort((a, b) => a.tomicaNumber - b.tomicaNumber);
-  }, [scannedItems, search]);
+  }, [scannedItems, search, series]);
 
   const filteredCars = useMemo(() => {
-    const cars = searchCars(search, allCars);
+    const cars = searchCars(search, allCars).filter(
+      (c) => series === 'all' || c.series === series
+    );
     switch (filter) {
       case 'collected':
         return cars.filter((c) => collectedByCar.has(c.id));
@@ -71,7 +78,7 @@ export default function HomePage() {
       case 'missing':
         return cars.filter((c) => !c.retired && !collectedByCar.has(c.id));
     }
-  }, [search, filter, allCars, collectedByCar, wishlistIds]);
+  }, [search, filter, series, allCars, collectedByCar, wishlistIds]);
 
   const showScanned = filter === 'collected' && visibleScanned.length > 0;
   const resultCount = filteredCars.length + (showScanned ? visibleScanned.length : 0);
@@ -109,6 +116,7 @@ export default function HomePage() {
       </div>
 
       <section className="mt-6 space-y-3" aria-label="篩選">
+        <Segmented scroll label="系列" options={HOME_SERIES_OPTIONS} value={series} onChange={setSeries} />
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <Segmented options={FILTERS} value={filter} onChange={setFilter} label="收藏狀態" />
           <div className="sm:w-80">
@@ -122,6 +130,8 @@ export default function HomePage() {
         {resultCount === 0 ? (
           search ? (
             <EmptyState title={`找不到符合「${search}」的結果`} />
+          ) : filter === 'collected' && series !== 'all' ? (
+            <EmptyState title="這個系列還沒有收藏" hint="到「圖鑑」或「掃描」開始加入吧！" />
           ) : filter === 'collected' ? (
             <EmptyState title="還沒有收藏任何車款" hint="到「圖鑑」或「掃描」開始加入吧！">
               <Link

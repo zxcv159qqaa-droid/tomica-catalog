@@ -6,10 +6,8 @@ import {
   searchCars,
   getAllManufacturers,
   normalizeName,
-  seriesLabel,
-  CATALOG_SERIES,
 } from '@/lib/tomica-data';
-import { seriesStyle } from '@/lib/theme';
+import { SERIES_OPTIONS } from '@/components/seriesOptions';
 import { useCollection } from '@/lib/useCollection';
 import CarCard from '@/components/CarCard';
 import ScannedCard from '@/components/ScannedCard';
@@ -82,16 +80,7 @@ export default function CatalogPage() {
   }, [search, filter, manufacturer, seriesCars, collectedByCar]);
 
 
-  const seriesOptions = CATALOG_SERIES.map((s) => ({
-    key: s as string,
-    activeClass: seriesStyle(s).pillActive + ' shadow-sm',
-    label: (
-      <>
-        <span className={`h-2 w-2 rounded-full ${seriesStyle(s).dot}`} aria-hidden="true" />
-        {seriesLabel(s)}
-      </>
-    ),
-  }));
+  const seriesOptions = SERIES_OPTIONS;
   const filterOptions = [
     { key: 'all', label: `全部 (${seriesCars.length})` },
     { key: 'collected', label: `已收 (${collectedInSeries + seriesScanned.length})` },
