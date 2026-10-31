@@ -46,6 +46,19 @@ export function useCollection() {
     return map;
   }, [collection]);
 
+  // carId -> latest addedAt (ms) among that car's catalog rows
+  const lastAddedByCar = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const item of collection) {
+      if (item.name) continue;
+      const car = getCarByVariantId(item.variantId);
+      if (!car) continue;
+      const t = new Date(item.addedAt).getTime();
+      if (t > (map.get(car.id) ?? -Infinity)) map.set(car.id, t);
+    }
+    return map;
+  }, [collection]);
+
   const scannedItems = useMemo(
     () => collection.filter((c): c is CollectionItem & { name: string } => !!c.name),
     [collection]
@@ -62,6 +75,7 @@ export function useCollection() {
     collection,
     collectedByCar,
     qtyByCar,
+    lastAddedByCar,
     scannedItems,
     wishlistIds,
     ownedCount,

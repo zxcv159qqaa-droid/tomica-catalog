@@ -63,6 +63,10 @@ export function getSyncCode(): string | undefined {
   return readState().code;
 }
 
+export function getLastSyncedAt(): number | undefined {
+  return readState().syncedAt || undefined;
+}
+
 export function newSyncCode(): string {
   const bytes = crypto.getRandomValues(new Uint8Array(12));
   const chars = [...bytes].map((b) => ALPHABET[b % ALPHABET.length]).join('');

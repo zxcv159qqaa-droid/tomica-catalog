@@ -4,6 +4,7 @@ import { useState, useSyncExternalStore } from 'react';
 import {
   connectSync,
   disconnectSync,
+  getLastSyncedAt,
   getSyncCode,
   getSyncStatus,
   newSyncCode,
@@ -24,6 +25,7 @@ export default function CloudSyncSection({ className }: { className?: string }) 
   const status = useSyncExternalStore(subscribeSync, getSyncStatus, () => OFF);
   // Re-read the code whenever the status changes (connect/disconnect go through it)
   const code = useSyncExternalStore(subscribeSync, getSyncCode, () => undefined);
+  const lastSynced = useSyncExternalStore(subscribeSync, getLastSyncedAt, () => undefined);
   const [input, setInput] = useState('');
   const [copied, setCopied] = useState(false);
 
@@ -34,7 +36,9 @@ export default function CloudSyncSection({ className }: { className?: string }) 
         ? `已同步 ${new Date(status.at).toLocaleTimeString('zh-TW', { hour: '2-digit', minute: '2-digit' })}`
         : status.kind === 'error'
           ? status.message
-          : '尚未同步';
+          : lastSynced
+            ? `上次同步 ${new Date(lastSynced).toLocaleString('zh-TW', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })}`
+            : '尚未同步';
   const statusIcon =
     status.kind === 'ok' ? <CheckIcon size={14} /> : status.kind === 'error' ? <WarningIcon size={14} /> : null;
 

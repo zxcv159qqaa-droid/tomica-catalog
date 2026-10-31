@@ -6,7 +6,7 @@ import { db } from '@/lib/db';
 import { exportBackup, importBackup } from '@/lib/backup';
 import { useApiKey } from '@/lib/useApiKey';
 import CloudSyncSection from '@/components/CloudSyncSection';
-import { CheckIcon, DownloadIcon, TrashIcon, UploadIcon } from '@/components/icons';
+import { CheckIcon, ChevronDownIcon, DownloadIcon, TrashIcon, UploadIcon } from '@/components/icons';
 
 const section = 'border-t border-line py-6';
 const field =
@@ -68,39 +68,6 @@ export default function SettingsPage() {
       <CloudSyncSection className={section} />
 
       <section className={section}>
-        <h2 className="mb-1 text-base font-medium">Google Gemini API Key</h2>
-        <p className="mb-3 text-sm text-muted">
-          前往{' '}
-          <a
-            href="https://aistudio.google.com/apikey"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-text underline"
-          >
-            Google AI Studio
-          </a>{' '}
-          免費取得 API Key（線上版已內建，可不填）
-        </p>
-        <input
-          type="password"
-          value={draftKey ?? storedKey}
-          onChange={(e) => setDraftKey(e.target.value)}
-          placeholder="輸入 API Key..."
-          aria-label="Google Gemini API Key"
-          className={`${field} mb-2`}
-        />
-        <button onClick={saveApiKey} className={primary}>
-          {saved ? (
-            <span className="inline-flex items-center justify-center gap-1.5">
-              已儲存 <CheckIcon size={16} className="stamp-in" />
-            </span>
-          ) : (
-            '儲存'
-          )}
-        </button>
-      </section>
-
-      <section className={section}>
         <h2 className="mb-3 text-base font-medium">資料統計</h2>
         <dl className="tnum flex gap-10">
           <div className="flex flex-col">
@@ -143,6 +110,45 @@ export default function SettingsPage() {
           </p>
         )}
       </section>
+
+      <details className="group border-t border-line py-3">
+        <summary className="press flex h-11 cursor-pointer list-none items-center justify-between text-base font-medium [&::-webkit-details-marker]:hidden">
+          進階：自己的 Gemini API Key
+          <ChevronDownIcon size={20} className="text-muted transition-transform group-open:rotate-180" />
+        </summary>
+        <div className="pt-3 pb-3">
+          <h2 className="mb-1 text-base font-medium">Google Gemini API Key</h2>
+          <p className="mb-3 text-sm text-muted">
+            前往{' '}
+            <a
+              href="https://aistudio.google.com/apikey"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-text underline"
+            >
+              Google AI Studio
+            </a>{' '}
+            免費取得 API Key（線上版已內建，可不填）
+          </p>
+          <input
+            type="password"
+            value={draftKey ?? storedKey}
+            onChange={(e) => setDraftKey(e.target.value)}
+            placeholder="輸入 API Key..."
+            aria-label="Google Gemini API Key"
+            className={`${field} mb-2`}
+          />
+          <button onClick={saveApiKey} className={primary}>
+            {saved ? (
+              <span className="inline-flex items-center justify-center gap-1.5">
+                已儲存 <CheckIcon size={16} className="stamp-in" />
+              </span>
+            ) : (
+              '儲存'
+            )}
+          </button>
+        </div>
+      </details>
 
       <section className={section}>
         <h2 className="mb-3 text-base font-medium text-brand-text">危險區域</h2>
